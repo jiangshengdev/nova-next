@@ -265,25 +265,25 @@ const NovaColorPickerImpl = {
 
         const trigger = context.slots.trigger;
 
-        let triggerNode = null;
-        if (trigger) {
-          triggerNode = () =>
-            trigger({
-              ...triggerProps,
-            });
-        }
-
         function onAssignRef(ref: Ref<HTMLElement | null>) {
           if (ref.value) {
             colorPickerTriggerAutoFocusRef.value = ref.value;
           }
         }
 
-        return (
-          <Trigger onAssignRef={onAssignRef} {...triggerProps}>
-            {triggerNode}
-          </Trigger>
-        );
+        if (trigger) {
+          const triggerNode = () =>
+            trigger({
+              ...triggerProps,
+            });
+          return (
+            <Trigger onAssignRef={onAssignRef} {...triggerProps}>
+              {triggerNode}
+            </Trigger>
+          );
+        }
+
+        return <Trigger onAssignRef={onAssignRef} {...triggerProps} />;
       }
 
       function createHsvPanel() {

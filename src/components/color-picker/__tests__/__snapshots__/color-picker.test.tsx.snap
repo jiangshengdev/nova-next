@@ -4,7 +4,11 @@ exports[`color-picker alpha 1`] = `
 "<div><span id="print">#80808080</span><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgba(128, 128, 128, 0.5);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-color-picker-panel-has-alpha nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -84,7 +88,11 @@ exports[`color-picker alpha 2`] = `
 "<div><span id="print">#80808080</span><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgba(128, 128, 128, 0);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-color-picker-panel-has-alpha nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -164,7 +172,11 @@ exports[`color-picker alpha 3`] = `
 "<div><span id="print">#80808000</span><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -236,7 +248,11 @@ exports[`color-picker change value 1`] = `
 "<div><span id="print">#808080</span>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(64, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -308,7 +324,11 @@ exports[`color-picker change value 2`] = `
 "<div><span id="print">#408080</span>
   <div class="nova-dropdown nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(64, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-leave-from nova-dropdown-leave-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -380,7 +400,11 @@ exports[`color-picker class 1`] = `
 "<div>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker array-class object-class" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel array-panel-class object-panel-class nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -452,7 +476,11 @@ exports[`color-picker disabled 1`] = `
 "<div><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-disabled nova-color-picker nova-color-picker-disabled" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="-1">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!---->
   </div>
@@ -463,7 +491,11 @@ exports[`color-picker disabled 2`] = `
 "<div><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -535,7 +567,11 @@ exports[`color-picker preset 1`] = `
 "<div><span id="print">#80808080</span>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgba(128, 128, 128, 0.5);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-color-picker-panel-has-alpha nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -617,7 +653,11 @@ exports[`color-picker render 1`] = `
 "<div>
   <div class="nova-dropdown nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(255, 0, 0);"></div>
+        </div>
+      </div>
     </div>
     <!---->
   </div>
@@ -628,7 +668,11 @@ exports[`color-picker render 2`] = `
 "<div>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
@@ -700,7 +744,11 @@ exports[`color-picker teleport to body 1`] = `
 "<div><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <!--teleport end-->
@@ -712,7 +760,11 @@ exports[`color-picker teleport to body 2`] = `
 "<div><button id="toggle"></button>
   <div class="nova-dropdown nova-dropdown-opened nova-color-picker" data-nova-theme="light">
     <div class="nova-dropdown-trigger">
-      <!---->
+      <div class="nova-color-picker-trigger" role="button" aria-label="Color Picker" tabindex="0">
+        <div class="nova-color-picker-trigger-inner">
+          <div class="nova-color-picker-trigger-bg" style="background-color: rgb(128, 128, 128);"></div>
+        </div>
+      </div>
     </div>
     <!--teleport start-->
     <div class="nova-dropdown-panel nova-dropdown-enter-from nova-dropdown-enter-active" role="dialog" data-nova-theme="light" style="left: 0px; top: 0px; opacity: 0; transform: translate(0px, 0px) scale(1, 1) ; pointer-events: none;">
