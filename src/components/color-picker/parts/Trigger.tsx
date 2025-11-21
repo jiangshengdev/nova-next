@@ -63,7 +63,8 @@ const TriggerImpl = {
       );
       const children = slots.default;
       if (children) {
-        triggerNode = children();
+        const slotNodes = children();
+        triggerNode = slotNodes[0] ?? triggerNode;
       }
 
       return triggerNode;

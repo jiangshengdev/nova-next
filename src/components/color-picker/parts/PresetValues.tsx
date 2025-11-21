@@ -65,7 +65,8 @@ const PresetValuesImpl = {
       );
       const children = slots.default;
       if (children) {
-        presetNode = children();
+        const slotNodes = children();
+        presetNode = slotNodes[0] ?? presetNode;
       }
 
       return <div class="nova-color-picker-preset-wrap">{presetNode}</div>;
