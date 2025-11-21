@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import { vueJsxCompat } from '../../vue-jsx-compat';
 import { NovaButton } from '../../index';
-import { MDICamera, MDITheaters } from '@em2046/material-design-icons-vue-next';
+import { MDICamera, MDITheaters } from '@jiangshengdev/material-design-icons-vue-next';
 
 export default defineComponent({
   setup() {
