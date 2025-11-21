@@ -24,18 +24,16 @@ export default defineComponent({
         <h4>Click Counter</h4>
         <div class="demo-button-group">
           <NovaButton onClick={handleCounterClick}>
-            {(): string =>
-              clickCount.value === 0
-                ? 'Click me!'
-                : `Clicked ${clickCount.value} times`
-            }
+            {clickCount.value === 0
+              ? 'Click me!'
+              : `Clicked ${clickCount.value} times`}
           </NovaButton>
         </div>
 
         <h4>Toggle State</h4>
         <div class="demo-button-group">
           <NovaButton primary={isActive.value} onClick={handleToggleClick}>
-            {(): string => (isActive.value ? 'Active' : 'Inactive')}
+            {isActive.value ? 'Active' : 'Inactive'}
           </NovaButton>
         </div>
 
@@ -47,32 +45,33 @@ export default defineComponent({
               alert('Form submitted!');
             }}
           >
-            {(): string => 'Submit Form'}
+            Submit Form
           </NovaButton>
           <NovaButton
             onClick={() => {
               console.log('Form reset');
             }}
           >
-            {(): string => 'Reset Form'}
+            Reset Form
           </NovaButton>
           <NovaButton
             onClick={() => {
               console.log('Action cancelled');
             }}
           >
-            {(): string => 'Cancel'}
+            Cancel
           </NovaButton>
         </div>
 
         <h4>Action with Icon</h4>
         <div class="demo-button-group">
           <NovaButton
+            icon={<MDIRefresh />}
             onClick={() => {
               console.log('Refreshing...');
             }}
           >
-            {{ icon: () => <MDIRefresh />, default: () => 'Refresh' }}
+            Refresh
           </NovaButton>
         </div>
       </div>

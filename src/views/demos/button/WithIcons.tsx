@@ -19,35 +19,29 @@ export default defineComponent({
 
         <h4>Icon Only</h4>
         <div class="demo-button-group">
-          <NovaButton>{{ icon: () => <MDICamera /> }}</NovaButton>
-          <NovaButton>{{ icon: () => <MDITheaters /> }}</NovaButton>
-          <NovaButton>{{ icon: () => <MDIHome /> }}</NovaButton>
-          <NovaButton>{{ icon: () => <MDISettings /> }}</NovaButton>
-          <NovaButton primary>{{ icon: () => <MDIDelete /> }}</NovaButton>
+          <NovaButton icon={<MDICamera />} />
+          <NovaButton icon={<MDITheaters />} />
+          <NovaButton icon={<MDIHome />} />
+          <NovaButton icon={<MDISettings />} />
+          <NovaButton primary icon={<MDIDelete />} />
         </div>
 
         <h4>Icon with Text</h4>
         <div class="demo-button-group">
-          <NovaButton>
-            {{ icon: () => <MDICamera />, default: () => 'Camera' }}
-          </NovaButton>
-          <NovaButton>
-            {{ icon: () => <MDITheaters />, default: () => 'Theaters' }}
-          </NovaButton>
-          <NovaButton>
-            {{ icon: () => <MDIHome />, default: () => 'Home' }}
-          </NovaButton>
-          <NovaButton primary>
-            {{ icon: () => <MDIFileDownload />, default: () => 'Download' }}
+          <NovaButton icon={<MDICamera />}>Camera</NovaButton>
+          <NovaButton icon={<MDITheaters />}>Theaters</NovaButton>
+          <NovaButton icon={<MDIHome />}>Home</NovaButton>
+          <NovaButton primary icon={<MDIFileDownload />}>
+            Download
           </NovaButton>
         </div>
 
         <h4>Emoji Icons</h4>
         <div class="demo-button-group">
-          <NovaButton>{{ icon: (): string => '🚀' }}</NovaButton>
-          <NovaButton>{{ icon: (): string => '⭐' }}</NovaButton>
-          <NovaButton>{{ icon: (): string => '❤️' }}</NovaButton>
-          <NovaButton primary>{{ icon: (): string => '✨' }}</NovaButton>
+          <NovaButton icon="🚀" />
+          <NovaButton icon="⭐" />
+          <NovaButton icon="❤️" />
+          <NovaButton primary icon="✨" />
         </div>
       </div>
     );

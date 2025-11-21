@@ -11,33 +11,33 @@ export default defineComponent({
 
         <h4>Chinese (Simplified)</h4>
         <div class="demo-button-group">
-          <NovaButton>{(): string => '确认'}</NovaButton>
-          <NovaButton primary>{(): string => '提交'}</NovaButton>
-          <NovaButton>{(): string => '取消'}</NovaButton>
-          <NovaButton>{(): string => '删除'}</NovaButton>
+          <NovaButton>确认</NovaButton>
+          <NovaButton primary>提交</NovaButton>
+          <NovaButton>取消</NovaButton>
+          <NovaButton>删除</NovaButton>
         </div>
 
         <h4>English</h4>
         <div class="demo-button-group">
-          <NovaButton>{(): string => 'Confirm'}</NovaButton>
-          <NovaButton primary>{(): string => 'Submit'}</NovaButton>
-          <NovaButton>{(): string => 'Cancel'}</NovaButton>
-          <NovaButton>{(): string => 'Delete'}</NovaButton>
+          <NovaButton>Confirm</NovaButton>
+          <NovaButton primary>Submit</NovaButton>
+          <NovaButton>Cancel</NovaButton>
+          <NovaButton>Delete</NovaButton>
         </div>
 
         <h4>Japanese</h4>
         <div class="demo-button-group">
-          <NovaButton>{(): string => '確認'}</NovaButton>
-          <NovaButton primary>{(): string => '送信'}</NovaButton>
-          <NovaButton>{(): string => 'キャンセル'}</NovaButton>
-          <NovaButton>{(): string => '削除'}</NovaButton>
+          <NovaButton>確認</NovaButton>
+          <NovaButton primary>送信</NovaButton>
+          <NovaButton>キャンセル</NovaButton>
+          <NovaButton>削除</NovaButton>
         </div>
 
         <h4>Mixed Content</h4>
         <div class="demo-button-group">
-          <NovaButton>{(): string => 'Save 保存'}</NovaButton>
-          <NovaButton primary>{(): string => 'Download 下载'}</NovaButton>
-          <NovaButton>{(): string => 'Upload アップロード'}</NovaButton>
+          <NovaButton>Save 保存</NovaButton>
+          <NovaButton primary>Download 下载</NovaButton>
+          <NovaButton>Upload アップロード</NovaButton>
         </div>
       </div>
     );

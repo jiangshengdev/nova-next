@@ -13,11 +13,9 @@ export default defineComponent({
       <div class="demo-button-basic">
         <h3>Basic Buttons</h3>
         <div class="demo-button-group">
-          <NovaButton onClick={handleClick}>
-            {(): string => 'Default Button'}
-          </NovaButton>
-          <NovaButton type="submit">{(): string => 'Submit Button'}</NovaButton>
-          <NovaButton type="reset">{(): string => 'Reset Button'}</NovaButton>
+          <NovaButton onClick={handleClick}>Default Button</NovaButton>
+          <NovaButton type="submit">Submit Button</NovaButton>
+          <NovaButton type="reset">Reset Button</NovaButton>
         </div>
       </div>
     );

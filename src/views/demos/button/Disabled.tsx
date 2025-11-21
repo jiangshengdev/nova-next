@@ -9,12 +9,12 @@ export default defineComponent({
       <div class="demo-button-disabled">
         <h3>Disabled Buttons</h3>
         <div class="demo-button-group">
-          <NovaButton disabled>{(): string => 'Disabled Default'}</NovaButton>
+          <NovaButton disabled>Disabled Default</NovaButton>
           <NovaButton primary disabled>
-            {(): string => 'Disabled Primary'}
+            Disabled Primary
           </NovaButton>
           <NovaButton disabled type="submit">
-            {(): string => 'Disabled Submit'}
+            Disabled Submit
           </NovaButton>
         </div>
         <div class="demo-button-description">
