@@ -1,4 +1,4 @@
-import { reactive, SetupContext, VNodeProps, watch } from 'vue';
+import { defineComponent, reactive, VNodeProps, watch } from 'vue';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {
@@ -21,26 +21,26 @@ interface HslaLabelsProps {
   onColorBlur?: (color: Color) => void;
 }
 
-const HslaLabelsImpl = {
-  name: 'HslaLabels',
-  emits: ['colorInput', 'colorBlur'],
-  props: {
-    alpha: {
-      type: Boolean,
-      required: true,
-    },
-    color: {
-      type: Object,
-      required: true,
-    },
-    environment: {
-      type: Object,
-      required: true,
-    },
+const hslaLabelsProps = {
+  alpha: {
+    type: Boolean,
+    required: true,
   },
-  setup(props: HslaLabelsProps, context: SetupContext) {
-    const emit = context.emit;
+  color: {
+    type: Object,
+    required: true,
+  },
+  environment: {
+    type: Object,
+    required: true,
+  },
+};
 
+export const HslaLabels = defineComponent({
+  name: 'HslaLabels',
+  props: hslaLabelsProps,
+  emits: ['colorInput', 'colorBlur'],
+  setup(props: HslaLabelsProps, { emit }) {
     const hsla = props.color.toCssHsla();
     const state = reactive({
       hue: hsla.hue,
@@ -97,12 +97,12 @@ const HslaLabelsImpl = {
     watch(
       () => props.color,
       () => {
-        const hsla = props.color.toCssHsla();
+        const newHsla = props.color.toCssHsla();
 
-        state.hue = hsla.hue;
-        state.saturation = hsla.saturation;
-        state.lightness = hsla.lightness;
-        state.alpha = hsla.alpha;
+        state.hue = newHsla.hue;
+        state.saturation = newHsla.saturation;
+        state.lightness = newHsla.lightness;
+        state.alpha = newHsla.alpha;
       }
     );
 
@@ -171,9 +171,7 @@ const HslaLabelsImpl = {
       );
     };
   },
-};
-
-export const HslaLabels = HslaLabelsImpl as unknown as {
+}) as unknown as {
   new (): {
     $props: VNodeProps & HslaLabelsProps;
   };

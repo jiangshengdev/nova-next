@@ -1,4 +1,4 @@
-import { reactive, SetupContext, VNodeProps, watch } from 'vue';
+import { defineComponent, reactive, VNodeProps, watch } from 'vue';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {
@@ -21,26 +21,26 @@ interface RgbaLabelsProps {
   onColorBlur?: (color: Color) => void;
 }
 
-const RgbaLabelsImpl = {
-  name: 'RgbaLabels',
-  emits: ['colorInput', 'colorBlur'],
-  props: {
-    alpha: {
-      type: Boolean,
-      required: true,
-    },
-    color: {
-      type: Object,
-      required: true,
-    },
-    environment: {
-      type: Object,
-      required: true,
-    },
+const rgbaLabelsProps = {
+  alpha: {
+    type: Boolean,
+    required: true,
   },
-  setup(props: RgbaLabelsProps, context: SetupContext) {
-    const emit = context.emit;
+  color: {
+    type: Object,
+    required: true,
+  },
+  environment: {
+    type: Object,
+    required: true,
+  },
+};
 
+export const RgbaLabels = defineComponent({
+  name: 'RgbaLabels',
+  props: rgbaLabelsProps,
+  emits: ['colorInput', 'colorBlur'],
+  setup(props: RgbaLabelsProps, { emit }) {
     const rgba = props.color.toCssRgba();
     const state = reactive({
       red: rgba.red,
@@ -97,12 +97,12 @@ const RgbaLabelsImpl = {
     watch(
       () => props.color,
       () => {
-        const rgba = props.color.toCssRgba();
+        const newRgba = props.color.toCssRgba();
 
-        state.red = rgba.red;
-        state.green = rgba.green;
-        state.blue = rgba.blue;
-        state.alpha = rgba.alpha;
+        state.red = newRgba.red;
+        state.green = newRgba.green;
+        state.blue = newRgba.blue;
+        state.alpha = newRgba.alpha;
       }
     );
 
@@ -171,9 +171,7 @@ const RgbaLabelsImpl = {
       );
     };
   },
-};
-
-export const RgbaLabels = RgbaLabelsImpl as unknown as {
+}) as unknown as {
   new (): {
     $props: VNodeProps & RgbaLabelsProps;
   };

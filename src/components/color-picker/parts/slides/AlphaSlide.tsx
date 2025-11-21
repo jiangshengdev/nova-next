@@ -1,4 +1,4 @@
-import { computed, ref, SetupContext, VNodeProps } from 'vue';
+import { computed, defineComponent, ref, VNodeProps } from 'vue';
 import { MovePosition, useMove } from '../../../../uses/use-move';
 import { Color } from '../../color';
 import { numberFixed } from '../../../../utils/utils';
@@ -9,23 +9,23 @@ interface AlphaSlideProps {
   onMove?: (position: MovePosition) => void;
 }
 
-const AlphaSlideImpl = {
-  name: 'AlphaSlide',
-  emits: ['move'],
-  props: {
-    alpha: {
-      type: Number,
-      required: true,
-    },
-    color: {
-      type: Object,
-      required: true,
-    },
+const alphaSlideProps = {
+  alpha: {
+    type: Number,
+    required: true,
   },
-  setup(props: AlphaSlideProps, context: SetupContext) {
-    const emit = context.emit;
+  color: {
+    type: Object,
+    required: true,
+  },
+};
 
-    const alphaSlideRef = ref(null);
+export const AlphaSlide = defineComponent({
+  name: 'AlphaSlide',
+  props: alphaSlideProps,
+  emits: ['move'],
+  setup(props: AlphaSlideProps, { emit }) {
+    const alphaSlideRef = ref<HTMLElement | null>(null);
 
     const alphaThumbStyle = computed(() => {
       const y = numberFixed(props.alpha);
@@ -63,9 +63,7 @@ const AlphaSlideImpl = {
       );
     };
   },
-};
-
-export const AlphaSlide = AlphaSlideImpl as unknown as {
+}) as unknown as {
   new (): {
     $props: VNodeProps & AlphaSlideProps;
   };

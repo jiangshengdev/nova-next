@@ -1,4 +1,4 @@
-import { reactive, ref, Ref, SetupContext, VNodeProps } from 'vue';
+import { defineComponent, reactive, ref, Ref, VNodeProps } from 'vue';
 import {
   Direction,
   down,
@@ -57,18 +57,18 @@ function calcTuned(
   return tunedNumber.toString(16).padStart(tuningParams.length, '0');
 }
 
-const HexLabelImpl = {
-  name: 'HexLabel',
-  emits: ['colorInput', 'colorBlur'],
-  props: {
-    color: {
-      type: Object,
-      required: true,
-    },
+const hexLabelProps = {
+  color: {
+    type: Object,
+    required: true,
   },
-  setup(props: HexLabelProps, context: SetupContext) {
-    const emit = context.emit;
+};
 
+export const HexLabel = defineComponent({
+  name: 'HexLabel',
+  props: hexLabelProps,
+  emits: ['colorInput', 'colorBlur'],
+  setup(props: HexLabelProps, { emit }) {
     const hexRef: Ref<HTMLElement | null> = ref(null);
 
     const state = reactive({
@@ -192,8 +192,7 @@ const HexLabelImpl = {
       );
     };
   },
-};
-export const HexLabel = HexLabelImpl as unknown as {
+}) as unknown as {
   new (): {
     $props: VNodeProps & HexLabelProps;
   };

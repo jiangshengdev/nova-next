@@ -1,4 +1,4 @@
-import { computed, ref, SetupContext, VNodeProps } from 'vue';
+import { computed, defineComponent, ref, VNodeProps } from 'vue';
 import { MovePosition, useMove } from '../../../../uses/use-move';
 import { numberFixed } from '../../../../utils/utils';
 
@@ -7,19 +7,19 @@ interface HueSlideProps {
   onMove?: (position: MovePosition) => void;
 }
 
-const HueSlideImpl = {
-  name: 'HueSlide',
-  emits: ['move'],
-  props: {
-    hue: {
-      type: Number,
-      required: true,
-    },
+const hueSlideProps = {
+  hue: {
+    type: Number,
+    required: true,
   },
-  setup(props: HueSlideProps, context: SetupContext) {
-    const emit = context.emit;
+};
 
-    const hueSlideRef = ref(null);
+export const HueSlide = defineComponent({
+  name: 'HueSlide',
+  props: hueSlideProps,
+  emits: ['move'],
+  setup(props: HueSlideProps, { emit }) {
+    const hueSlideRef = ref<HTMLElement | null>(null);
 
     const hueThumbStyle = computed(() => {
       const y = numberFixed(props.hue);
@@ -51,9 +51,7 @@ const HueSlideImpl = {
       );
     };
   },
-};
-
-export const HueSlide = HueSlideImpl as unknown as {
+}) as unknown as {
   new (): {
     $props: VNodeProps & HueSlideProps;
   };
