@@ -1,8 +1,16 @@
 const path = require('path');
+const srcPath = path.resolve(__dirname, '../../src');
 
 module.exports = {
   title: 'Nova',
-  alias: {
-    '/@nova/': path.resolve(__dirname, '../../src'),
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^\/@nova\//,
+          replacement: `${srcPath}/`,
+        },
+      ],
+    },
   },
 };
