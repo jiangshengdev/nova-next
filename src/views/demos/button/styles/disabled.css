@@ -1,0 +1,31 @@
+.demo-button-disabled {
+  margin-bottom: 40px;
+}
+
+.demo-button-disabled h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.demo-button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.demo-button-description {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+}
+
+.demo-button-description p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--nova-color-font);
+}

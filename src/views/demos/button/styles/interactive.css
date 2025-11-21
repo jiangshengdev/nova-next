@@ -1,0 +1,24 @@
+.demo-button-interactive {
+  margin-bottom: 40px;
+}
+
+.demo-button-interactive h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.demo-button-interactive h4 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.demo-button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
