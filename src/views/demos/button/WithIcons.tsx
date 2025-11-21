@@ -9,14 +9,14 @@ import {
   MDIDelete,
   MDIFileDownload,
 } from '@jiangshengdev/material-design-icons-vue-next';
-import './styles/with-icons.css';
+import './styles/common.css';
 
 export default defineComponent({
   setup() {
     return (): JSX.Element => (
       <div class="demo-button-with-icons">
         <h3>Buttons with Icons</h3>
-        
+
         <h4>Icon Only</h4>
         <div class="demo-button-group">
           <NovaButton>{{ icon: () => <MDICamera /> }}</NovaButton>

@@ -1,14 +1,14 @@
 import { defineComponent } from 'vue';
 import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { NovaButton } from '../../../index';
-import './styles/multilingual.css';
+import './styles/common.css';
 
 export default defineComponent({
   setup() {
     return (): JSX.Element => (
       <div class="demo-button-multilingual">
         <h3>Multilingual Support</h3>
-        
+
         <h4>Chinese (Simplified)</h4>
         <div class="demo-button-group">
           <NovaButton>{(): string => '确认'}</NovaButton>
