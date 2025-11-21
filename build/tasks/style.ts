@@ -5,8 +5,7 @@ import postcss from 'gulp-postcss';
 import atImport from 'postcss-import';
 import rename from 'gulp-rename';
 import postcssNested from 'postcss-nested';
-import globby from 'globby';
-import prettierFormat from './prettier-format';
+import { globby } from 'globby';
 
 const cssPath = './dist/css';
 if (!fs.existsSync(cssPath)) {
@@ -17,7 +16,6 @@ async function component(inputPath: string, outputPath: string): Promise<void> {
   src(inputPath)
     .pipe(postcss([atImport(), autoprefixer(), postcssNested()]))
     .pipe(rename(outputPath))
-    .pipe(prettierFormat({ parser: 'css' }))
     .pipe(dest('.'));
 }
 
