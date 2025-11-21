@@ -45,10 +45,10 @@ const NovaButtonImpl: FunctionalComponent<ButtonProps> = (props, { slots, attrs 
 
   return (
     <button
-      {...attrs}
       class={classList}
       type="button"
       data-nova-theme={environment.themeRef.value}
+      {...attrs}
     >
       {renderIcon()}
       {renderChildren()}
