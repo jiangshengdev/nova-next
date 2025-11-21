@@ -9,13 +9,13 @@ export default defineComponent({
       <div class="demo-button-primary">
         <h3>Primary Buttons</h3>
         <div class="demo-button-group">
-          <NovaButton primary>{(): string => 'Primary'}</NovaButton>
-          <NovaButton>{(): string => 'Secondary'}</NovaButton>
+          <NovaButton primary>Primary</NovaButton>
+          <NovaButton>Secondary</NovaButton>
           <NovaButton primary name="action">
-            {(): string => 'Primary Action'}
+            Primary Action
           </NovaButton>
           <NovaButton primary type="submit">
-            {(): string => 'Submit'}
+            Submit
           </NovaButton>
         </div>
         <div class="demo-button-description">

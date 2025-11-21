@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, SetupContext, VNodeProps } from 'vue';
+import { ButtonHTMLAttributes, SetupContext, VNode, VNodeProps } from 'vue';
 import { vueJsxCompat } from '../../vue-jsx-compat';
 import { useEnvironment } from '../../uses/use-environment';
 import { VueComponentProps } from '../../types/vue-component';
@@ -9,6 +9,7 @@ import {
 
 export interface ButtonProps extends EnvironmentProps {
   primary?: boolean;
+  icon?: VNode | string;
 }
 
 const buttonProps = {
@@ -16,6 +17,10 @@ const buttonProps = {
   primary: {
     type: Boolean,
     default: false,
+  },
+  icon: {
+    type: [Object, String],
+    default: null,
   },
 };
 
@@ -28,8 +33,11 @@ const NovaButtonImpl = {
     const environment = useEnvironment(props as EnvironmentProps);
 
     return (): JSX.Element => {
+      // Support both slot and direct children
       const children = slots.default?.();
-      const icon = slots.icon?.();
+      // Icon can come from prop or slot (slot takes priority for backward compatibility)
+      const icon = slots.icon?.() || props.icon;
+      
       const classList = [
         'nova-button',
         { 'nova-button-icon-only': icon && !children },
