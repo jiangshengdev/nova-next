@@ -638,7 +638,14 @@ exports[`color-picker preset 1`] = `
           <div class="nova-color-picker-preview-curr" style="background-color: rgba(128, 128, 128, 0.5);"></div>
         </div>
         <div class="nova-color-picker-preset-wrap">
-          <!---->
+          <div class="nova-color-picker-preset-list">
+            <div class="nova-color-picker-preset">
+              <div class="nova-color-picker-preset-inner" style="background-color: rgb(255, 165, 0);"></div>
+            </div>
+            <div class="nova-color-picker-preset">
+              <div class="nova-color-picker-preset-inner" style="background-color: rgb(102, 51, 153);"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="nova-trap" data-nova-trap="trailer" tabindex="0"></div>

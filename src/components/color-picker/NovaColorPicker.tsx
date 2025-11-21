@@ -419,14 +419,24 @@ export const NovaColorPicker = defineComponent({
           return null;
         }
 
+        if (slotPresetNode) {
+          return (
+            <PresetValues
+              preset={props.preset || []}
+              color={state.color}
+              onSelect={setColorAndPosition}
+            >
+              {slotPresetNode}
+            </PresetValues>
+          );
+        }
+
         return (
           <PresetValues
             preset={props.preset || []}
             color={state.color}
             onSelect={setColorAndPosition}
-          >
-            {slotPresetNode}
-          </PresetValues>
+          />
         );
       }
 
@@ -505,9 +515,8 @@ export const NovaColorPicker = defineComponent({
           placement={props.placement}
           environment={environment}
           onOpenChange={onOpenChange}
-        >
-          {slots}
-        </NovaDropdown>
+          v-slots={slots}
+        />
       );
     };
   },
