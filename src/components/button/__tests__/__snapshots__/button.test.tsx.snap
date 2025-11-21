@@ -5,7 +5,7 @@ exports[`button render 1`] = `
     <!----><span>Button</span>
   </button><button class="nova-button nova-button-primary" type="button" data-nova-theme="light">
     <!----><span>Primary</span>
-  </button><button class="nova-button" type="button" data-nova-theme="light" disabled="">
+  </button><button disabled="" class="nova-button" type="button" data-nova-theme="light">
     <!----><span>Disabled</span>
   </button></div>"
 `;
