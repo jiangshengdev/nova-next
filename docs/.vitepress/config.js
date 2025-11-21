@@ -1,8 +1,20 @@
 const path = require('path');
+const srcPath = path.resolve(__dirname, '../../src');
+const internalizePackages = ['@jiangshengdev/material-design-icons-vue-next'];
 
 module.exports = {
   title: 'Nova',
-  alias: {
-    '/@nova/': path.resolve(__dirname, '../../src'),
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: /^\/@nova\//,
+          replacement: `${srcPath}/`,
+        },
+      ],
+    },
+    ssr: {
+      noExternal: internalizePackages,
+    },
   },
 };

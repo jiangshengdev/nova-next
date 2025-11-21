@@ -1,4 +1,4 @@
-import theme from 'vitepress/dist/client/theme-default';
+import theme from 'vitepress/theme';
 import { NovaButton, NovaColorPicker, NovaInput } from '/@nova/';
 import '/@nova/styles/index.css';
 import './index.css';
