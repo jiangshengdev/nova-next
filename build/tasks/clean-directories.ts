@@ -1,5 +1,5 @@
-import del from 'del';
+import { deleteAsync } from 'del';
 
 export default async function cleanDirectories() {
-  return await del(['dist', 'temp']);
+  return await deleteAsync(['dist', 'temp']);
 }
