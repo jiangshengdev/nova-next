@@ -58,6 +58,7 @@
     "@types/through2": "^2.0.36",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "@vitejs/plugin-vue": "^6.0.2",
     "@vue/compiler-sfc": "^3.5.0",
     "@vue/test-utils": "^2.4.0",
     "autoprefixer": "^10.4.0",
