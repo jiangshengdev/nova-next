@@ -66,7 +66,7 @@ const NovaButtonImpl = {
   },
 };
 
-export const NovaButton = (NovaButtonImpl as unknown) as {
+export const NovaButton = NovaButtonImpl as unknown as {
   new (): {
     $props: VNodeProps & ButtonProps & ButtonHTMLAttributes & VueComponentProps;
   };

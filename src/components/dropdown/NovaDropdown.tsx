@@ -285,7 +285,7 @@ const NovaDropdownImpl = {
   },
 };
 
-export const NovaDropdown = (NovaDropdownImpl as unknown) as {
+export const NovaDropdown = NovaDropdownImpl as unknown as {
   new (): {
     $props: VNodeProps & DropdownProps & HTMLAttributes & VueComponentProps;
   };

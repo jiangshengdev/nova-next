@@ -54,7 +54,7 @@ const HueSlideImpl = {
   },
 };
 
-export const HueSlide = (HueSlideImpl as unknown) as {
+export const HueSlide = HueSlideImpl as unknown as {
   new (): {
     $props: VNodeProps & HueSlideProps;
   };

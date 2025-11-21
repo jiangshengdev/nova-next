@@ -22,7 +22,7 @@ import { HexLabel } from './parts/labels/HexLabel';
 import { Preview } from './parts/Preview';
 import { PresetValues } from './parts/PresetValues';
 import { useEnvironment } from '../../uses/use-environment';
-import { MDIClose } from '@em2046/material-design-icons-vue-next';
+import { MDIClose } from '@jiangshengdev/material-design-icons-vue-next';
 import { NovaDropdown } from '../dropdown';
 import {
   DropdownInstance,
@@ -517,7 +517,7 @@ const NovaColorPickerImpl = {
   },
 };
 
-export const NovaColorPicker = (NovaColorPickerImpl as unknown) as {
+export const NovaColorPicker = NovaColorPickerImpl as unknown as {
   new (): {
     $props: VNodeProps & ColorPickerProps & HTMLAttributes & VueComponentProps;
   };

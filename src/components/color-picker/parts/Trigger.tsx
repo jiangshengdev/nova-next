@@ -63,7 +63,8 @@ const TriggerImpl = {
       );
       const children = slots.default;
       if (children) {
-        triggerNode = children();
+        const slotNodes = children();
+        triggerNode = slotNodes[0] ?? triggerNode;
       }
 
       return triggerNode;
@@ -71,7 +72,7 @@ const TriggerImpl = {
   },
 };
 
-export const Trigger = (TriggerImpl as unknown) as {
+export const Trigger = TriggerImpl as unknown as {
   new (): {
     $props: VNodeProps & TriggerProps;
   };

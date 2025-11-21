@@ -65,7 +65,8 @@ const PresetValuesImpl = {
       );
       const children = slots.default;
       if (children) {
-        presetNode = children();
+        const slotNodes = children();
+        presetNode = slotNodes[0] ?? presetNode;
       }
 
       return <div class="nova-color-picker-preset-wrap">{presetNode}</div>;
@@ -73,7 +74,7 @@ const PresetValuesImpl = {
   },
 };
 
-export const PresetValues = (PresetValuesImpl as unknown) as {
+export const PresetValues = PresetValuesImpl as unknown as {
   new (): {
     $props: VNodeProps & PresetValuesProps;
   };

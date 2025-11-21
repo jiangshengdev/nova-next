@@ -66,7 +66,7 @@ const AlphaSlideImpl = {
   },
 };
 
-export const AlphaSlide = (AlphaSlideImpl as unknown) as {
+export const AlphaSlide = AlphaSlideImpl as unknown as {
   new (): {
     $props: VNodeProps & AlphaSlideProps;
   };

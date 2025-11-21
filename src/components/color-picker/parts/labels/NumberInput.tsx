@@ -118,7 +118,7 @@ const NumberInputImpl = {
   },
 };
 
-export const NumberInput = (NumberInputImpl as unknown) as {
+export const NumberInput = NumberInputImpl as unknown as {
   new (): {
     $props: VNodeProps & NumberInputProps;
   };
