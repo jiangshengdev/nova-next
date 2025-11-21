@@ -1,4 +1,4 @@
-import globby from 'globby';
+import { globby } from 'globby';
 import { camelCase } from 'lodash';
 import { format } from '../helpers';
 import fs from 'fs';

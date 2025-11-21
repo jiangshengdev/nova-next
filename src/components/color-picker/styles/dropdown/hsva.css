@@ -49,7 +49,8 @@
   box-shadow: var(--nova-shadow-cursor);
   transform: translate(100px, 100px);
   will-change: transform;
-  transition: width var(--nova-duration-short) linear,
+  transition:
+    width var(--nova-duration-short) linear,
     height var(--nova-duration-short) linear,
     margin var(--nova-duration-short) linear;
 }
