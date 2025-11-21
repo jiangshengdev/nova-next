@@ -1143,10 +1143,10 @@
     "@types/yargs" "^17.0.8"
     chalk "^4.0.0"
 
-"@jiangshengdev/material-design-icons-vue-next@^1.0.0-alpha.8":
-  version "1.0.0-alpha.8"
-  resolved "https://registry.npmjs.org/@jiangshengdev/material-design-icons-vue-next/-/material-design-icons-vue-next-1.0.0-alpha.8.tgz#bb8432a8e683432e79cb4c8f1028889ab14ce65b"
-  integrity sha512-V3z/t/JWa5u+O+6bgNEbzPy7NbacsjSCtof6rmXJCUsbWmd1fiMPNs+ucseZ7F9XAh2viq0/40mgDIn6U3KxKA==
+"@jiangshengdev/material-design-icons-vue-next@^1.0.0-alpha.9":
+  version "1.0.0-alpha.9"
+  resolved "https://registry.npmjs.org/@jiangshengdev/material-design-icons-vue-next/-/material-design-icons-vue-next-1.0.0-alpha.9.tgz#834293a121088741005fcc07771a1263c473e2be"
+  integrity sha512-gAi0UjdohAZMzJqsy2SCW6CtK1XThlZYE6rzb0xnUPtxgChukcWX1W5ZpazyYmxwHWY643+C22VIgT9o8JD/pA==
   dependencies:
     vue "^3.5.24"
 

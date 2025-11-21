@@ -38,7 +38,7 @@
     "url": "https://github.com/jiangshengdev/nova-next/issues"
   },
   "dependencies": {
-    "@jiangshengdev/material-design-icons-vue-next": "^1.0.0-alpha.8",
+    "@jiangshengdev/material-design-icons-vue-next": "^1.0.0-alpha.9",
     "vue": "^3.5.0"
   },
   "devDependencies": {
