@@ -1,20 +1,17 @@
 import {
   computed,
-  HTMLAttributes,
+  defineComponent,
   ref,
   Ref,
-  SetupContext,
   Teleport,
   Transition,
   VNode,
-  VNodeProps,
   vShow,
   watch,
   withDirectives,
 } from 'vue';
 import { Environment, useEnvironment } from '../../uses/use-environment';
 import { durationLong, useDropdown } from '../../uses/use-dropdown';
-import { VueComponentProps } from '../../types/vue-component';
 import { EnvironmentProps } from '../environment/NovaEnvironment';
 import { Placement, VueClass, VueProps, VueStyle } from '../../types/props';
 import { getFocusable } from '../../utils/dom';
@@ -75,13 +72,11 @@ export const dropdownProps = {
   },
 };
 
-const NovaDropdownImpl = {
+export const NovaDropdown = defineComponent({
   name: 'NovaDropdown',
   props: dropdownProps,
   emits: ['openChange'],
-  setup(props: DropdownProps, context: SetupContext) {
-    const { emit, slots } = context;
-
+  setup(props, { emit, slots }) {
     let trapped = false;
 
     const environment =
@@ -282,10 +277,4 @@ const NovaDropdownImpl = {
       );
     };
   },
-};
-
-export const NovaDropdown = NovaDropdownImpl as unknown as {
-  new (): {
-    $props: VNodeProps & DropdownProps & HTMLAttributes & VueComponentProps;
-  };
-};
+});

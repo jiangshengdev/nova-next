@@ -1,12 +1,10 @@
 import {
   computed,
-  HTMLAttributes,
+  defineComponent,
   onMounted,
   reactive,
   Ref,
   ref,
-  SetupContext,
-  VNodeProps,
   watch,
 } from 'vue';
 import { MovePosition } from '../../uses/use-move';
@@ -30,7 +28,6 @@ import {
   DropdownProps,
   DropdownTriggerScoped,
 } from '../dropdown/NovaDropdown';
-import { VueComponentProps } from '../../types/vue-component';
 import {
   environmentProps,
   EnvironmentProps,
@@ -93,11 +90,11 @@ export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
   color: Color;
 }
 
-const NovaColorPickerImpl = {
+export const NovaColorPicker = defineComponent({
   name: 'NovaColorPicker',
   props: colorPickerProps,
   emits: ['update', 'update:value'],
-  setup(props: ColorPickerProps, context: SetupContext) {
+  setup(props, context) {
     const emit = context.emit;
 
     const environment = useEnvironment(props as EnvironmentProps);
@@ -514,10 +511,4 @@ const NovaColorPickerImpl = {
       );
     };
   },
-};
-
-export const NovaColorPicker = NovaColorPickerImpl as unknown as {
-  new (): {
-    $props: VNodeProps & ColorPickerProps & HTMLAttributes & VueComponentProps;
-  };
-};
+});

@@ -1,6 +1,5 @@
-import { computed, InputHTMLAttributes, SetupContext, VNodeProps } from 'vue';
+import { InputHTMLAttributes, FunctionalComponent } from 'vue';
 import { useEnvironment } from '../../uses/use-environment';
-import { VueComponentProps } from '../../types/vue-component';
 import {
   environmentProps,
   EnvironmentProps,
@@ -39,51 +38,42 @@ const inputProps = {
   },
 };
 
-const NovaInputImpl = {
-  name: 'NovaInput',
-  inheritAttrs: false,
-  props: inputProps,
-  setup(props: InputProps, context: SetupContext) {
-    const environment = useEnvironment(props as EnvironmentProps);
+type NovaInputProps = InputProps & InputHTMLAttributes;
 
-    const wrapClassList = computed(() => {
-      return [
-        {
-          'nova-input': true,
-          'nova-input-disabled': !!props.disabled,
-          'nova-input-readonly': !!props.readonly,
-        },
-        props.wrapClass,
-      ];
-    });
+const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
+  const environment = useEnvironment(props as EnvironmentProps);
 
-    const classList = computed(() => {
-      return ['nova-input-text', props.class];
-    });
+  const wrapClassList = [
+    {
+      'nova-input': true,
+      'nova-input-disabled': !!props.disabled,
+      'nova-input-readonly': !!props.readonly,
+    },
+    props.wrapClass,
+  ];
 
-    return (): JSX.Element => {
-      return (
-        <div
-          class={wrapClassList.value}
-          style={props.wrapStyle}
-          data-nova-theme={environment.themeRef.value}
-        >
-          <input
-            type="text"
-            class={classList.value}
-            {...context.attrs}
-            disabled={!!props.disabled}
-            readonly={!!props.readonly}
-          />
-          <div class="nova-input-border" />
-        </div>
-      );
-    };
-  },
+  const classList = ['nova-input-text', props.class];
+
+  return (
+    <div
+      class={wrapClassList}
+      style={props.wrapStyle}
+      data-nova-theme={environment.themeRef.value}
+    >
+      <input
+        type="text"
+        class={classList}
+        {...context.attrs}
+        disabled={!!props.disabled}
+        readonly={!!props.readonly}
+      />
+      <div class="nova-input-border" />
+    </div>
+  );
 };
 
-export const NovaInput = NovaInputImpl as unknown as {
-  new (): {
-    $props: VNodeProps & InputProps & InputHTMLAttributes & VueComponentProps;
-  };
-};
+NovaInput.props = inputProps;
+NovaInput.inheritAttrs = false;
+NovaInput.displayName = 'NovaInput';
+
+export { NovaInput };

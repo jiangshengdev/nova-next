@@ -1,27 +1,43 @@
 import {
   ButtonHTMLAttributes,
   FunctionalComponent,
+  PropType,
   VNode,
-  VNodeProps,
 } from 'vue';
 import { useEnvironment } from '../../uses/use-environment';
-import { VueComponentProps } from '../../types/vue-component';
-import { EnvironmentProps } from '../environment/NovaEnvironment';
+import {
+  environmentProps,
+  EnvironmentProps,
+} from '../environment/NovaEnvironment';
 
 export interface ButtonProps extends EnvironmentProps {
   primary?: boolean;
   icon?: VNode | string;
 }
 
-const NovaButtonImpl: FunctionalComponent<ButtonProps> = (props, { slots, attrs }) => {
+const buttonProps = {
+  ...environmentProps,
+  primary: {
+    type: Boolean,
+    default: false,
+  },
+  icon: {
+    type: [Object, String] as PropType<VNode | string>,
+    default: null,
+  },
+};
+
+type NovaButtonProps = ButtonProps & ButtonHTMLAttributes;
+
+const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   const environment = useEnvironment(props as EnvironmentProps);
 
-  // Support both slot and direct children
-  const children = slots.default?.();
-  // Icon can come from prop or slot (slot takes priority for backward compatibility)
-  const icon = slots.icon?.() || props.icon;
+  // 同时支持插槽与直接子节点
+  const children = context.slots.default?.();
+  // 图标既可以来自插槽也可以来自 props
+  const icon = context.slots.icon?.() || props.icon;
 
-  // Compute class list based on props and current slot content
+  // 根据当前内容与属性动态拼装样式
   const classList = [
     'nova-button',
     { 'nova-button-icon-only': icon && !children },
@@ -47,7 +63,7 @@ const NovaButtonImpl: FunctionalComponent<ButtonProps> = (props, { slots, attrs 
       class={classList}
       type="button"
       data-nova-theme={environment.themeRef.value}
-      {...attrs}
+      {...context.attrs}
     >
       {renderIcon()}
       {renderChildren()}
@@ -55,11 +71,8 @@ const NovaButtonImpl: FunctionalComponent<ButtonProps> = (props, { slots, attrs 
   );
 };
 
-NovaButtonImpl.props = ['theme', 'language', 'primary', 'icon'];
-NovaButtonImpl.displayName = 'NovaButton';
+NovaButton.props = buttonProps;
+NovaButton.inheritAttrs = false;
+NovaButton.displayName = 'NovaButton';
 
-export const NovaButton = NovaButtonImpl as unknown as {
-  new (): {
-    $props: VNodeProps & ButtonProps & ButtonHTMLAttributes & VueComponentProps;
-  };
-};
+export { NovaButton };

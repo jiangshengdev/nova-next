@@ -42,7 +42,9 @@ describe('button', () => {
         return () => {
           return (
             <div>
-              <NovaButton>{{ icon: () => '🚀', default: () => 'Launch' }}</NovaButton>
+              <NovaButton>
+                {{ icon: () => '🚀', default: () => 'Launch' }}
+              </NovaButton>
               <NovaButton>{{ icon: () => '⭐' }}</NovaButton>
             </div>
           );
