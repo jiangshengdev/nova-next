@@ -675,12 +675,12 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@jiangshengdev/material-design-icons-vue-next@^1.0.0-alpha.6":
-  version "1.0.0-alpha.6"
-  resolved "https://registry.npmjs.org/@jiangshengdev/material-design-icons-vue-next/-/material-design-icons-vue-next-1.0.0-alpha.6.tgz#06cdaa0edc747270595957e30682c301536416e6"
-  integrity sha512-yEVE6svAkmNH/UpSaW2Y8ynCT8a/lt5rvuwpKKk0aWy4miafxE5DtBYQZC42oYbcl665rq+e0BnOhr/wR5H6bg==
+"@jiangshengdev/material-design-icons-vue-next@^1.0.0-alpha.7":
+  version "1.0.0-alpha.7"
+  resolved "https://registry.npmjs.org/@jiangshengdev/material-design-icons-vue-next/-/material-design-icons-vue-next-1.0.0-alpha.7.tgz#5b7c16bff666f832c3e8cb0d88e73140b124f39c"
+  integrity sha512-jDJtxmOwh/golDZB80FiPslli2u5VVMQkuz2SgLjhZoNdU/8+0jqzyKENJLnFfG3obt23p41gnDBUhCsnIUfXA==
   dependencies:
-    vue "^3.0.4"
+    vue "^3.5.24"
 
 "@jridgewell/gen-mapping@^0.3.12", "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.13"
@@ -7593,7 +7593,7 @@ vue-router@^4.0.3:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
-vue@^3.0.3, vue@^3.0.4, vue@^3.0.7:
+vue@^3.0.3, vue@^3.0.7, vue@^3.5.24:
   version "3.5.24"
   resolved "https://registry.npmjs.org/vue/-/vue-3.5.24.tgz#1b93af349faa064f46e70ac5b0caaa3d0952bbf3"
   integrity sha512-uTHDOpVQTMjcGgrqFPSb8iO2m1DUvo+WbGqoXQz8Y1CeBYQ0FXf2z1gLRaBtHjlRz7zZUBHxjVB5VTLzYkvftg==
