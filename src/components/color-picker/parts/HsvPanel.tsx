@@ -1,5 +1,4 @@
 import { computed, ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { MovePosition, useMove } from '../../../uses/use-move';
 import { Color } from '../color';
 import { numberFixed } from '../../../utils/utils';

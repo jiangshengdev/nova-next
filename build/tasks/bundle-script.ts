@@ -6,7 +6,7 @@ let config: BuildOptions = {
   bundle: true,
   target: 'es6',
   external: ['vue', '@em2046/material-design-icons-vue-next'],
-  jsxFactory: 'vueJsxCompat',
+  jsx: 'preserve',
 };
 
 function bundleEsm() {

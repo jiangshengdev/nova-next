@@ -1,5 +1,4 @@
 import { computed, onMounted, ref, Ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { Color } from '../color';
 import { Environment } from '../../../uses/use-environment';
 

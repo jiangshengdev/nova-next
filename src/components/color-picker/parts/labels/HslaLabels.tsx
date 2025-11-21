@@ -1,5 +1,4 @@
 import { reactive, SetupContext, VNodeProps, watch } from 'vue';
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {

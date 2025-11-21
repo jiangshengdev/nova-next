@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { NovaInput } from '../NovaInput';
 
 describe('input', () => {

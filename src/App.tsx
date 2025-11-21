@@ -1,6 +1,5 @@
 import { defineComponent, reactive, watch } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { vueJsxCompat } from './vue-jsx-compat';
 import { NovaButton, NovaEnvironment } from './index';
 import { enUS, zhCN } from './environments/languages';
 

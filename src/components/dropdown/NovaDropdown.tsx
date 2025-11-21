@@ -1,4 +1,3 @@
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import {
   computed,
   HTMLAttributes,

@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { NovaDropdown } from '../../../components/dropdown';
 import { NovaButton } from '../../../components/button';
 import './styles/normal.css';

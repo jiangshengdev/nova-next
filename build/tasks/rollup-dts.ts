@@ -9,6 +9,8 @@ export async function rollupDts() {
       rollupTypescript({
         target: 'ES6',
         module: 'ESNext',
+        jsx: 'react-jsx',
+        jsxImportSource: 'vue',
       }),
     ],
   });

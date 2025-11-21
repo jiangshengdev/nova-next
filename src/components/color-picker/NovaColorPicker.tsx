@@ -9,7 +9,6 @@ import {
   VNodeProps,
   watch,
 } from 'vue';
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import { MovePosition } from '../../uses/use-move';
 import { Color, ColorFormat } from './color';
 import { Trigger } from './parts/Trigger';
