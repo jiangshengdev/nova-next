@@ -1,6 +1,5 @@
 import { reactive } from 'vue';
 import { mount } from '@vue/test-utils';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { NovaColorPicker } from '../NovaColorPicker';
 import { ColorFormat } from '../color';
 import { getStyleOf } from '../../../utils/dom';

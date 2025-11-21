@@ -1,5 +1,4 @@
 import { reactive, ref, Ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
 import {
   Direction,
   down,

@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue';
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import Basic from './button/Basic';
 import Primary from './button/Primary';
 import Disabled from './button/Disabled';

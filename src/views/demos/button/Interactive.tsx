@@ -1,5 +1,4 @@
 import { defineComponent, ref } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { NovaButton } from '../../../index';
 import { MDIRefresh } from '@jiangshengdev/material-design-icons-vue-next';
 import './styles/common.css';

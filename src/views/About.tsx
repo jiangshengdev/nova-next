@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue';
-import { vueJsxCompat } from '../vue-jsx-compat';
 
 export default defineComponent({
   setup() {

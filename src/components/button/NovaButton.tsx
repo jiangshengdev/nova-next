@@ -4,7 +4,6 @@ import {
   VNode,
   VNodeProps,
 } from 'vue';
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import { useEnvironment } from '../../uses/use-environment';
 import { VueComponentProps } from '../../types/vue-component';
 import { EnvironmentProps } from '../environment/NovaEnvironment';
