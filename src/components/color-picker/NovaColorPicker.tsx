@@ -517,7 +517,7 @@ const NovaColorPickerImpl = {
   },
 };
 
-export const NovaColorPicker = (NovaColorPickerImpl as unknown) as {
+export const NovaColorPicker = NovaColorPickerImpl as unknown as {
   new (): {
     $props: VNodeProps & ColorPickerProps & HTMLAttributes & VueComponentProps;
   };

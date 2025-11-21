@@ -174,7 +174,7 @@ const HslaLabelsImpl = {
   },
 };
 
-export const HslaLabels = (HslaLabelsImpl as unknown) as {
+export const HslaLabels = HslaLabelsImpl as unknown as {
   new (): {
     $props: VNodeProps & HslaLabelsProps;
   };

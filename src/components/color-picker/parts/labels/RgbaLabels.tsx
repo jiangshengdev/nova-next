@@ -174,7 +174,7 @@ const RgbaLabelsImpl = {
   },
 };
 
-export const RgbaLabels = (RgbaLabelsImpl as unknown) as {
+export const RgbaLabels = RgbaLabelsImpl as unknown as {
   new (): {
     $props: VNodeProps & RgbaLabelsProps;
   };

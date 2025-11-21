@@ -54,7 +54,7 @@ const PreviewImpl = {
   },
 };
 
-export const Preview = (PreviewImpl as unknown) as {
+export const Preview = PreviewImpl as unknown as {
   new (): {
     $props: VNodeProps & PreviewProps;
   };

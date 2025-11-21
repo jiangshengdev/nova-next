@@ -73,7 +73,7 @@ const PresetValuesImpl = {
   },
 };
 
-export const PresetValues = (PresetValuesImpl as unknown) as {
+export const PresetValues = PresetValuesImpl as unknown as {
   new (): {
     $props: VNodeProps & PresetValuesProps;
   };

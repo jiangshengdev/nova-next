@@ -83,7 +83,7 @@ const NovaInputImpl = {
   },
 };
 
-export const NovaInput = (NovaInputImpl as unknown) as {
+export const NovaInput = NovaInputImpl as unknown as {
   new (): {
     $props: VNodeProps & InputProps & InputHTMLAttributes & VueComponentProps;
   };

@@ -89,7 +89,7 @@ const HsvPanelImpl = {
   },
 };
 
-export const HsvPanel = (HsvPanelImpl as unknown) as {
+export const HsvPanel = HsvPanelImpl as unknown as {
   new (): {
     $props: VNodeProps & HsvPanelProps;
   };

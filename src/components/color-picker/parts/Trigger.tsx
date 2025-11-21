@@ -71,7 +71,7 @@ const TriggerImpl = {
   },
 };
 
-export const Trigger = (TriggerImpl as unknown) as {
+export const Trigger = TriggerImpl as unknown as {
   new (): {
     $props: VNodeProps & TriggerProps;
   };

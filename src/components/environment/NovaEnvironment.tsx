@@ -74,7 +74,7 @@ const NovaEnvironmentImpl = {
   },
 };
 
-export const NovaEnvironment = (NovaEnvironmentImpl as unknown) as {
+export const NovaEnvironment = NovaEnvironmentImpl as unknown as {
   new (): {
     $props: VNodeProps & EnvironmentProps;
   };

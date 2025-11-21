@@ -194,7 +194,7 @@ const HexLabelImpl = {
     };
   },
 };
-export const HexLabel = (HexLabelImpl as unknown) as {
+export const HexLabel = HexLabelImpl as unknown as {
   new (): {
     $props: VNodeProps & HexLabelProps;
   };
