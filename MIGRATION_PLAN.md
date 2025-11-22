@@ -21,3 +21,4 @@
 
 ## 后续记录
 - 进展、决策或阻塞请在表格下方追加日志，标注日期与责任人。
+- 2025-11-22：任务 1 - `package.json` 切换至 pnpm 脚本体系，新增 lint/test/type-check 命令。（Copilot 协助）

@@ -9,15 +9,15 @@ const vitePressDir = 'docs/.vitepress';
 const componentDir = 'components';
 const outputPath = 'theme/register-components.js';
 
-function importTemplate(path: String, componentName: String) {
+function importTemplate(path: string, componentName: string) {
   return `import ${componentName} from '../${componentDir}/${path}';`;
 }
 
-function registerTemplate(path: String, componentName: String) {
+function registerTemplate(path: string, componentName: string) {
   return `app.component('${componentName}', ${componentName});`;
 }
 
-function componentTemplate(path: String) {
+function componentTemplate(path: string) {
   const componentName = camelCase(path.slice(0, -4).replace(/[/\\]/g, '-'));
 
   return {
