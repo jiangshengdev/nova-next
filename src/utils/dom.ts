@@ -1,5 +1,3 @@
-import { type VisualViewport } from '@/shims/visual-viewport'
-
 const defaultSearchLimit = 1024
 
 export interface FunctionKeys {

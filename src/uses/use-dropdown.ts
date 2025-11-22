@@ -6,7 +6,6 @@ import {
   isInElement,
   setStyles,
 } from '../utils/dom'
-import { type VisualViewport } from '@/shims/visual-viewport'
 import { type Offset, place } from '../utils/place'
 import { type Placement } from '../types/props'
 

@@ -1,4 +1,3 @@
-import { type VisualViewport } from '@/shims/visual-viewport'
 import { type Placement } from '../types/props'
 
 type MainAxisPlacement = 'start' | 'center' | 'end'
