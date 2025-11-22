@@ -3,11 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/recommended', 'prettier'],
   overrides: [
     {
       files: ['**/*.ts?(x)'],

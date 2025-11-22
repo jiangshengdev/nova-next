@@ -4,7 +4,6 @@ import {
   onMounted,
   PropType,
   reactive,
-  Ref,
   ref,
   watch,
 } from 'vue';

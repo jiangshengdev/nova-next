@@ -6,7 +6,7 @@ module.exports = {
   ],
   setupFiles: ['./tests/setup.ts'],
   testEnvironmentOptions: {
-    customExportConditions: ['node', 'require']
+    customExportConditions: ['node', 'require'],
   },
   transform: {
     '^.+\\.tsx?$': ['babel-jest', { configFile: './babel.config.js' }],
