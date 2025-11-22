@@ -1,43 +1,19 @@
-import { defineComponent, reactive } from 'vue'
-import { NovaButton, NovaInput } from '../../index'
+import { defineComponent } from 'vue'
+import Basic from './input/InputBasicDemo.tsx'
+import States from './input/InputStatesDemo.tsx'
+import Attributes from './input/InputAttributesDemo.tsx'
+import Styling from './input/InputStylingDemo.tsx'
+import Interactive from './input/InputInteractiveDemo.tsx'
 
 export default defineComponent({
   setup() {
-    const state = reactive({
-      required: false,
-    })
-
-    function toggleRequired() {
-      state.required = !state.required
-    }
-
-    function handleInput(e: Event) {
-      console.log(e)
-    }
-
     return () => (
       <section>
-        <div>
-          <NovaInput
-            wrapClass="my-custom-wrap-class-name"
-            class="my-custom-class-name"
-            wrapStyle={{ margin: '10px' }}
-            style={{ fontSize: '12px' }}
-            id="name"
-            name="name"
-            required={state.required}
-            minlength={4}
-            maxlength={4}
-            size={10}
-            onInput={handleInput}
-          />
-          <NovaButton onClick={toggleRequired}>{() => 'Toggle required'}</NovaButton>
-        </div>
-        <div>
-          <NovaInput disabled />
-          <NovaInput readonly value="Text" />
-          <NovaInput value="✒" />
-        </div>
+        <Basic />
+        <States />
+        <Attributes />
+        <Styling />
+        <Interactive />
       </section>
     )
   },
