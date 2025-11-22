@@ -55,7 +55,7 @@ h4 {
 
 .demo-environment-description code {
   padding: 2px 6px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--nova-color-border-component);
   border-radius: 3px;
   font-family: monospace;
   font-size: 13px;
