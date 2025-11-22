@@ -58,12 +58,8 @@ function almostSameHsl(a: string, b: string): boolean {
 
 function almostSameRgb(a: string, b: string): boolean {
   const useless = /[^\d.,]/g
-  const [aRed = '0', aGreen = '0', aBlue = '0', aAlpha = '1'] = a
-    .replace(useless, '')
-    .split(',')
-  const [bRed = '0', bGreen = '0', bBlue = '0', bAlpha = '1'] = b
-    .replace(useless, '')
-    .split(',')
+  const [aRed = '0', aGreen = '0', aBlue = '0', aAlpha = '1'] = a.replace(useless, '').split(',')
+  const [bRed = '0', bGreen = '0', bBlue = '0', bAlpha = '1'] = b.replace(useless, '').split(',')
 
   const sameRed = almostSameValue(parseInt(aRed), parseInt(bRed), 255)
   const sameGreen = almostSameValue(parseInt(aGreen), parseInt(bGreen), 255)
