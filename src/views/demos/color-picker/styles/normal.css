@@ -15,10 +15,8 @@
 
   &.nova-dropdown-opened .demo-color-picker-normal-trigger,
   &:not(.nova-color-picker-disabled) .demo-color-picker-normal-trigger:focus {
-     {
-      border: var(--nova-border-primary);
-      box-shadow: var(--nova-shadow-primary);
-    }
+    border: var(--nova-border-primary);
+    box-shadow: var(--nova-shadow-primary);
   }
 }
 

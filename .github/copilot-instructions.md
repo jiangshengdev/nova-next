@@ -1,54 +1,23 @@
-# Nova Next AI 协作指南
+# Nova Next • Copilot 指南
 
-## 语言约定
-
-- **中文输出**: 项目内文档、代码注释以及机器人回复统一使用中文，保持沟通一致性。
-
-## 项目速览
-
-- **组件定位**: `src/index.ts` 聚合导出 Nova 环境、按钮、输入、下拉、取色器等 Vue 3 TSX 组件，作为 npm 包发布入口。
-- **运行入口**: `src/main.ts` + `App.tsx` 通过 `NovaEnvironment` 包裹路由示例页，演示主题、语言与文本方向切换。
-- **路由结构**: `src/router/index.ts` 使用懒加载将演示页面拆分在 `src/views/demos/*`，方便定位组件使用方式。
-- **语言资源**: `src/environments/languages/*.ts` 定义主题内文案，`App.tsx` 直接在运行时切换并通过环境注入下传。
-
-## 开发流程
-
-- **本地调试**: `yarn dev` 启动 Vite 示例站点，默认端口 3000。
-- **组件构建**: `yarn build` 顺序执行 `gulp:clean → gulp:style → gulp:lib`，分别清理、产出 CSS、使用 esbuild/rollup 生成 JS+DTS。
-- **独立任务**: `yarn gulp:style` 只重新编译 `src/styles`，`yarn gulp:lib` 跑完整构建，`yarn build:demo` 打包示例站点。
-- **发布前置**: `yarn prepublishOnly` 会跑 `yarn format` 与 `yarn build`，提交前务必保证通过。
-
-## 组件模式
-
-- **环境注入**: 组件若支持主题/语言，需继承 `EnvironmentProps` 并调用 `useEnvironment`，如 `NovaButton`、`NovaDropdown`。
-- **Props 复用**: 公共 props 在 `environmentProps`、`dropdownProps` 等对象中集中维护，新增组件应复用以保持一致。
-- **TSX 导出**: 每个组件以 `as unknown as { new(): { $props: ... } }` 导出，保证 TS 推断，在新增组件时保留此包装。
-- **下拉交互**: `NovaDropdown` 内部依赖 `uses/use-dropdown.ts` 做焦点陷阱与定位，子组件（如取色器）通过插槽拿到 `dropdownInstance` 以手动关闭。
-- **颜色工具**: 取色器使用 `components/color-picker/color.ts` 的 `Color` 类转换格式，避免自行操作字符串或手写转换。
-
-## 样式与主题
-
-- **集中入口**: `src/styles/index.css` 聚合所有组件样式，新增组件需在此 `@import` 对应 `styles/index.css`。
-- **主题变量**: `styles/themes/*.css` 通过 `data-nova-theme` 切换变量；新增主题须在 `NovaEnvironment` 设置的同名属性下生效。
-- **PostCSS 特性**: 样式允许嵌套语法（依赖 `postcss-nested`），保持与现有写法一致。
-- **无内联色值**: 组件 CSS 使用 `--nova-*` 变量，必要时先在 `themes/vars.css` 定义再引用。
-
-## 测试策略
-
-- **测试命令**: `yarn test` 运行 Jest，配置位于 `jest.config.js`，自动加载 `tests/setup.ts`。
-- **TSX 测试**: 测试文件直接书写 TSX，Jest 通过 `@vue/babel-plugin-jsx` 编译，无需额外兼容层。
-- **快照基准**: 大量测试依赖 `__snapshots__`，更新组件结构时使用 `yarn test --updateSnapshot` 同步。
-
-## 文档与构建
-
-- **文档站点**: `docs/` 采用 VitePress，`yarn doc:dev` 本地预览，`yarn doc:dist` 生成静态站点。
-- **自动注册**: `build/tasks/register-components.ts` 会扫描 `docs/.vitepress/components` 并写入 `theme/register-components.js`，新增文档组件需放置于该目录。
-- **类型管线**: `build/tasks/rollup-dts.ts` 将 TS 编译到 `temp/`，随后 `api-extractor`（配置见 `api-extractor.json`）生成公共声明。
-- **打包细节**: `bundle-script.ts` 使用 esbuild，内置 Babel + `@vue/babel-plugin-jsx` 完成 TSX 转换，并将 `vue` 与图标库设为 external。
-
-## 易踩坑
-
-- **JSX 工厂**: 依赖官方 `@vue/babel-plugin-jsx`，保持 `jsx: preserve` 即可，不要再引入 `vueJsxCompat` 之类的手动工厂。
-- **环境透传**: 嵌套组件需要显式把 `environment` 继续传递（例如 `NovaColorPicker` 使用 `NovaDropdown` 时），否则主题语言会断链。
-- **焦点陷阱**: `NovaDropdown` 会在面板内插入 `data-nova-trap` 元素，自定义内容时避免移除这些节点或修改 `tabindex`。
-- **CI 兼容性**: 构建依赖 `temp/` 目录存在，勿手动删除编译过程中产出的 `.d.ts`，清理走 `yarn gulp:clean`。
+- **沟通语言**：项目内的文档、代码注释与机器人回复全部统一为简体中文，请在提交前确认未混入其他语言。
+- **框架与入口**：`src/main.ts` 负责挂载 Vue 3 + TSX 的 `App.tsx`，同时加载路由与 `src/styles` 下的全局样式；在 `vite.config.ts` 中配置的 `@` 指向 `src/`，引入模块时直接复用。
+- **环境上下文**：所有视觉组件通过 `NovaEnvironment`（`src/components/environment`）注入主题与语言，内部使用 `useEnvironment` 获取 `themeRef` 与 `languageRef`；组件通常声明 `environmentProps` 并透传 `data-nova-theme` 以驱动皮肤。
+- **公共出口**：`src/index.ts` 统一导出 `NovaButton`、`NovaInput`、`NovaColorPicker`、`NovaDropdown` 以及语言工具，新增可复用组件时保持同样的入口结构，方便外部一次性引入。
+- **路由与演示页**：`src/router/index.ts` 以懒加载方式挂载 `src/views` 下的 TSX 视图；`src/views/demos/**` 是手动回归与玩法展示区，扩展组件能力时同步补充对应 demo。
+- **样式规范**：每个组件的样式存放在 `src/components/<name>/styles`，依赖 `src/styles/themes/**` 中的 CSS 变量；类名使用 `nova-*` 前缀并尊重 `App.tsx` 设置的 `data-nova-theme`。
+- **语言包**：i18n 文案位于 `src/environments/languages/*.ts`，结构遵循 `types/language.ts`；例如取色器通过 `environment.languageRef.value.colorPicker` 读取 aria 文案。
+- **下拉层与焦点管理**：所有浮层统一走 `NovaDropdown`（`src/components/dropdown`），内部用 `use-dropdown` + `utils/place.ts` 计算定位，通过 `.nova-trap` 处理焦点环；自定义弹层时复用已有触发/面板插槽。
+- **指针工具链**：拖拽或滑块逻辑（HSV 面板、Hue/Alpha 滑条）依赖 `use-move`、`use-mousemove`、`use-touchmove` 做事件归一化，新增手势请接入这些 hook 以保持多端一致。
+- **颜色算法**：`components/color-picker/color.ts` 提供不可变 `Color` 类，支持 hex/rgb/hsl 解析与格式化，并承载预设逻辑；不要重复造轮子以免串格式。
+- **测试策略**：Vitest 配置在 `vitest.config.ts`，复用 Vite 配置、运行 jsdom，并在 `tests/setup.ts` 关闭过渡 stub；单测（如 `components/button/__tests__`）以 TSX 包装器挂载并在 `__snapshots__` 下比对输出。
+- **端到端测试**：Playwright 用例位于 `e2e/`，`playwright.config.ts` 会在本地启动 `pnpm dev`、在 CI 启动 `pnpm preview`，`baseURL` 分别为 5173/4173，新增场景时无需改动服务器脚本。
+- **构建与类型**：`pnpm build` 借助 `npm-run-all2` 并行执行 `vue-tsc --build` 与 `vite build`；在合入前保持两者无报错，避免 CI 阻塞。
+- **常用脚本**：`pnpm dev`、`pnpm test:unit`、`pnpm test:e2e`、`pnpm lint`（串行 `oxlint` + `eslint`）以及 `pnpm format`（Prettier + @prettier/plugin-oxc）是默认工作流，`package.json` 要求 Node ≥ 20.19。
+- **演练校验**：涉及交互或视觉改动时，请在 `src/views/demos/*` 中验证效果并更新快照；若影响下拉或路由行为，再跑 `pnpm test:e2e --project=chromium`。
+- **无障碍关注点**：下拉与取色器的 aria 文案来自语言包，键盘逻辑（Enter、Escape、Tab Trap）写在各自 TSX 文件；扩展属性时务必保持这些模式。
+- **主题持久化**：`App.tsx` 通过 `localStorage` 的 `nova-theme` 记录主题，并写入 `<html data-nova-theme>`；新的全局样式请依赖主题变量而非硬编码颜色。
+- **对外约束**：组件会设置 `FunctionalComponent` 元数据（`displayName`、`inheritAttrs`）供下游工具使用，新增导出时同步补齐，确保消费方可追踪。
+- **CI 要求**：单测快照或 lint 失败会阻断合并；功能调整需同步更新 `__snapshots__`，并保证 `pnpm lint:oxlint` 零警告（强制 correctness 规则）。
+- **图标使用**：取色器关闭按钮等控制使用 `@jiangshengdev/material-design-icons-vue-next`，保持该依赖的图标来源，避免重复打包。
+- **数据流心智模型**：输入/事件写入响应式 `state`，`computed` 派生可渲染数据，`watch` 保持 `props` 与内部状态同步（如取色器对 `value`、`alpha` 的联动）；新增复杂组件时复用该模型以降低不可预期状态。

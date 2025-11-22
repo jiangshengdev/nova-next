@@ -1,5 +1,6 @@
-import { mount } from '@vue/test-utils';
-import { NovaButton } from '../NovaButton';
+import { mount } from '@vue/test-utils'
+import { NovaButton } from '../NovaButton'
+import { describe, test, expect } from 'vitest'
 
 describe('button', () => {
   test('render', () => {
@@ -12,12 +13,12 @@ describe('button', () => {
               <NovaButton primary>Primary</NovaButton>
               <NovaButton disabled>Disabled</NovaButton>
             </div>
-          );
-        };
+          )
+        }
       },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
   test('render with icon prop', () => {
     const wrapper = mount({
@@ -29,12 +30,12 @@ describe('button', () => {
               <NovaButton icon={<span>Icon</span>}>With Icon</NovaButton>
               <NovaButton icon="⭐" />
             </div>
-          );
-        };
+          )
+        }
       },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
   test('render with slot icon (backward compatibility)', () => {
     const wrapper = mount({
@@ -42,15 +43,13 @@ describe('button', () => {
         return () => {
           return (
             <div>
-              <NovaButton>
-                {{ icon: () => '🚀', default: () => 'Launch' }}
-              </NovaButton>
+              <NovaButton>{{ icon: () => '🚀', default: () => 'Launch' }}</NovaButton>
               <NovaButton>{{ icon: () => '⭐' }}</NovaButton>
             </div>
-          );
-        };
+          )
+        }
       },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-});
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+})

@@ -1,14 +1,14 @@
-import { defineComponent } from 'vue';
-import Basic from './button/Basic';
-import Primary from './button/Primary';
-import Disabled from './button/Disabled';
-import WithIcons from './button/WithIcons';
-import Interactive from './button/Interactive';
-import Multilingual from './button/Multilingual';
+import { defineComponent } from 'vue'
+import Basic from './button/ButtonBasicDemo.tsx'
+import Primary from './button/ButtonPrimaryDemo.tsx'
+import Disabled from './button/ButtonDisabledDemo.tsx'
+import WithIcons from './button/WithIcons'
+import Interactive from './button/ButtonInteractiveDemo.tsx'
+import Multilingual from './button/ButtonMultilingualDemo.tsx'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => (
+    return () => (
       <section>
         <Basic />
         <Primary />
@@ -17,6 +17,6 @@ export default defineComponent({
         <Interactive />
         <Multilingual />
       </section>
-    );
+    )
   },
-});
+})

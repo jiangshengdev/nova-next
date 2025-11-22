@@ -14,10 +14,8 @@
 
   &.nova-dropdown-opened .nova-color-picker-trigger,
   &:not(.nova-color-picker-disabled) .nova-color-picker-trigger:focus {
-     {
-      border: var(--nova-border-primary);
-      box-shadow: var(--nova-shadow-primary);
-    }
+    border: var(--nova-border-primary);
+    box-shadow: var(--nova-shadow-primary);
   }
 }
 

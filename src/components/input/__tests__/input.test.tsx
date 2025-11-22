@@ -1,5 +1,6 @@
-import { mount } from '@vue/test-utils';
-import { NovaInput } from '../NovaInput';
+import { mount } from '@vue/test-utils'
+import { NovaInput } from '../NovaInput'
+import { describe, test, expect } from 'vitest'
 
 describe('input', () => {
   test('render', () => {
@@ -12,10 +13,10 @@ describe('input', () => {
               <NovaInput disabled />
               <NovaInput readonly />
             </div>
-          );
-        };
+          )
+        }
       },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-});
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+})

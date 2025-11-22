@@ -6,11 +6,11 @@
  */
 export function numberLimit(value: number, min = 0, max = Infinity): number {
   if (value < min) {
-    return min;
+    return min
   } else if (value > max) {
-    return max;
+    return max
   }
-  return value;
+  return value
 }
 
 /**
@@ -19,12 +19,12 @@ export function numberLimit(value: number, min = 0, max = Infinity): number {
  * @param fractionDigits Number of digits after the decimal point. Must be in the [0, 20], Default is 2
  */
 export function numberFixed(value: number, fractionDigits = 2): number {
-  const fixed = value.toFixed(fractionDigits);
-  const floatNumber = parseFloat(fixed);
+  const fixed = value.toFixed(fractionDigits)
+  const floatNumber = parseFloat(fixed)
 
   if (Number.isNaN(floatNumber)) {
-    return 0;
+    return 0
   }
 
-  return floatNumber;
+  return floatNumber
 }

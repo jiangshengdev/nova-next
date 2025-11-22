@@ -1739,4 +1739,4 @@ export default [
     hsvSaturation: '76',
     value: '80',
   },
-];
+]

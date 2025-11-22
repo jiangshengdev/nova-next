@@ -1,14 +1,14 @@
-import { defineComponent } from 'vue';
-import Matrix from './dropdown/Matrix';
-import Normal from './dropdown/Normal';
+import { defineComponent } from 'vue'
+import Matrix from './dropdown/DropdownMatrixDemo.tsx'
+import Normal from './dropdown/DropdownNormalDemo.tsx'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => (
+    return () => (
       <section>
         <Normal />
         <Matrix />
       </section>
-    );
+    )
   },
-});
+})

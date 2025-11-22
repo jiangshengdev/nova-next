@@ -1,107 +1,127 @@
-import { onBeforeUnmount, onMounted, reactive } from 'vue';
-import { MoveParams } from './use-move';
-import { getPaddingLeft, getPaddingTop } from '../utils/dom';
+import { onBeforeUnmount, onMounted, reactive } from 'vue'
+import { type MoveParams, type MovePosition } from './use-move'
+import { getPaddingLeft, getPaddingTop } from '../utils/dom'
 
 export interface TouchState {
-  moving: boolean;
-  holding: boolean;
+  moving: boolean
+  holding: boolean
 }
 
 interface TouchReturn {
-  touch: TouchState;
+  touch: TouchState
 }
 
 export function useTouchmove(params: MoveParams): TouchReturn {
-  const { ref, start, move, finish } = params;
+  const { ref, start, move, finish } = params
 
-  let rect = {} as DOMRect;
-  const border = { top: 0, left: 0 };
+  let rect = {} as DOMRect
+  const border = { top: 0, left: 0 }
 
   const state = reactive({
     touch: {
       moving: false,
       holding: false,
     },
-  });
+  })
+
+  function getRectLeft(): number {
+    return rect.left ?? rect.x ?? 0
+  }
+
+  function getRectTop(): number {
+    return rect.top ?? rect.y ?? 0
+  }
+
+  function resolveTouchPosition(touch: Touch): MovePosition {
+    const clientX =
+      typeof touch.clientX === 'number' ? touch.clientX : touch.pageX - window.pageXOffset
+    const clientY =
+      typeof touch.clientY === 'number' ? touch.clientY : touch.pageY - window.pageYOffset
+
+    const relativeX = clientX - getRectLeft() - border.left
+    const relativeY = clientY - getRectTop() - border.top
+
+    return { x: relativeX, y: relativeY }
+  }
 
   function onTouchmove(e: TouchEvent): void {
     if (e.cancelable) {
-      e.preventDefault();
+      e.preventDefault()
     }
 
     if (state.touch.moving) {
-      return;
+      return
     }
 
-    const firstFinger = e.changedTouches[0];
+    const firstFinger = e.changedTouches[0]
+    if (!firstFinger) {
+      return
+    }
 
-    state.touch.moving = true;
+    state.touch.moving = true
     requestAnimationFrame(() => {
-      state.touch.moving = false;
-    });
+      state.touch.moving = false
+    })
 
-    const x = firstFinger.pageX - rect.x - window.pageXOffset - border.left;
-    const y = firstFinger.pageY - rect.y - window.pageYOffset - border.top;
-
-    move?.call(null, { x, y });
+    const position = resolveTouchPosition(firstFinger)
+    move?.call(null, position)
   }
 
   function onTouchend(e: TouchEvent): void {
-    state.touch.holding = false;
+    state.touch.holding = false
 
     if (e.cancelable) {
-      e.preventDefault();
+      e.preventDefault()
     }
 
-    const target: HTMLElement = ref.value as HTMLElement;
-    target.removeEventListener('touchmove', onTouchmove);
-    target.removeEventListener('touchend', onTouchend);
-    target.removeEventListener('touchcancel', onTouchend);
+    const target: HTMLElement = ref.value as HTMLElement
+    target.removeEventListener('touchmove', onTouchmove)
+    target.removeEventListener('touchend', onTouchend)
+    target.removeEventListener('touchcancel', onTouchend)
 
-    finish?.call(null);
+    finish?.call(null)
   }
 
   function onTouchstart(e: TouchEvent): void {
-    state.touch.holding = true;
+    state.touch.holding = true
 
     if (e.cancelable) {
-      e.preventDefault();
+      e.preventDefault()
     }
 
-    const firstFinger = e.changedTouches[0];
+    const firstFinger = e.changedTouches[0]
+    if (!firstFinger) {
+      return
+    }
 
-    const target: HTMLElement = ref.value as HTMLElement;
-    rect = target.getBoundingClientRect();
-    border.left = getPaddingLeft(target);
-    border.top = getPaddingTop(target);
+    const target: HTMLElement = ref.value as HTMLElement
+    rect = target.getBoundingClientRect()
+    border.left = getPaddingLeft(target)
+    border.top = getPaddingTop(target)
 
-    const rectX = rect.x ?? 0;
-    const rectY = rect.y ?? 0;
-    const x = firstFinger.pageX - rectX - window.pageXOffset - border.left;
-    const y = firstFinger.pageY - rectY - window.pageYOffset - border.top;
+    const position = resolveTouchPosition(firstFinger)
+    start?.call(null)
+    move?.call(null, position)
 
-    start?.call(null);
-    move?.call(null, { x, y });
-
-    target.addEventListener('touchmove', onTouchmove);
-    target.addEventListener('touchend', onTouchend);
-    target.addEventListener('touchcancel', onTouchend);
+    target.addEventListener('touchmove', onTouchmove)
+    target.addEventListener('touchend', onTouchend)
+    target.addEventListener('touchcancel', onTouchend)
   }
 
   onMounted(() => {
-    const target: HTMLElement = ref.value as HTMLElement;
-    target.addEventListener('touchstart', onTouchstart);
-  });
+    const target: HTMLElement = ref.value as HTMLElement
+    target.addEventListener('touchstart', onTouchstart)
+  })
 
   onBeforeUnmount(() => {
-    const target: HTMLElement = ref.value as HTMLElement;
-    target.removeEventListener('touchstart', onTouchstart);
-    target.removeEventListener('touchmove', onTouchmove);
-    target.removeEventListener('touchend', onTouchend);
-    target.removeEventListener('touchcancel', onTouchend);
-  });
+    const target: HTMLElement = ref.value as HTMLElement
+    target.removeEventListener('touchstart', onTouchstart)
+    target.removeEventListener('touchmove', onTouchmove)
+    target.removeEventListener('touchend', onTouchend)
+    target.removeEventListener('touchcancel', onTouchend)
+  })
 
   return {
     touch: state.touch,
-  };
+  }
 }

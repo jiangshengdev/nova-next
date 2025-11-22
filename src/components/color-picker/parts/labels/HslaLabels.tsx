@@ -1,25 +1,25 @@
-import { defineComponent, reactive, watch } from 'vue';
-import { getInputValue } from '../../../../utils/dom';
-import { Color } from '../../color';
+import { defineComponent, reactive, watch } from 'vue'
+import { getInputValue } from '../../../../utils/dom'
+import { Color } from '../../color'
 import {
   alphaNormalize,
   alphaRule,
   createAlpha,
   createChannel,
   intNormalize,
-  UpdateParams,
-} from './label-utils';
-import { Environment } from '../../../../uses/use-environment';
+  type UpdateParams,
+} from './label-utils'
+import { type Environment } from '../../../../uses/use-environment'
 
-type hslChannel = 'hue' | 'saturation' | 'lightness';
-type ColorEmit = 'colorInput' | 'colorBlur';
+type hslChannel = 'hue' | 'saturation' | 'lightness'
+type ColorEmit = 'colorInput' | 'colorBlur'
 
 interface HslaLabelsProps {
-  alpha: boolean;
-  color: Color;
-  environment: Environment;
-  onColorInput?: (color: Color) => void;
-  onColorBlur?: (color: Color) => void;
+  alpha: boolean
+  color: Color
+  environment: Environment
+  onColorInput?: (color: Color) => void
+  onColorBlur?: (color: Color) => void
 }
 
 const hslaLabelsProps = {
@@ -35,132 +35,132 @@ const hslaLabelsProps = {
     type: Object,
     required: true,
   },
-};
+}
 
 export const HslaLabels = defineComponent({
   name: 'HslaLabels',
   props: hslaLabelsProps,
   emits: ['colorInput', 'colorBlur'],
   setup(props: HslaLabelsProps, { emit }) {
-    const hsla = props.color.toCssHsla();
+    const hsla = props.color.toCssHsla()
     const state = reactive({
       hue: hsla.hue,
       saturation: hsla.saturation,
       lightness: hsla.lightness,
       alpha: hsla.alpha,
-    });
+    })
 
     function updateColor(eventName: ColorEmit): void {
-      const hue = intNormalize(state.hue, 360);
-      const saturation = intNormalize(state.saturation, 100);
-      const lightness = intNormalize(state.lightness, 100);
-      const alpha = alphaNormalize(state.alpha);
+      const hue = intNormalize(state.hue, 360)
+      const saturation = intNormalize(state.saturation, 100)
+      const lightness = intNormalize(state.lightness, 100)
+      const alpha = alphaNormalize(state.alpha)
 
-      const color = Color.fromCssHsla(hue, saturation, lightness, alpha);
-      const sameColor = Color.sameColor(props.color as Color, color);
+      const color = Color.fromCssHsla(hue, saturation, lightness, alpha)
+      const sameColor = Color.sameColor(props.color as Color, color)
       if (sameColor) {
-        return;
+        return
       }
 
-      emit(eventName, color);
+      emit(eventName, color)
     }
 
     function onHslInput(input: HTMLInputElement, channel: hslChannel): void {
-      const value = getInputValue(input);
+      const value = getInputValue(input)
 
       if (value === '') {
-        return;
+        return
       }
 
       if (/^\d+$/.test(value)) {
-        state[channel] = parseFloat(value);
-        updateColor('colorInput');
+        state[channel] = parseFloat(value)
+        updateColor('colorInput')
       }
     }
 
     function onAlphaInput(input: HTMLInputElement): void {
-      const value = getInputValue(input);
+      const value = getInputValue(input)
 
       if (value === '') {
-        return;
+        return
       }
 
       if (alphaRule.test(value)) {
-        state['alpha'] = parseFloat(value);
-        updateColor('colorInput');
+        state['alpha'] = parseFloat(value)
+        updateColor('colorInput')
       }
     }
 
     function onHslaBlur(): void {
-      updateColor('colorBlur');
+      updateColor('colorBlur')
     }
 
     watch(
       () => props.color,
       () => {
-        const newHsla = props.color.toCssHsla();
+        const newHsla = props.color.toCssHsla()
 
-        state.hue = newHsla.hue;
-        state.saturation = newHsla.saturation;
-        state.lightness = newHsla.lightness;
-        state.alpha = newHsla.alpha;
-      }
-    );
+        state.hue = newHsla.hue
+        state.saturation = newHsla.saturation
+        state.lightness = newHsla.lightness
+        state.alpha = newHsla.alpha
+      },
+    )
 
-    return (): JSX.Element => {
-      const language = props.environment.languageRef.value.colorPicker;
+    return () => {
+      const language = props.environment.languageRef.value.colorPicker
 
       const hNode = createChannel({
         label: 'H',
         title: language.hue,
         value: state.hue,
         onInput: (e) => {
-          onHslInput(e.target as HTMLInputElement, 'hue');
+          onHslInput(e.target as HTMLInputElement, 'hue')
         },
         onUpdate: (params: UpdateParams) => {
-          onHslInput(params.target, 'hue');
+          onHslInput(params.target, 'hue')
         },
         onBlur: onHslaBlur,
-      });
+      })
 
       const sNode = createChannel({
         label: 'S',
         title: language.saturation,
         value: state.saturation,
         onInput: (e) => {
-          onHslInput(e.target as HTMLInputElement, 'saturation');
+          onHslInput(e.target as HTMLInputElement, 'saturation')
         },
         onUpdate: (params: UpdateParams) => {
-          onHslInput(params.target, 'saturation');
+          onHslInput(params.target, 'saturation')
         },
         onBlur: onHslaBlur,
-      });
+      })
 
       const lNode = createChannel({
         label: 'L',
         title: language.lightness,
         value: state.lightness,
         onInput: (e) => {
-          onHslInput(e.target as HTMLInputElement, 'lightness');
+          onHslInput(e.target as HTMLInputElement, 'lightness')
         },
         onUpdate: (params: UpdateParams) => {
-          onHslInput(params.target, 'lightness');
+          onHslInput(params.target, 'lightness')
         },
         onBlur: onHslaBlur,
-      });
+      })
 
       const aNode = createAlpha({
         alpha: props.alpha,
         title: language.alpha,
         value: state.alpha,
         onInput: (e) => {
-          onAlphaInput(e.target as HTMLInputElement);
+          onAlphaInput(e.target as HTMLInputElement)
         },
         onUpdate: (params: UpdateParams) => {
-          onAlphaInput(params.target);
+          onAlphaInput(params.target)
         },
         onBlur: onHslaBlur,
-      });
+      })
 
       return (
         <div class="nova-color-picker-labels">
@@ -169,7 +169,7 @@ export const HslaLabels = defineComponent({
           {lNode}
           {aNode}
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

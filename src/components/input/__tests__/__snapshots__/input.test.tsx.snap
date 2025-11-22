@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`input render 1`] = `
+exports[`input > render 1`] = `
 "<div>
   <div class="nova-input" data-nova-theme="light"><input type="text" class="nova-input-text">
     <div class="nova-input-border"></div>

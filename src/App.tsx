@@ -1,11 +1,11 @@
-import { defineComponent, reactive, watch } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
-import { NovaButton, NovaEnvironment } from './index';
-import { enUS, zhCN } from './environments/languages';
+import { defineComponent, reactive, watch } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
+import { NovaButton, NovaEnvironment } from './index'
+import { enUS, zhCN } from './environments/languages'
 
-const storageThemeKey = 'nova-theme';
+const storageThemeKey = 'nova-theme'
 
-type Direction = 'ltr' | 'rtl';
+type Direction = 'ltr' | 'rtl'
 
 export default defineComponent({
   setup() {
@@ -13,70 +13,70 @@ export default defineComponent({
       theme: 'light',
       language: zhCN,
       direction: 'ltr' as Direction,
-    });
+    })
 
     function initTheme() {
-      const theme = localStorage.getItem(storageThemeKey);
+      const theme = localStorage.getItem(storageThemeKey)
       if (theme) {
-        state.theme = theme;
+        state.theme = theme
       }
-      setDocumentTheme(state.theme);
+      setDocumentTheme(state.theme)
     }
 
-    initTheme();
+    initTheme()
 
     function setDocumentTheme(theme: string) {
-      document.documentElement.setAttribute('data-nova-theme', theme);
+      document.documentElement.setAttribute('data-nova-theme', theme)
     }
 
     function setDocumentDirection(direction: Direction) {
-      document.documentElement.setAttribute('dir', direction);
+      document.documentElement.setAttribute('dir', direction)
     }
 
     watch(
       () => state.theme,
       (theme) => {
-        setDocumentTheme(theme);
-      }
-    );
+        setDocumentTheme(theme)
+      },
+    )
 
     watch(
       () => state.direction,
       (direction) => {
-        setDocumentDirection(direction);
-      }
-    );
+        setDocumentDirection(direction)
+      },
+    )
 
     function setTheme(theme: string) {
-      state.theme = theme;
-      localStorage.setItem(storageThemeKey, theme);
+      state.theme = theme
+      localStorage.setItem(storageThemeKey, theme)
     }
 
     function setLight() {
-      setTheme('light');
+      setTheme('light')
     }
 
     function setDark() {
-      setTheme('dark');
+      setTheme('dark')
     }
 
     function setZhCn() {
-      state.language = zhCN;
+      state.language = zhCN
     }
 
     function setEnUs() {
-      state.language = enUS;
+      state.language = enUS
     }
 
     function setLtr() {
-      state.direction = 'ltr';
+      state.direction = 'ltr'
     }
 
     function setRtl() {
-      state.direction = 'rtl';
+      state.direction = 'rtl'
     }
 
-    return (): JSX.Element => (
+    return () => (
       <NovaEnvironment theme={state.theme} language={state.language}>
         {() => [
           <header id="header">
@@ -127,6 +127,6 @@ export default defineComponent({
           </main>,
         ]}
       </NovaEnvironment>
-    );
+    )
   },
-});
+})

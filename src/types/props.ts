@@ -1,12 +1,12 @@
-import { CSSProperties } from 'vue';
+import { type CSSProperties } from 'vue'
 
 export interface VueProps {
-  [key: string]: unknown;
+  [key: string]: unknown
 }
 
-export type VueStyle = string | CSSProperties;
+export type VueStyle = string | CSSProperties
 
-export type VueClass = unknown;
+export type VueClass = unknown
 
 export type Placement =
   | 'topLeft'
@@ -20,4 +20,4 @@ export type Placement =
   | 'bottomRight'
   | 'leftTop'
   | 'left'
-  | 'leftBottom';
+  | 'leftBottom'

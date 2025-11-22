@@ -1,3 +1,3 @@
-import { NovaDropdown } from './NovaDropdown';
+import { NovaDropdown } from './NovaDropdown'
 
-export { NovaDropdown };
+export { NovaDropdown }

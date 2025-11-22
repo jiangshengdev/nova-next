@@ -1,3 +1,3 @@
-import { NovaEnvironment } from './NovaEnvironment';
+import { NovaEnvironment } from './NovaEnvironment'
 
-export { NovaEnvironment };
+export { NovaEnvironment }

@@ -1,25 +1,25 @@
-import { defineComponent, reactive, watch } from 'vue';
-import { getInputValue } from '../../../../utils/dom';
-import { Color } from '../../color';
+import { defineComponent, reactive, watch } from 'vue'
+import { getInputValue } from '../../../../utils/dom'
+import { Color } from '../../color'
 import {
   alphaNormalize,
   alphaRule,
   createAlpha,
   createChannel,
   intNormalize,
-  UpdateParams,
-} from './label-utils';
-import { Environment } from '../../../../uses/use-environment';
+  type UpdateParams,
+} from './label-utils'
+import { type Environment } from '../../../../uses/use-environment'
 
-type rgbChannel = 'red' | 'green' | 'blue';
-type ColorEmit = 'colorInput' | 'colorBlur';
+type rgbChannel = 'red' | 'green' | 'blue'
+type ColorEmit = 'colorInput' | 'colorBlur'
 
 interface RgbaLabelsProps {
-  alpha: boolean;
-  color: Color;
-  environment: Environment;
-  onColorInput?: (color: Color) => void;
-  onColorBlur?: (color: Color) => void;
+  alpha: boolean
+  color: Color
+  environment: Environment
+  onColorInput?: (color: Color) => void
+  onColorBlur?: (color: Color) => void
 }
 
 const rgbaLabelsProps = {
@@ -35,132 +35,132 @@ const rgbaLabelsProps = {
     type: Object,
     required: true,
   },
-};
+}
 
 export const RgbaLabels = defineComponent({
   name: 'RgbaLabels',
   props: rgbaLabelsProps,
   emits: ['colorInput', 'colorBlur'],
   setup(props: RgbaLabelsProps, { emit }) {
-    const rgba = props.color.toCssRgba();
+    const rgba = props.color.toCssRgba()
     const state = reactive({
       red: rgba.red,
       green: rgba.green,
       blue: rgba.blue,
       alpha: rgba.alpha,
-    });
+    })
 
     function updateColor(eventName: ColorEmit): void {
-      const red = intNormalize(state.red, 255);
-      const green = intNormalize(state.green, 255);
-      const blue = intNormalize(state.blue, 255);
-      const alpha = alphaNormalize(state.alpha);
+      const red = intNormalize(state.red, 255)
+      const green = intNormalize(state.green, 255)
+      const blue = intNormalize(state.blue, 255)
+      const alpha = alphaNormalize(state.alpha)
 
-      const color = Color.fromCssRgba(red, green, blue, alpha);
-      const sameColor = Color.sameColor(props.color as Color, color);
+      const color = Color.fromCssRgba(red, green, blue, alpha)
+      const sameColor = Color.sameColor(props.color as Color, color)
       if (sameColor) {
-        return;
+        return
       }
 
-      emit(eventName, color);
+      emit(eventName, color)
     }
 
     function onRgbInput(input: HTMLInputElement, channel: rgbChannel): void {
-      const value = getInputValue(input);
+      const value = getInputValue(input)
 
       if (value === '') {
-        return;
+        return
       }
 
       if (/^\d+$/.test(value)) {
-        state[channel] = parseFloat(value);
-        updateColor('colorInput');
+        state[channel] = parseFloat(value)
+        updateColor('colorInput')
       }
     }
 
     function onAlphaInput(input: HTMLInputElement): void {
-      const value = getInputValue(input);
+      const value = getInputValue(input)
 
       if (value === '') {
-        return;
+        return
       }
 
       if (alphaRule.test(value)) {
-        state['alpha'] = parseFloat(value);
-        updateColor('colorInput');
+        state['alpha'] = parseFloat(value)
+        updateColor('colorInput')
       }
     }
 
     function onRgbaBlur(): void {
-      updateColor('colorBlur');
+      updateColor('colorBlur')
     }
 
     watch(
       () => props.color,
       () => {
-        const newRgba = props.color.toCssRgba();
+        const newRgba = props.color.toCssRgba()
 
-        state.red = newRgba.red;
-        state.green = newRgba.green;
-        state.blue = newRgba.blue;
-        state.alpha = newRgba.alpha;
-      }
-    );
+        state.red = newRgba.red
+        state.green = newRgba.green
+        state.blue = newRgba.blue
+        state.alpha = newRgba.alpha
+      },
+    )
 
-    return (): JSX.Element => {
-      const language = props.environment.languageRef.value.colorPicker;
+    return () => {
+      const language = props.environment.languageRef.value.colorPicker
 
       const rNode = createChannel({
         label: 'R',
         title: language.red,
         value: state.red,
         onInput: (e) => {
-          onRgbInput(e.target as HTMLInputElement, 'red');
+          onRgbInput(e.target as HTMLInputElement, 'red')
         },
         onUpdate: (params: UpdateParams) => {
-          onRgbInput(params.target, 'red');
+          onRgbInput(params.target, 'red')
         },
         onBlur: onRgbaBlur,
-      });
+      })
 
       const gNode = createChannel({
         label: 'G',
         title: language.green,
         value: state.green,
         onInput: (e) => {
-          onRgbInput(e.target as HTMLInputElement, 'green');
+          onRgbInput(e.target as HTMLInputElement, 'green')
         },
         onUpdate: (params: UpdateParams) => {
-          onRgbInput(params.target, 'green');
+          onRgbInput(params.target, 'green')
         },
         onBlur: onRgbaBlur,
-      });
+      })
 
       const bNode = createChannel({
         label: 'B',
         title: language.blue,
         value: state.blue,
         onInput: (e) => {
-          onRgbInput(e.target as HTMLInputElement, 'blue');
+          onRgbInput(e.target as HTMLInputElement, 'blue')
         },
         onUpdate: (params: UpdateParams) => {
-          onRgbInput(params.target, 'blue');
+          onRgbInput(params.target, 'blue')
         },
         onBlur: onRgbaBlur,
-      });
+      })
 
       const aNode = createAlpha({
         alpha: props.alpha,
         title: language.alpha,
         value: state.alpha,
         onInput: (e) => {
-          onAlphaInput(e.target as HTMLInputElement);
+          onAlphaInput(e.target as HTMLInputElement)
         },
         onUpdate: (params: UpdateParams) => {
-          onAlphaInput(params.target);
+          onAlphaInput(params.target)
         },
         onBlur: onRgbaBlur,
-      });
+      })
 
       return (
         <div class="nova-color-picker-labels">
@@ -169,7 +169,7 @@ export const RgbaLabels = defineComponent({
           {bNode}
           {aNode}
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})
