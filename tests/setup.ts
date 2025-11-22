@@ -1,3 +1,3 @@
-import { config } from '@vue/test-utils';
+import { config } from '@vue/test-utils'
 
-config.global.stubs.transition = false;
+config.global.stubs.transition = false
