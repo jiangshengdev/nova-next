@@ -1,4 +1,4 @@
-import { defineComponent, reactive, VNodeProps, watch } from 'vue';
+import { defineComponent, reactive, watch } from 'vue';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {
@@ -12,6 +12,7 @@ import {
 import { Environment } from '../../../../uses/use-environment';
 
 type hslChannel = 'hue' | 'saturation' | 'lightness';
+type ColorEmit = 'colorInput' | 'colorBlur';
 
 interface HslaLabelsProps {
   alpha: boolean;
@@ -49,7 +50,7 @@ export const HslaLabels = defineComponent({
       alpha: hsla.alpha,
     });
 
-    function updateColor(eventName: string): void {
+    function updateColor(eventName: ColorEmit): void {
       const hue = intNormalize(state.hue, 360);
       const saturation = intNormalize(state.saturation, 100);
       const lightness = intNormalize(state.lightness, 100);
@@ -171,8 +172,4 @@ export const HslaLabels = defineComponent({
       );
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & HslaLabelsProps;
-  };
-};
+});

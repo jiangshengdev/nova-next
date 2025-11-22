@@ -1,4 +1,4 @@
-import { computed, defineComponent, ref, VNodeProps } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { MovePosition, useMove } from '../../../../uses/use-move';
 import { numberFixed } from '../../../../utils/utils';
 
@@ -51,8 +51,4 @@ export const HueSlide = defineComponent({
       );
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & HueSlideProps;
-  };
-};
+});

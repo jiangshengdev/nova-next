@@ -1,4 +1,4 @@
-import { defineComponent, Ref, ref, useAttrs, VNodeProps } from 'vue';
+import { defineComponent, Ref, ref, useAttrs } from 'vue';
 import {
   Direction,
   down,
@@ -31,9 +31,9 @@ const numberInputProps = {
 
 export const NumberInput = defineComponent({
   name: 'NumberInput',
+  inheritAttrs: false,
   props: numberInputProps,
   emits: ['update'],
-  inheritAttrs: false,
   setup(props: NumberInputProps, { emit }) {
     const attrs = useAttrs();
     const inputRef: Ref<HTMLElement | null> = ref(null);
@@ -118,8 +118,4 @@ export const NumberInput = defineComponent({
       );
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & NumberInputProps;
-  };
-};
+});

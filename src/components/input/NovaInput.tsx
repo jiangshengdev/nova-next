@@ -41,7 +41,7 @@ const inputProps = {
 type NovaInputProps = InputProps & InputHTMLAttributes;
 
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
-  const environment = useEnvironment(props as EnvironmentProps);
+  const environment = useEnvironment(props);
 
   const wrapClassList = [
     {

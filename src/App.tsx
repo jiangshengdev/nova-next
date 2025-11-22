@@ -83,26 +83,22 @@ export default defineComponent({
             <nav id="nav">
               <ul>
                 <li>
-                  <RouterLink to="/">{(): string => 'Home'}</RouterLink>
+                  <RouterLink to="/">Home</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/color-picker">
-                    {(): string => 'ColorPicker'}
-                  </RouterLink>
+                  <RouterLink to="/color-picker">ColorPicker</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/dropdown">
-                    {(): string => 'Dropdown'}
-                  </RouterLink>
+                  <RouterLink to="/dropdown">Dropdown</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/button">{(): string => 'Button'}</RouterLink>
+                  <RouterLink to="/button">Button</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/input">{(): string => 'Input'}</RouterLink>
+                  <RouterLink to="/input">Input</RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/about">{(): string => 'About'}</RouterLink>
+                  <RouterLink to="/about">About</RouterLink>
                 </li>
               </ul>
               <div>

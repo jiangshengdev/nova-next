@@ -2,6 +2,7 @@ import {
   computed,
   defineComponent,
   onMounted,
+  PropType,
   reactive,
   Ref,
   ref,
@@ -9,7 +10,7 @@ import {
 } from 'vue';
 import { MovePosition } from '../../uses/use-move';
 import { Color, ColorFormat } from './color';
-import { Trigger } from './parts/Trigger';
+import { ColorPickerTrigger } from './parts/Trigger';
 import { HsvPanel } from './parts/HsvPanel';
 import { HueSlide } from './parts/slides/HueSlide';
 import { AlphaSlide } from './parts/slides/AlphaSlide';
@@ -71,11 +72,11 @@ const colorPickerProps = {
     default: false,
   },
   format: {
-    type: String,
+    type: String as PropType<ColorFormat>,
     default: 'hex',
   },
   preset: {
-    type: Array,
+    type: Array as PropType<string[]>,
     default: null,
   },
 };
@@ -97,7 +98,7 @@ export const NovaColorPicker = defineComponent({
   setup(props, context) {
     const emit = context.emit;
 
-    const environment = useEnvironment(props as EnvironmentProps);
+    const environment = useEnvironment(props);
     const dropdownInstanceRef = ref<DropdownInstance | null>(null);
     const colorPickerTriggerAutoFocusRef = ref<HTMLElement | null>(null);
     const colorPickerPanelAutoFocusRef = ref<HTMLElement | null>(null);
@@ -274,13 +275,15 @@ export const NovaColorPicker = defineComponent({
               ...triggerProps,
             });
           return (
-            <Trigger onAssignRef={onAssignRef} {...triggerProps}>
+            <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps}>
               {triggerNode}
-            </Trigger>
+            </ColorPickerTrigger>
           );
         }
 
-        return <Trigger onAssignRef={onAssignRef} {...triggerProps} />;
+        return (
+          <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps} />
+        );
       }
 
       function createHsvPanel() {
@@ -402,7 +405,7 @@ export const NovaColorPicker = defineComponent({
       function createPreset() {
         const slotPreset = context.slots.preset;
         const presetProps = {
-          preset: props.preset,
+          preset: props.preset ?? [],
           color: state.color,
         };
 

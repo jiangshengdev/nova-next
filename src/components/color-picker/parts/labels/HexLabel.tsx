@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref, Ref, VNodeProps } from 'vue';
+import { defineComponent, reactive, ref, Ref } from 'vue';
 import {
   Direction,
   down,
@@ -23,6 +23,8 @@ interface HexLabelProps {
   onColorInput?: (color: Color) => void;
   onColorBlur?: (color: Color) => void;
 }
+
+type ColorEmit = 'colorInput' | 'colorBlur';
 
 function calcTuned(
   functionKeys: FunctionKeys,
@@ -75,7 +77,7 @@ export const HexLabel = defineComponent({
       hexShort: false,
     });
 
-    function updateColor(eventName: string, hex: string): void {
+    function updateColor(eventName: ColorEmit, hex: string): void {
       if (Color.hexRule.test(hex)) {
         state.hexShort = hex.replace('#', '').length === 3;
 
@@ -192,8 +194,4 @@ export const HexLabel = defineComponent({
       );
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & HexLabelProps;
-  };
-};
+});

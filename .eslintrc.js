@@ -24,7 +24,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-unused-vars': [
           'warn',
-          { varsIgnorePattern: '^(h|vueJsxCompat)$' },
+          { varsIgnorePattern: '^(h)$' },
         ],
         '@typescript-eslint/no-unsafe-function-type': 'warn',
         '@typescript-eslint/no-unused-expressions': 'warn',

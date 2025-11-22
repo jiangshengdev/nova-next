@@ -1,4 +1,4 @@
-import { FunctionalComponent, PropType, VNodeProps } from 'vue';
+import { FunctionalComponent, PropType } from 'vue';
 import { Color } from '../color';
 
 interface PresetValuesProps {
@@ -18,7 +18,7 @@ const presetValuesProps = {
   },
 };
 
-const PresetValuesImpl: FunctionalComponent<PresetValuesProps> = (
+const PresetValues: FunctionalComponent<PresetValuesProps> = (
   props,
   context
 ) => {
@@ -58,7 +58,7 @@ const PresetValuesImpl: FunctionalComponent<PresetValuesProps> = (
 
   let presetNode = (
     <div class="nova-color-picker-preset-list">
-      {props.preset.map((value) => createPreset(value as string))}
+      {props.preset.map((value) => createPreset(value))}
     </div>
   );
 
@@ -71,11 +71,8 @@ const PresetValuesImpl: FunctionalComponent<PresetValuesProps> = (
   return <div class="nova-color-picker-preset-wrap">{presetNode}</div>;
 };
 
-PresetValuesImpl.props = presetValuesProps;
-PresetValuesImpl.emits = ['select'];
+PresetValues.props = presetValuesProps;
+PresetValues.emits = ['select'];
+PresetValues.displayName = 'PresetValues';
 
-export const PresetValues = PresetValuesImpl as unknown as {
-  new (): {
-    $props: VNodeProps & PresetValuesProps;
-  };
-};
+export { PresetValues };

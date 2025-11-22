@@ -1,4 +1,4 @@
-import { defineComponent, reactive, VNodeProps, watch } from 'vue';
+import { defineComponent, reactive, watch } from 'vue';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {
@@ -12,6 +12,7 @@ import {
 import { Environment } from '../../../../uses/use-environment';
 
 type rgbChannel = 'red' | 'green' | 'blue';
+type ColorEmit = 'colorInput' | 'colorBlur';
 
 interface RgbaLabelsProps {
   alpha: boolean;
@@ -49,7 +50,7 @@ export const RgbaLabels = defineComponent({
       alpha: rgba.alpha,
     });
 
-    function updateColor(eventName: string): void {
+    function updateColor(eventName: ColorEmit): void {
       const red = intNormalize(state.red, 255);
       const green = intNormalize(state.green, 255);
       const blue = intNormalize(state.blue, 255);
@@ -171,8 +172,4 @@ export const RgbaLabels = defineComponent({
       );
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & RgbaLabelsProps;
-  };
-};
+});

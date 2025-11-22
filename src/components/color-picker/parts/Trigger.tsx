@@ -1,8 +1,8 @@
-import { computed, defineComponent, onMounted, ref, Ref, VNodeProps } from 'vue';
+import { computed, defineComponent, onMounted, ref, Ref } from 'vue';
 import { Color } from '../color';
 import { Environment } from '../../../uses/use-environment';
 
-export interface TriggerProps {
+export interface ColorPickerTriggerProps {
   color: Color;
   disabled: boolean;
   environment: Environment;
@@ -24,11 +24,11 @@ const triggerProps = {
   },
 };
 
-export const Trigger = defineComponent({
-  name: 'Trigger',
+export const ColorPickerTrigger = defineComponent({
+  name: 'ColorPickerTrigger',
   props: triggerProps,
   emits: ['assignRef'],
-  setup(props: TriggerProps, { slots, emit }) {
+  setup(props: ColorPickerTriggerProps, { slots, emit }) {
     const triggerRef: Ref<HTMLElement | null> = ref(null);
 
     const triggerInnerStyle = computed(() => {
@@ -38,7 +38,7 @@ export const Trigger = defineComponent({
     });
 
     onMounted(() => {
-      emit('assignRef', triggerRef);
+      emit('assignRef', triggerRef.value);
     });
 
     return (): JSX.Element => {
@@ -69,8 +69,4 @@ export const Trigger = defineComponent({
       return triggerNode;
     };
   },
-}) as unknown as {
-  new (): {
-    $props: VNodeProps & TriggerProps;
-  };
-};
+});

@@ -43,7 +43,7 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     const x = firstFinger.pageX - rect.x - window.pageXOffset - border.left;
     const y = firstFinger.pageY - rect.y - window.pageYOffset - border.top;
 
-    move && move.call(null, { x, y });
+    move?.call(null, { x, y });
   }
 
   function onTouchend(e: TouchEvent): void {
@@ -58,7 +58,7 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     target.removeEventListener('touchend', onTouchend);
     target.removeEventListener('touchcancel', onTouchend);
 
-    finish && finish.call(null);
+    finish?.call(null);
   }
 
   function onTouchstart(e: TouchEvent): void {

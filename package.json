@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "^1.0.0-alpha.9",
-    "vue": "^3.5.0"
+    "vue": "^3.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -49,6 +49,7 @@
     "@eslint/js": "^9.39.1",
     "@microsoft/api-extractor": "^7.43.0",
     "@rollup/plugin-typescript": "^12.0.0",
+    "@types/babel__core": "^7.20.0",
     "@types/autoprefixer": "^10.2.0",
     "@types/gulp": "^4.0.8",
     "@types/gulp-postcss": "^8.0.0",
@@ -63,8 +64,9 @@
     "@typescript-eslint/parser": "^8.0.0",
     "@vitejs/plugin-vue": "^6.0.2",
     "@vitejs/plugin-vue-jsx": "^5.1.2",
-    "@vue/compiler-sfc": "^3.5.0",
-    "@vue/test-utils": "^2.4.0",
+    "@vue/babel-plugin-jsx": "^1.5.0",
+    "@vue/compiler-sfc": "^3.5.4",
+    "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.0",
     "babel-jest": "^30.2.0",
     "del": "^8.0.0",
@@ -89,10 +91,11 @@
     "ts-node": "^10.0.0",
     "tslib": "^2.0.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.7.0",
+    "typescript": "^5.7.2",
     "vite": "^6.0.0",
     "vitepress": "^1.6.0",
     "vue-eslint-parser": "^10.0.0",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1",
+    "vue-tsc": "^2.1.0"
   }
 }

@@ -1,4 +1,4 @@
-import { FunctionalComponent, PropType, VNodeProps } from 'vue';
+import { FunctionalComponent, PropType } from 'vue';
 import { Color } from '../color';
 
 interface PreviewProps {
@@ -18,7 +18,7 @@ const previewProps = {
   },
 };
 
-const PreviewImpl: FunctionalComponent<PreviewProps> = (props, context) => {
+const Preview: FunctionalComponent<PreviewProps> = (props, context) => {
   const { emit } = context;
 
   function onPrevClick(): void {
@@ -48,11 +48,8 @@ const PreviewImpl: FunctionalComponent<PreviewProps> = (props, context) => {
   );
 };
 
-PreviewImpl.props = previewProps;
-PreviewImpl.emits = ['reset'];
+Preview.props = previewProps;
+Preview.emits = ['reset'];
+Preview.displayName = 'Preview';
 
-export const Preview = PreviewImpl as unknown as {
-  new (): {
-    $props: VNodeProps & PreviewProps;
-  };
-};
+export { Preview };

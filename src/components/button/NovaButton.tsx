@@ -30,7 +30,7 @@ const buttonProps = {
 type NovaButtonProps = ButtonProps & ButtonHTMLAttributes;
 
 const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
-  const environment = useEnvironment(props as EnvironmentProps);
+  const environment = useEnvironment(props);
 
   // 同时支持插槽与直接子节点
   const children = context.slots.default?.();

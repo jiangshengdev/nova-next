@@ -1,4 +1,4 @@
-import { defineComponent, PropType, provide, ref, watch } from 'vue';
+import { computed, defineComponent, PropType, provide } from 'vue';
 import { languageKey, themeKey } from '../../utils/symbols';
 import { languageDefault, themeDefault } from '../../uses/use-environment';
 import { Language } from '../../types/language';
@@ -23,27 +23,11 @@ export const NovaEnvironment = defineComponent({
   name: 'NovaEnvironment',
   props: environmentProps,
   setup(props, { slots }) {
-    const themeRef = props.theme ? ref(props.theme) : ref(themeDefault);
-    const languageRef = props.language
-      ? ref(props.language)
-      : ref(languageDefault);
+    const themeRef = computed(() => props.theme ?? themeDefault);
+    const languageRef = computed(() => props.language ?? languageDefault);
 
     provide(themeKey, themeRef);
     provide(languageKey, languageRef);
-
-    watch(
-      () => props.theme,
-      (theme) => {
-        themeRef.value = theme || themeDefault;
-      }
-    );
-
-    watch(
-      () => props.language,
-      (language) => {
-        languageRef.value = language || languageDefault;
-      }
-    );
 
     return () => {
       return slots.default?.() ?? null;

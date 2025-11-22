@@ -12,7 +12,10 @@ import {
 } from 'vue';
 import { Environment, useEnvironment } from '../../uses/use-environment';
 import { durationLong, useDropdown } from '../../uses/use-dropdown';
-import { EnvironmentProps } from '../environment/NovaEnvironment';
+import {
+  EnvironmentProps,
+  environmentProps,
+} from '../environment/NovaEnvironment';
 import { Placement, VueClass, VueProps, VueStyle } from '../../types/props';
 import { getFocusable } from '../../utils/dom';
 
@@ -42,6 +45,7 @@ export interface DropdownPanelScoped {
 }
 
 export const dropdownProps = {
+  ...environmentProps,
   disabled: {
     type: Boolean,
     default: false,
@@ -79,8 +83,7 @@ export const NovaDropdown = defineComponent({
   setup(props, { emit, slots }) {
     let trapped = false;
 
-    const environment =
-      props.environment ?? useEnvironment(props as EnvironmentProps);
+    const environment = props.environment ?? useEnvironment(props);
 
     const triggerRef: Ref<HTMLElement | null> = ref(null);
     const triggerAutoFocusRef: Ref<HTMLElement | null> = ref(null);
