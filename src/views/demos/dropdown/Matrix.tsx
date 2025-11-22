@@ -15,7 +15,7 @@ export default defineComponent({
     }
 
     return () => {
-      const pickerList = new Array(100).fill(null).map(() => {
+      const pickerList = Array.from({ length: 100 }).map(() => {
         return (
           <li>
             <NovaColorPicker placement={state.placement} value={state.color} />
