@@ -27,3 +27,4 @@
 - 进展、决策或阻塞请在表格下方追加日志，标注日期与责任人。
 - 2025-11-22：任务 1 - `package.json` 切换至 pnpm 脚本体系，新增 lint/test/type-check 命令。（Copilot 协助）
 - 2025-11-22：任务 2 - 拆分 TypeScript 配置（app/node/vitest/e2e），新增 `@vue/tsconfig`、提升 `vue-tsc`，并更新 Gulp 声明构建指向 `tsconfig.app.json`。（Copilot 协助）
+- 2025-11-22：任务 3 - Demo 构建改用 rolldown-vite，补充 `@` alias、DevTools 插件，并修复 ColorPicker CSS 以通过新构建。（Copilot 协助）

@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-const Home = () => import('../views/Home');
-const About = () => import('../views/About');
-const ButtonDemo = () => import('../views/demos/ButtonDemo');
-const InputDemo = () => import('../views/demos/InputDemo');
-const ColorPickerDemo = () => import('../views/demos/ColorPickerDemo');
-const DropdownDemo = () => import('../views/demos/DropdownDemo');
+const Home = () => import('@/views/Home');
+const About = () => import('@/views/About');
+const ButtonDemo = () => import('@/views/demos/ButtonDemo');
+const InputDemo = () => import('@/views/demos/InputDemo');
+const ColorPickerDemo = () => import('@/views/demos/ColorPickerDemo');
+const DropdownDemo = () => import('@/views/demos/DropdownDemo');
 
 const routes = [
   {
@@ -41,6 +41,6 @@ const routes = [
 ];
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
