@@ -51,11 +51,7 @@ export default defineComponent({
 
         <h4>表单操作</h4>
         <div class="demo-input-group">
-          <NovaInput
-            value={inputValue.value}
-            placeholder="输入一些内容"
-            onInput={handleInput}
-          />
+          <NovaInput value={inputValue.value} placeholder="输入一些内容" onInput={handleInput} />
           <NovaButton onClick={clearInput}>清空</NovaButton>
           <NovaButton
             primary
@@ -68,9 +64,7 @@ export default defineComponent({
         </div>
 
         <div class="demo-input-description">
-          <p>
-            演示输入框的交互功能，包括实时字符计数、动态切换状态和表单操作等。
-          </p>
+          <p>演示输入框的交互功能，包括实时字符计数、动态切换状态和表单操作等。</p>
         </div>
       </div>
     )

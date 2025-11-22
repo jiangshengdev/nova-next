@@ -31,9 +31,7 @@ export default defineComponent({
             <NovaButton onClick={toggleTheme}>
               切换主题: {theme.value === 'light' ? '浅色' : '深色'}
             </NovaButton>
-            <NovaButton onClick={toggleLanguage}>
-              切换语言: {language.value.name}
-            </NovaButton>
+            <NovaButton onClick={toggleLanguage}>切换语言: {language.value.name}</NovaButton>
           </div>
         </div>
 

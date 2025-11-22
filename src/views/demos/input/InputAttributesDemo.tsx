@@ -31,8 +31,9 @@ export default defineComponent({
 
         <div class="demo-input-description">
           <p>
-            NovaInput 支持所有标准的 HTML input
-            属性，如 <code>required</code>、<code>minlength</code>、<code>maxlength</code>、<code>type</code>、<code>name</code>、<code>id</code> 等。
+            NovaInput 支持所有标准的 HTML input 属性，如 <code>required</code>、
+            <code>minlength</code>、<code>maxlength</code>、<code>type</code>、<code>name</code>、
+            <code>id</code> 等。
           </p>
         </div>
       </div>

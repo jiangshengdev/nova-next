@@ -24,9 +24,7 @@ export default defineComponent({
             disabled={state.disabled}
             onUpdate={(c) => (state.color = c)}
           />
-          <NovaButton onClick={toggleDisabled}>
-            {state.disabled ? '启用' : '禁用'}
-          </NovaButton>
+          <NovaButton onClick={toggleDisabled}>{state.disabled ? '启用' : '禁用'}</NovaButton>
         </div>
         <div class="demo-color-picker-description">
           <p>禁用状态下，颜色选择器无法打开。可以动态控制禁用状态。</p>

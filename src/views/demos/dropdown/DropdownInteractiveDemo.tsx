@@ -38,9 +38,7 @@ export default defineComponent({
         <div class="demo-dropdown-group">
           <NovaDropdown>
             {{
-              trigger: () => (
-                <NovaButton>{() => `选择：${selectedOption.value}`}</NovaButton>
-              ),
+              trigger: () => <NovaButton>{() => `选择：${selectedOption.value}`}</NovaButton>,
               default: ({ panelAutoFocusRef }: DropdownPanelScoped) => (
                 <ul
                   class="demo-dropdown-menu demo-dropdown-menu-interactive"
@@ -54,7 +52,14 @@ export default defineComponent({
                     >
                       {option}
                       {selectedOption.value === option && (
-                        <span style={{ marginLeft: '8px', width: '18px', height: '18px', display: 'inline-flex' }}>
+                        <span
+                          style={{
+                            marginLeft: '8px',
+                            width: '18px',
+                            height: '18px',
+                            display: 'inline-flex',
+                          }}
+                        >
                           <MDICheck />
                         </span>
                       )}
@@ -68,17 +73,13 @@ export default defineComponent({
 
         <h4>多选菜单</h4>
         <div class="demo-dropdown-description">
-          <p>
-            已选择：{checkedOptions.value.length > 0 ? checkedOptions.value.join('、') : '无'}
-          </p>
+          <p>已选择：{checkedOptions.value.length > 0 ? checkedOptions.value.join('、') : '无'}</p>
         </div>
         <div class="demo-dropdown-group">
           <NovaDropdown>
             {{
               trigger: () => (
-                <NovaButton>
-                  {() => `水果 (${checkedOptions.value.length})`}
-                </NovaButton>
+                <NovaButton>{() => `水果 (${checkedOptions.value.length})`}</NovaButton>
               ),
               default: ({ panelAutoFocusRef }: DropdownPanelScoped) => (
                 <ul
@@ -93,7 +94,14 @@ export default defineComponent({
                     >
                       {fruit}
                       {isChecked(fruit) && (
-                        <span style={{ marginLeft: '8px', width: '18px', height: '18px', display: 'inline-flex' }}>
+                        <span
+                          style={{
+                            marginLeft: '8px',
+                            width: '18px',
+                            height: '18px',
+                            display: 'inline-flex',
+                          }}
+                        >
                           <MDICheck />
                         </span>
                       )}
@@ -128,9 +136,7 @@ export default defineComponent({
         <div class="demo-dropdown-group">
           <NovaDropdown>
             {{
-              trigger: () => (
-                <NovaButton primary>{() => '操作菜单'}</NovaButton>
-              ),
+              trigger: () => <NovaButton primary>{() => '操作菜单'}</NovaButton>,
               default: ({ panelAutoFocusRef }: DropdownPanelScoped) => {
                 return (
                   <ul class="demo-dropdown-menu" ref={panelAutoFocusRef}>
@@ -160,8 +166,8 @@ export default defineComponent({
 
         <div class="demo-dropdown-description" style="margin-top: 16px">
           <p>
-            通过 <code>onOpenChange</code> 监听下拉菜单的打开/关闭状态。菜单在点击外部区域或按
-            ESC 键时会自动关闭。
+            通过 <code>onOpenChange</code> 监听下拉菜单的打开/关闭状态。菜单在点击外部区域或按 ESC
+            键时会自动关闭。
           </p>
         </div>
       </div>

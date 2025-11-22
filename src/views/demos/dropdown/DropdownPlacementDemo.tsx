@@ -191,9 +191,7 @@ export default defineComponent({
         <div class="demo-dropdown-group">
           <NovaButton onClick={() => updatePlacement('topLeft')}>{() => '切换到左上'}</NovaButton>
           <NovaButton onClick={() => updatePlacement('bottom')}>{() => '切换到下方'}</NovaButton>
-          <NovaButton onClick={() => updatePlacement('rightTop')}>
-            {() => '切换到右上'}
-          </NovaButton>
+          <NovaButton onClick={() => updatePlacement('rightTop')}>{() => '切换到右上'}</NovaButton>
         </div>
         <div class="demo-dropdown-group" style="margin-top: 12px">
           <NovaDropdown placement={currentPlacement.value}>
@@ -212,8 +210,8 @@ export default defineComponent({
 
         <div class="demo-dropdown-description" style="margin-top: 16px">
           <p>
-            使用 <code>placement</code> 属性控制下拉菜单的弹出位置。支持 12 种位置：上下左右各
-            3 个位置。
+            使用 <code>placement</code> 属性控制下拉菜单的弹出位置。支持 12 种位置：上下左右各 3
+            个位置。
           </p>
         </div>
       </div>
