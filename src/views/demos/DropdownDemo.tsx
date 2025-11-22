@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import Matrix from './dropdown/Matrix'
-import Normal from './dropdown/Normal'
+import Matrix from './dropdown/DropdownMatrixDemo.tsx'
+import Normal from './dropdown/DropdownNormalDemo.tsx'
 
 export default defineComponent({
   setup() {

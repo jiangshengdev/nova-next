@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const Home = () => import('@/views/Home')
-const About = () => import('@/views/About')
+const Home = () => import('@/views/HomeView.tsx')
+const About = () => import('@/views/AboutView.tsx')
 const ButtonDemo = () => import('@/views/demos/ButtonDemo')
 const InputDemo = () => import('@/views/demos/InputDemo')
 const ColorPickerDemo = () => import('@/views/demos/ColorPickerDemo')
