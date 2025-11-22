@@ -22,7 +22,6 @@ export default defineConfigWithVueTs(
     '**/dist-ssr/**',
     '**/coverage/**',
     '**/docs/**',
-    'postcss.config.js',
   ]),
 
   pluginVue.configs['flat/essential'],
