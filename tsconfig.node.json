@@ -1,22 +1,19 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
-  "compilerOptions": {
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "types": ["node"]
-  },
   "include": [
-    "build/**/*.ts",
-    "gulpfile.ts",
     "vite.config.*",
     "vitest.config.*",
+    "cypress.config.*",
+    "nightwatch.conf.*",
     "playwright.config.*",
-    "eslint.config.*",
-    "postcss.config.*",
-    "docs/.vitepress/**/*.ts"
-  ]
+    "eslint.config.*"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"]
+  }
 }

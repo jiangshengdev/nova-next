@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 const fsPromises = fs.promises;
-const prettierConfigPath = '../.prettierrc';
+const prettierConfigPath = '../.prettierrc.json';
 
 export async function format(
   content: string,
