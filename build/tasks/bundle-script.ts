@@ -1,6 +1,6 @@
 import { build, BuildOptions, Plugin } from 'esbuild';
 import { transformAsync } from '@babel/core';
-import path from 'node:path';
+import { dirname } from 'node:path';
 import { readFile } from 'node:fs/promises';
 
 function vueJsxTransformPlugin(): Plugin {
@@ -33,7 +33,7 @@ function vueJsxTransformPlugin(): Plugin {
         return {
           contents: result.code,
           loader: 'js',
-          resolveDir: path.dirname(args.path),
+          resolveDir: dirname(args.path),
         };
       });
     },

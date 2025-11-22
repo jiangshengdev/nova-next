@@ -43,7 +43,7 @@
 
 - **文档站点**: `docs/` 采用 VitePress，`yarn doc:dev` 本地预览，`yarn doc:dist` 生成静态站点。
 - **自动注册**: `build/tasks/register-components.ts` 会扫描 `docs/.vitepress/components` 并写入 `theme/register-components.js`，新增文档组件需放置于该目录。
-- **类型管线**: `build/tasks/rollup-dts.ts` 将 TS 编译到 `temp/`，随后 `api-extractor`（配置见 `api-extractor.json`）生成公共声明。
+- **类型管线**: 暂停生成 `.d.ts`，当前 `gulp:lib` 仅运行 `bundle-script` 输出 JS 产物。
 - **打包细节**: `bundle-script.ts` 使用 esbuild，内置 Babel + `@vue/babel-plugin-jsx` 完成 TSX 转换，并将 `vue` 与图标库设为 external。
 
 ## 易踩坑
@@ -51,4 +51,4 @@
 - **JSX 工厂**: 依赖官方 `@vue/babel-plugin-jsx`，保持 `jsx: preserve` 即可，不要再引入 `vueJsxCompat` 之类的手动工厂。
 - **环境透传**: 嵌套组件需要显式把 `environment` 继续传递（例如 `NovaColorPicker` 使用 `NovaDropdown` 时），否则主题语言会断链。
 - **焦点陷阱**: `NovaDropdown` 会在面板内插入 `data-nova-trap` 元素，自定义内容时避免移除这些节点或修改 `tabindex`。
-- **CI 兼容性**: 构建依赖 `temp/` 目录存在，勿手动删除编译过程中产出的 `.d.ts`，清理走 `yarn gulp:clean`。
+- **CI 兼容性**: 现阶段不再产出 `.d.ts`，如需恢复请重新接入 `rollup-dts` 与 API Extractor 后再调整清理逻辑。

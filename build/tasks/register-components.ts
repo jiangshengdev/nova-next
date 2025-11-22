@@ -1,10 +1,8 @@
 import { globby } from 'globby';
 import { camelCase } from 'lodash';
 import { format } from '../helpers';
-import fs from 'fs';
-import path from 'path';
-
-const fsPromises = fs.promises;
+import * as fs from 'node:fs/promises';
+import { join } from 'node:path';
 const vitePressDir = 'docs/.vitepress';
 const componentDir = 'components';
 const outputPath = 'theme/register-components.js';
@@ -36,7 +34,7 @@ export function registerComponents(app) {
 }
 
 export async function registerComponents() {
-  const dir = path.join(vitePressDir, componentDir);
+  const dir = join(vitePressDir, componentDir);
   const files = await globby('**/*.vue', {
     cwd: dir,
   });
@@ -46,8 +44,5 @@ export async function registerComponents() {
   const content = componentsTemplate(codeImports, codeRegisters);
   const formattedContent = await format(content, { parser: 'babel' });
 
-  await fsPromises.writeFile(
-    path.join(vitePressDir, outputPath),
-    formattedContent
-  );
+  await fs.writeFile(join(vitePressDir, outputPath), formattedContent);
 }

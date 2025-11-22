@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const srcPath = path.resolve(__dirname, '../../src');
 const internalizePackages = ['@jiangshengdev/material-design-icons-vue-next'];
 
