@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { NovaButton } from '../NovaButton';
+import { describe, test, expect } from 'vitest'
 
 describe('button', () => {
   test('render', () => {

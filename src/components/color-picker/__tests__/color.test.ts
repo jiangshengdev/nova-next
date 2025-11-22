@@ -2,6 +2,7 @@ import { Color } from '../color';
 import x11Colors from '../assets/x11-colors';
 import hslData from '../assets/css-wg/hsl';
 import mdnColors from '../assets/mdn-colors';
+import { describe, test, expect } from 'vitest'
 
 function valueToPercent(value: number, max: number): number {
   return Math.round((value / max) * 100);

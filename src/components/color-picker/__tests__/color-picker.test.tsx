@@ -3,6 +3,7 @@ import { mount } from '@vue/test-utils';
 import { NovaColorPicker } from '../NovaColorPicker';
 import { type ColorFormat } from '../color';
 import { getStyleOf } from '../../../utils/dom';
+import { describe, test, expect } from 'vitest'
 
 describe('color-picker', () => {
   test('render', async () => {

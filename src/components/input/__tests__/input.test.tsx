@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { NovaInput } from '../NovaInput';
+import { describe, test, expect } from 'vitest'
 
 describe('input', () => {
   test('render', () => {
