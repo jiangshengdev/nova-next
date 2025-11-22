@@ -20,7 +20,7 @@
 | 2    | TypeScript 配置重构 | 拆分 `tsconfig` 为 app / node / vitest / e2e 引用结构，对齐路径别名与声明输出。                                                       | 待定   | ☑ 已完成 |
 | 3    | Demo 构建迁移       | 以 rolldown-vite 重写 `vite.config.ts`，保留组件包 Gulp 任务；更新 Router / Pinia / Devtools 配置。                                   | 待定   | ☑ 已完成 |
 | 4    | 测试体系替换        | 从 Jest + Babel 切换到 Vitest + Playwright，重建测试入口、setup、脚本，重新生成快照。                                                 | 待定   | ☑ 已完成 |
-| 5    | 质量工具升级        | 引入 ESLint Flat Config + Oxlint + 新 Prettier 规则，确保与 `vue-project` 一致，并更新 CI / pnpm 流程。                               | 待定   | ☐ 未开始  |
+| 5    | 质量工具升级        | 引入 ESLint Flat Config + Oxlint + 新 Prettier 规则，确保与 `vue-project` 一致，并更新 CI / pnpm 流程。                               | 待定   | ☑ 已完成 |
 
 ## 后续记录
 
@@ -29,3 +29,4 @@
 - 2025-11-22：任务 2 - 拆分 TypeScript 配置（app/node/vitest/e2e），新增 `@vue/tsconfig`、提升 `vue-tsc`，并更新 Gulp 声明构建指向 `tsconfig.app.json`。（Copilot 协助）
 - 2025-11-22：任务 3 - Demo 构建改用 rolldown-vite，补充 `@` alias、DevTools 插件，并修复 ColorPicker CSS 以通过新构建。（Copilot 协助）
 - 2025-11-22：任务 4 - 测试体系切换至 Vitest + Playwright，移除 Jest/Babel 配置，补充 `vitest.config.mts`、`playwright.config.ts`、`tests/setup.ts`，更新 ColorPicker 测试与快照确保通过 `pnpm test:unit`。（Copilot 协助）
+- 2025-11-22：任务 5 - 采用 `eslint.config.ts` Flat Config，移除 `.eslintrc.js/.eslintignore`，与 `vue-project` 对齐插件组合（Vue/TS/Vitest/Playwright/Oxlint/skip-formatting），并统一脚本为 `eslint . --fix --cache`。（Copilot 协助）

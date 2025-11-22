@@ -2,5 +2,6 @@ dist
 .DS_Store
 node_modules
 .idea
+/\.eslintcache
 /temp/
 /docs/.vitepress/cache/

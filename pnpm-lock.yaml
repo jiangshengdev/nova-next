@@ -21,12 +21,6 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.28.5
         version: 7.28.5(@babel/core@7.28.5)
-      '@eslint/eslintrc':
-        specifier: ^3.3.1
-        version: 3.3.1
-      '@eslint/js':
-        specifier: ^9.39.1
-        version: 9.39.1
       '@microsoft/api-extractor':
         specifier: ^7.43.0
         version: 7.55.1(@types/node@20.19.25)

@@ -40,7 +40,7 @@ function vueJsxTransformPlugin(): Plugin {
   };
 }
 
-let config: BuildOptions = {
+const config: BuildOptions = {
   entryPoints: ['./src/index.ts'],
   sourcemap: 'external',
   bundle: true,
