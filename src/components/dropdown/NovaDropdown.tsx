@@ -1,22 +1,21 @@
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import {
   computed,
-  HTMLAttributes,
+  defineComponent,
   ref,
   Ref,
-  SetupContext,
   Teleport,
   Transition,
   VNode,
-  VNodeProps,
   vShow,
   watch,
   withDirectives,
 } from 'vue';
 import { Environment, useEnvironment } from '../../uses/use-environment';
 import { durationLong, useDropdown } from '../../uses/use-dropdown';
-import { VueComponentProps } from '../../types/vue-component';
-import { EnvironmentProps } from '../environment/NovaEnvironment';
+import {
+  EnvironmentProps,
+  environmentProps,
+} from '../environment/NovaEnvironment';
 import { Placement, VueClass, VueProps, VueStyle } from '../../types/props';
 import { getFocusable } from '../../utils/dom';
 
@@ -46,6 +45,7 @@ export interface DropdownPanelScoped {
 }
 
 export const dropdownProps = {
+  ...environmentProps,
   disabled: {
     type: Boolean,
     default: false,
@@ -76,17 +76,14 @@ export const dropdownProps = {
   },
 };
 
-const NovaDropdownImpl = {
+export const NovaDropdown = defineComponent({
   name: 'NovaDropdown',
   props: dropdownProps,
   emits: ['openChange'],
-  setup(props: DropdownProps, context: SetupContext) {
-    const { emit, slots } = context;
-
+  setup(props, { emit, slots }) {
     let trapped = false;
 
-    const environment =
-      props.environment ?? useEnvironment(props as EnvironmentProps);
+    const environment = props.environment ?? useEnvironment(props);
 
     const triggerRef: Ref<HTMLElement | null> = ref(null);
     const triggerAutoFocusRef: Ref<HTMLElement | null> = ref(null);
@@ -283,10 +280,4 @@ const NovaDropdownImpl = {
       );
     };
   },
-};
-
-export const NovaDropdown = NovaDropdownImpl as unknown as {
-  new (): {
-    $props: VNodeProps & DropdownProps & HTMLAttributes & VueComponentProps;
-  };
-};
+});

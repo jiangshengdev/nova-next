@@ -1,5 +1,4 @@
-import { reactive, SetupContext, VNodeProps, watch } from 'vue';
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
+import { defineComponent, reactive, watch } from 'vue';
 import { getInputValue } from '../../../../utils/dom';
 import { Color } from '../../color';
 import {
@@ -13,6 +12,7 @@ import {
 import { Environment } from '../../../../uses/use-environment';
 
 type hslChannel = 'hue' | 'saturation' | 'lightness';
+type ColorEmit = 'colorInput' | 'colorBlur';
 
 interface HslaLabelsProps {
   alpha: boolean;
@@ -22,26 +22,26 @@ interface HslaLabelsProps {
   onColorBlur?: (color: Color) => void;
 }
 
-const HslaLabelsImpl = {
-  name: 'HslaLabels',
-  emits: ['colorInput', 'colorBlur'],
-  props: {
-    alpha: {
-      type: Boolean,
-      required: true,
-    },
-    color: {
-      type: Object,
-      required: true,
-    },
-    environment: {
-      type: Object,
-      required: true,
-    },
+const hslaLabelsProps = {
+  alpha: {
+    type: Boolean,
+    required: true,
   },
-  setup(props: HslaLabelsProps, context: SetupContext) {
-    const emit = context.emit;
+  color: {
+    type: Object,
+    required: true,
+  },
+  environment: {
+    type: Object,
+    required: true,
+  },
+};
 
+export const HslaLabels = defineComponent({
+  name: 'HslaLabels',
+  props: hslaLabelsProps,
+  emits: ['colorInput', 'colorBlur'],
+  setup(props: HslaLabelsProps, { emit }) {
     const hsla = props.color.toCssHsla();
     const state = reactive({
       hue: hsla.hue,
@@ -50,7 +50,7 @@ const HslaLabelsImpl = {
       alpha: hsla.alpha,
     });
 
-    function updateColor(eventName: string): void {
+    function updateColor(eventName: ColorEmit): void {
       const hue = intNormalize(state.hue, 360);
       const saturation = intNormalize(state.saturation, 100);
       const lightness = intNormalize(state.lightness, 100);
@@ -98,12 +98,12 @@ const HslaLabelsImpl = {
     watch(
       () => props.color,
       () => {
-        const hsla = props.color.toCssHsla();
+        const newHsla = props.color.toCssHsla();
 
-        state.hue = hsla.hue;
-        state.saturation = hsla.saturation;
-        state.lightness = hsla.lightness;
-        state.alpha = hsla.alpha;
+        state.hue = newHsla.hue;
+        state.saturation = newHsla.saturation;
+        state.lightness = newHsla.lightness;
+        state.alpha = newHsla.alpha;
       }
     );
 
@@ -172,10 +172,4 @@ const HslaLabelsImpl = {
       );
     };
   },
-};
-
-export const HslaLabels = HslaLabelsImpl as unknown as {
-  new (): {
-    $props: VNodeProps & HslaLabelsProps;
-  };
-};
+});

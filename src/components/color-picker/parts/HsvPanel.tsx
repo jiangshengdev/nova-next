@@ -1,5 +1,4 @@
-import { computed, ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
+import { computed, defineComponent, ref } from 'vue';
 import { MovePosition, useMove } from '../../../uses/use-move';
 import { Color } from '../color';
 import { numberFixed } from '../../../utils/utils';
@@ -12,31 +11,31 @@ interface HsvPanelProps {
   onMove: (position: MovePosition) => void;
 }
 
-const HsvPanelImpl = {
-  name: 'HsvPanel',
-  emits: ['move'],
-  props: {
-    color: {
-      type: Object,
-      required: true,
-    },
-    hueReg: {
-      type: Number,
-      required: true,
-    },
-    saturation: {
-      type: Number,
-      required: true,
-    },
-    value: {
-      type: Number,
-      required: true,
-    },
+const hsvPanelProps = {
+  color: {
+    type: Object,
+    required: true,
   },
-  setup(props: HsvPanelProps, context: SetupContext) {
-    const emit = context.emit;
+  hueReg: {
+    type: Number,
+    required: true,
+  },
+  saturation: {
+    type: Number,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+};
 
-    const hsvRef = ref(null);
+export const HsvPanel = defineComponent({
+  name: 'HsvPanel',
+  props: hsvPanelProps,
+  emits: ['move'],
+  setup(props: HsvPanelProps, { emit }) {
+    const hsvRef = ref<HTMLElement | null>(null);
 
     const hsvStyle = computed(() => {
       const bg = Color.fromHsva(props.hueReg, 1, 1).toCssRgbaString();
@@ -87,10 +86,4 @@ const HsvPanelImpl = {
       );
     };
   },
-};
-
-export const HsvPanel = HsvPanelImpl as unknown as {
-  new (): {
-    $props: VNodeProps & HsvPanelProps;
-  };
-};
+});

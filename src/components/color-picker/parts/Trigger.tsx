@@ -1,35 +1,33 @@
-import { computed, onMounted, ref, Ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
+import { computed, defineComponent, onMounted, ref, Ref } from 'vue';
 import { Color } from '../color';
 import { Environment } from '../../../uses/use-environment';
 
-export interface TriggerProps {
+export interface ColorPickerTriggerProps {
   color: Color;
   disabled: boolean;
   environment: Environment;
-  onAssignRef: (ref: Ref<HTMLElement | null>) => void;
 }
 
-const TriggerImpl = {
-  name: 'Trigger',
-  emits: ['assignRef'],
-  props: {
-    color: {
-      type: Object,
-      required: true,
-    },
-    disabled: {
-      type: Boolean,
-      required: true,
-    },
-    environment: {
-      type: Object,
-      required: true,
-    },
+const triggerProps = {
+  color: {
+    type: Object,
+    required: true,
   },
-  setup(props: TriggerProps, context: SetupContext) {
-    const { slots, emit } = context;
+  disabled: {
+    type: Boolean,
+    required: true,
+  },
+  environment: {
+    type: Object,
+    required: true,
+  },
+};
 
+export const ColorPickerTrigger = defineComponent({
+  name: 'ColorPickerTrigger',
+  props: triggerProps,
+  emits: ['assignRef'],
+  setup(props: ColorPickerTriggerProps, { slots, emit }) {
     const triggerRef: Ref<HTMLElement | null> = ref(null);
 
     const triggerInnerStyle = computed(() => {
@@ -39,7 +37,8 @@ const TriggerImpl = {
     });
 
     onMounted(() => {
-      emit('assignRef', triggerRef);
+      const node = triggerRef.value;
+      emit('assignRef', node);
     });
 
     return (): JSX.Element => {
@@ -70,10 +69,4 @@ const TriggerImpl = {
       return triggerNode;
     };
   },
-};
-
-export const Trigger = TriggerImpl as unknown as {
-  new (): {
-    $props: VNodeProps & TriggerProps;
-  };
-};
+});

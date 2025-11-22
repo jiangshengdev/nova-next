@@ -1,5 +1,4 @@
-import { Ref, ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
+import { defineComponent, Ref, ref, useAttrs } from 'vue';
 import {
   Direction,
   down,
@@ -19,22 +18,24 @@ interface NumberInputProps {
   onUpdate?: (params: UpdateParams) => void;
 }
 
-const NumberInputImpl = {
-  name: 'NumberInput',
-  emits: ['update'],
-  props: {
-    value: {
-      type: String,
-      default: '',
-    },
-    inputRef: {
-      type: Object,
-      default: null,
-    },
+const numberInputProps = {
+  value: {
+    type: String,
+    default: '',
   },
-  setup(props: NumberInputProps, context: SetupContext) {
-    const emit = context.emit;
+  inputRef: {
+    type: Object,
+    default: null,
+  },
+};
 
+export const NumberInput = defineComponent({
+  name: 'NumberInput',
+  inheritAttrs: false,
+  props: numberInputProps,
+  emits: ['update'],
+  setup(props: NumberInputProps, { emit }) {
+    const attrs = useAttrs();
     const inputRef: Ref<HTMLElement | null> = ref(null);
 
     function tuning(functionKeys: FunctionKeys, direction: Direction): void {
@@ -110,16 +111,11 @@ const NumberInputImpl = {
             value={props.value}
             ref={inputRef}
             onKeydown={onKeydown}
+            {...attrs}
           />
           <div class="nova-color-picker-input-border" />
         </div>
       );
     };
   },
-};
-
-export const NumberInput = NumberInputImpl as unknown as {
-  new (): {
-    $props: VNodeProps & NumberInputProps;
-  };
-};
+});

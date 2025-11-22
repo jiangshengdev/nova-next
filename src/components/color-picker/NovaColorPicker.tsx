@@ -1,18 +1,15 @@
 import {
   computed,
-  HTMLAttributes,
+  defineComponent,
   onMounted,
+  PropType,
   reactive,
-  Ref,
   ref,
-  SetupContext,
-  VNodeProps,
   watch,
 } from 'vue';
-import { vueJsxCompat } from '../../vue-jsx-compat';
 import { MovePosition } from '../../uses/use-move';
 import { Color, ColorFormat } from './color';
-import { Trigger } from './parts/Trigger';
+import { ColorPickerTrigger } from './parts/Trigger';
 import { HsvPanel } from './parts/HsvPanel';
 import { HueSlide } from './parts/slides/HueSlide';
 import { AlphaSlide } from './parts/slides/AlphaSlide';
@@ -31,7 +28,6 @@ import {
   DropdownProps,
   DropdownTriggerScoped,
 } from '../dropdown/NovaDropdown';
-import { VueComponentProps } from '../../types/vue-component';
 import {
   environmentProps,
   EnvironmentProps,
@@ -75,11 +71,11 @@ const colorPickerProps = {
     default: false,
   },
   format: {
-    type: String,
+    type: String as PropType<ColorFormat>,
     default: 'hex',
   },
   preset: {
-    type: Array,
+    type: Array as PropType<string[]>,
     default: null,
   },
 };
@@ -94,14 +90,14 @@ export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
   color: Color;
 }
 
-const NovaColorPickerImpl = {
+export const NovaColorPicker = defineComponent({
   name: 'NovaColorPicker',
   props: colorPickerProps,
   emits: ['update', 'update:value'],
-  setup(props: ColorPickerProps, context: SetupContext) {
+  setup(props, context) {
     const emit = context.emit;
 
-    const environment = useEnvironment(props as EnvironmentProps);
+    const environment = useEnvironment(props);
     const dropdownInstanceRef = ref<DropdownInstance | null>(null);
     const colorPickerTriggerAutoFocusRef = ref<HTMLElement | null>(null);
     const colorPickerPanelAutoFocusRef = ref<HTMLElement | null>(null);
@@ -266,24 +262,26 @@ const NovaColorPickerImpl = {
 
         const trigger = context.slots.trigger;
 
-        let triggerNode = null;
-        if (trigger) {
-          triggerNode = () =>
-            trigger({
-              ...triggerProps,
-            });
-        }
-
-        function onAssignRef(ref: Ref<HTMLElement | null>) {
-          if (ref.value) {
-            colorPickerTriggerAutoFocusRef.value = ref.value;
+        function onAssignRef(element: HTMLElement | null) {
+          if (element) {
+            colorPickerTriggerAutoFocusRef.value = element;
           }
         }
 
+        if (trigger) {
+          const triggerNode = () =>
+            trigger({
+              ...triggerProps,
+            });
+          return (
+            <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps}>
+              {triggerNode}
+            </ColorPickerTrigger>
+          );
+        }
+
         return (
-          <Trigger onAssignRef={onAssignRef} {...triggerProps}>
-            {triggerNode}
-          </Trigger>
+          <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps} />
         );
       }
 
@@ -406,7 +404,7 @@ const NovaColorPickerImpl = {
       function createPreset() {
         const slotPreset = context.slots.preset;
         const presetProps = {
-          preset: props.preset,
+          preset: props.preset ?? [],
           color: state.color,
         };
 
@@ -423,14 +421,24 @@ const NovaColorPickerImpl = {
           return null;
         }
 
+        if (slotPresetNode) {
+          return (
+            <PresetValues
+              preset={props.preset || []}
+              color={state.color}
+              onSelect={setColorAndPosition}
+            >
+              {slotPresetNode}
+            </PresetValues>
+          );
+        }
+
         return (
           <PresetValues
             preset={props.preset || []}
             color={state.color}
             onSelect={setColorAndPosition}
-          >
-            {slotPresetNode}
-          </PresetValues>
+          />
         );
       }
 
@@ -509,16 +517,9 @@ const NovaColorPickerImpl = {
           placement={props.placement}
           environment={environment}
           onOpenChange={onOpenChange}
-        >
-          {slots}
-        </NovaDropdown>
+          v-slots={slots}
+        />
       );
     };
   },
-};
-
-export const NovaColorPicker = NovaColorPickerImpl as unknown as {
-  new (): {
-    $props: VNodeProps & ColorPickerProps & HTMLAttributes & VueComponentProps;
-  };
-};
+});

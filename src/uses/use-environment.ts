@@ -1,4 +1,4 @@
-import { inject, Ref, ref } from 'vue';
+import { computed, inject, Ref, ref, toRef } from 'vue';
 import { languageKey, themeKey } from '../utils/symbols';
 import { Language } from '../types/language';
 import { enUS } from '../environments/languages';
@@ -9,21 +9,20 @@ export const languageDefault = enUS;
 
 export type Environment = { languageRef: Ref<Language>; themeRef: Ref<string> };
 
-export function useEnvironment(props: EnvironmentProps): Environment {
-  let themeRef: Ref<string>;
-  let languageRef: Ref<Language>;
+export function useEnvironment(props?: EnvironmentProps): Environment {
+  const themeOverride = props ? toRef(props, 'theme') : undefined;
+  const languageOverride = props ? toRef(props, 'language') : undefined;
 
-  if (props.theme) {
-    themeRef = ref(props.theme);
-  } else {
-    themeRef = inject(themeKey, ref(themeDefault));
-  }
+  const injectedTheme = inject(themeKey, ref(themeDefault));
+  const injectedLanguage = inject(languageKey, ref(languageDefault));
 
-  if (props.language) {
-    languageRef = ref(props.language);
-  } else {
-    languageRef = inject(languageKey, ref(languageDefault));
-  }
+  const themeRef = computed(() => {
+    return themeOverride?.value ?? injectedTheme.value ?? themeDefault;
+  });
+
+  const languageRef = computed(() => {
+    return languageOverride?.value ?? injectedLanguage.value ?? languageDefault;
+  });
 
   return {
     themeRef,

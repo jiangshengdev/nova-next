@@ -1,5 +1,4 @@
-import { reactive, ref, Ref, SetupContext, VNodeProps } from 'vue';
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
+import { defineComponent, reactive, ref, Ref } from 'vue';
 import {
   Direction,
   down,
@@ -24,6 +23,8 @@ interface HexLabelProps {
   onColorInput?: (color: Color) => void;
   onColorBlur?: (color: Color) => void;
 }
+
+type ColorEmit = 'colorInput' | 'colorBlur';
 
 function calcTuned(
   functionKeys: FunctionKeys,
@@ -58,25 +59,25 @@ function calcTuned(
   return tunedNumber.toString(16).padStart(tuningParams.length, '0');
 }
 
-const HexLabelImpl = {
-  name: 'HexLabel',
-  emits: ['colorInput', 'colorBlur'],
-  props: {
-    color: {
-      type: Object,
-      required: true,
-    },
+const hexLabelProps = {
+  color: {
+    type: Object,
+    required: true,
   },
-  setup(props: HexLabelProps, context: SetupContext) {
-    const emit = context.emit;
+};
 
+export const HexLabel = defineComponent({
+  name: 'HexLabel',
+  props: hexLabelProps,
+  emits: ['colorInput', 'colorBlur'],
+  setup(props: HexLabelProps, { emit }) {
     const hexRef: Ref<HTMLElement | null> = ref(null);
 
     const state = reactive({
       hexShort: false,
     });
 
-    function updateColor(eventName: string, hex: string): void {
+    function updateColor(eventName: ColorEmit, hex: string): void {
       if (Color.hexRule.test(hex)) {
         state.hexShort = hex.replace('#', '').length === 3;
 
@@ -193,9 +194,4 @@ const HexLabelImpl = {
       );
     };
   },
-};
-export const HexLabel = HexLabelImpl as unknown as {
-  new (): {
-    $props: VNodeProps & HexLabelProps;
-  };
-};
+});

@@ -12,9 +12,8 @@ export async function apiExtractor() {
   );
 
   // Load and parse the api-extractor.json file
-  const extractorConfig: ExtractorConfig = ExtractorConfig.loadFileAndPrepare(
-    apiExtractorJsonPath
-  );
+  const extractorConfig: ExtractorConfig =
+    ExtractorConfig.loadFileAndPrepare(apiExtractorJsonPath);
 
   // Invoke API Extractor
   const extractorResult: ExtractorResult = Extractor.invoke(extractorConfig, {

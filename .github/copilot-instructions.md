@@ -1,5 +1,9 @@
 # Nova Next AI 协作指南
 
+## 语言约定
+
+- **中文输出**: 项目内文档、代码注释以及机器人回复统一使用中文，保持沟通一致性。
+
 ## 项目速览
 
 - **组件定位**: `src/index.ts` 聚合导出 Nova 环境、按钮、输入、下拉、取色器等 Vue 3 TSX 组件，作为 npm 包发布入口。
@@ -32,7 +36,7 @@
 ## 测试策略
 
 - **测试命令**: `yarn test` 运行 Jest，配置位于 `jest.config.js`，自动加载 `tests/setup.ts`。
-- **TSX 测试**: 测试文件使用 TSX + `vueJsxCompat`（参见 `components/button/__tests__/button.test.tsx`），新增测试需导入该兼容层。
+- **TSX 测试**: 测试文件直接书写 TSX，Jest 通过 `@vue/babel-plugin-jsx` 编译，无需额外兼容层。
 - **快照基准**: 大量测试依赖 `__snapshots__`，更新组件结构时使用 `yarn test --updateSnapshot` 同步。
 
 ## 文档与构建
@@ -40,11 +44,11 @@
 - **文档站点**: `docs/` 采用 VitePress，`yarn doc:dev` 本地预览，`yarn doc:dist` 生成静态站点。
 - **自动注册**: `build/tasks/register-components.ts` 会扫描 `docs/.vitepress/components` 并写入 `theme/register-components.js`，新增文档组件需放置于该目录。
 - **类型管线**: `build/tasks/rollup-dts.ts` 将 TS 编译到 `temp/`，随后 `api-extractor`（配置见 `api-extractor.json`）生成公共声明。
-- **打包细节**: `bundle-script.ts` 使用 esbuild，JSX 工厂固定为 `vueJsxCompat`，并将 `vue` 与图标库设为 external。
+- **打包细节**: `bundle-script.ts` 使用 esbuild，内置 Babel + `@vue/babel-plugin-jsx` 完成 TSX 转换，并将 `vue` 与图标库设为 external。
 
 ## 易踩坑
 
-- **JSX 工厂**: TS 配置 `jsxFactory: "vueJsxCompat"`，在任何 TSX 文件（含测试）都需 `import { vueJsxCompat } from '../vue-jsx-compat'`，否则打包/测试会失败。
+- **JSX 工厂**: 依赖官方 `@vue/babel-plugin-jsx`，保持 `jsx: preserve` 即可，不要再引入 `vueJsxCompat` 之类的手动工厂。
 - **环境透传**: 嵌套组件需要显式把 `environment` 继续传递（例如 `NovaColorPicker` 使用 `NovaDropdown` 时），否则主题语言会断链。
 - **焦点陷阱**: `NovaDropdown` 会在面板内插入 `data-nova-trap` 元素，自定义内容时避免移除这些节点或修改 `tabindex`。
 - **CI 兼容性**: 构建依赖 `temp/` 目录存在，勿手动删除编译过程中产出的 `.d.ts`，清理走 `yarn gulp:clean`。

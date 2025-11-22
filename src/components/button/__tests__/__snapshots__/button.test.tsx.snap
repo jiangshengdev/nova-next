@@ -9,3 +9,15 @@ exports[`button render 1`] = `
     <!----><span>Disabled</span>
   </button></div>"
 `;
+
+exports[`button render with icon prop 1`] = `
+"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span><span>Launch</span></button><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon"><span>Icon</span></span><span>With Icon</span></button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
+    <!---->
+  </button></div>"
+`;
+
+exports[`button render with slot icon (backward compatibility) 1`] = `
+"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span><span>Launch</span></button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
+    <!---->
+  </button></div>"
+`;

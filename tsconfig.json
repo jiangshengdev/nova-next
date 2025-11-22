@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "types": ["vite/client", "jest"],
+    "useDefineForClassFields": true,
     "declaration": true,
     "declarationMap": false,
-    "esModuleInterop": true,
     "declarationDir": "./temp",
-    "jsx": "react",
-    "jsxFactory": "vueJsxCompat",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
-    "target": "ES6"
+    "strict": true
   },
-  "exclude": ["node_modules", "temp"]
+  "exclude": ["node_modules", "temp"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "moduleResolution": "Node"
+    }
+  }
 }

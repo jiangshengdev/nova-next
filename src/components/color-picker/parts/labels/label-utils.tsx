@@ -1,4 +1,3 @@
-import { vueJsxCompat } from '../../../../vue-jsx-compat';
 import { NumberInput } from './NumberInput';
 import { numberFixed, numberLimit } from '../../../../utils/utils';
 

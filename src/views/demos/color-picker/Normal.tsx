@@ -1,5 +1,4 @@
 import { defineComponent, reactive } from 'vue';
-import { vueJsxCompat } from '../../../vue-jsx-compat';
 import { Color, NovaButton, NovaColorPicker } from '../../../index';
 import {
   ColorPickerPresetScoped,

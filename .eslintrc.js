@@ -3,11 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/recommended', 'prettier'],
   overrides: [
     {
       files: ['**/*.ts?(x)'],
@@ -24,7 +20,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-unused-vars': [
           'warn',
-          { varsIgnorePattern: '^(h|vueJsxCompat)$' },
+          { varsIgnorePattern: '^(h)$' },
         ],
         '@typescript-eslint/no-unsafe-function-type': 'warn',
         '@typescript-eslint/no-unused-expressions': 'warn',
