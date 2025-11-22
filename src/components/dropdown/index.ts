@@ -1,3 +1,3 @@
-import { NovaDropdown } from './NovaDropdown'
+import { NovaDropdown, type DropdownPanelScoped } from './NovaDropdown'
 
-export { NovaDropdown }
+export { NovaDropdown, type DropdownPanelScoped }

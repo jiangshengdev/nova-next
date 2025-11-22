@@ -1,0 +1,84 @@
+/* 通用样式，适用于所有下拉菜单演示 */
+
+h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h4 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.demo-dropdown-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.demo-dropdown-description {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+}
+
+.demo-dropdown-description p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--nova-color-font);
+}
+
+.demo-dropdown-description code {
+  padding: 2px 6px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+/* 下拉菜单样式 */
+.demo-dropdown-menu {
+  margin: 0;
+  padding: 0;
+  min-width: 150px;
+}
+
+.demo-dropdown-menu li {
+  list-style: none;
+  padding: 10px 16px;
+  line-height: 20px;
+  cursor: default;
+  transition: background-color 0.2s;
+}
+
+.demo-dropdown-menu li:hover {
+  background-color: var(--nova-color-bg-hover);
+}
+
+/* 交互式菜单样式 */
+.demo-dropdown-menu-interactive li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.demo-dropdown-menu-interactive li.selected {
+  background-color: var(--nova-color-bg-active);
+  color: var(--nova-color-primary);
+  font-weight: 500;
+}
+
+/* 各个演示区域的间距 */
+.demo-dropdown-basic,
+.demo-dropdown-placement,
+.demo-dropdown-disabled,
+.demo-dropdown-interactive {
+  margin-bottom: 40px;
+}
