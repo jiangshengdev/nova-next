@@ -1,4 +1,4 @@
-import { defineComponent, ref, type Ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { NovaDropdown, type DropdownPanelScoped } from '../../../components/dropdown'
 import { NovaButton } from '../../../components/button'
 import { MDICheck } from '@jiangshengdev/material-design-icons-vue-next'

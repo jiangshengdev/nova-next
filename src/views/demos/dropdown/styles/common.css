@@ -58,7 +58,6 @@ h4 {
 }
 
 .demo-dropdown-menu li:hover {
-  background-color: var(--nova-color-bg-hover);
 }
 
 /* 交互式菜单样式 */
@@ -70,7 +69,6 @@ h4 {
 }
 
 .demo-dropdown-menu-interactive li.selected {
-  background-color: var(--nova-color-bg-active);
   color: var(--nova-color-primary);
   font-weight: 500;
 }
