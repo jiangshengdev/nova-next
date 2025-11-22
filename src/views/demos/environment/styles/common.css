@@ -26,6 +26,7 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  color: var(--nova-color-font);
 }
 
 .demo-environment-nested-box {
@@ -37,6 +38,7 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: var(--nova-color-font);
 }
 
 .demo-environment-description {

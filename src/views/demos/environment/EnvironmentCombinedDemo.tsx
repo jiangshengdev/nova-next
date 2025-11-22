@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, shallowRef } from 'vue'
 import { NovaEnvironment, NovaButton } from '../../../index'
 import { enUS, zhCN } from '../../../environments/languages'
 import './styles/common.css'
@@ -6,7 +6,7 @@ import './styles/common.css'
 export default defineComponent({
   setup() {
     const theme = ref('light')
-    const language = ref(zhCN)
+    const language = shallowRef(zhCN)
 
     function toggleTheme() {
       theme.value = theme.value === 'light' ? 'dark' : 'light'
