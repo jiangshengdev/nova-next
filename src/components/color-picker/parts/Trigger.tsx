@@ -6,7 +6,6 @@ export interface ColorPickerTriggerProps {
   color: Color;
   disabled: boolean;
   environment: Environment;
-  onAssignRef: (ref: Ref<HTMLElement | null>) => void;
 }
 
 const triggerProps = {
@@ -38,7 +37,8 @@ export const ColorPickerTrigger = defineComponent({
     });
 
     onMounted(() => {
-      emit('assignRef', triggerRef.value);
+      const node = triggerRef.value;
+      emit('assignRef', node);
     });
 
     return (): JSX.Element => {

@@ -263,9 +263,9 @@ export const NovaColorPicker = defineComponent({
 
         const trigger = context.slots.trigger;
 
-        function onAssignRef(ref: Ref<HTMLElement | null>) {
-          if (ref.value) {
-            colorPickerTriggerAutoFocusRef.value = ref.value;
+        function onAssignRef(element: HTMLElement | null) {
+          if (element) {
+            colorPickerTriggerAutoFocusRef.value = element;
           }
         }
 
