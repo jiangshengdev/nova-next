@@ -59,14 +59,14 @@ describe('color-picker', () => {
 
     const hueSlide = wrapper.find('.nova-color-picker-hue-slide');
     await hueSlide.trigger('mousedown', {
-      pageX: 10,
-      pageY: 100,
+      clientX: 10,
+      clientY: 100,
     });
     await hueSlide.trigger('mouseup');
     const pickerValue = wrapper.find('.nova-color-picker-value');
     await pickerValue.trigger('mousedown', {
-      pageX: 100,
-      pageY: 100,
+      clientX: 100,
+      clientY: 100,
     });
     await pickerValue.trigger('mouseup');
     expect(wrapper.html()).toMatchSnapshot();
@@ -285,8 +285,8 @@ describe('color-picker', () => {
 
     const alphaSlide = wrapper.find('.nova-color-picker-alpha-slide');
     await alphaSlide.trigger('mousedown', {
-      pageX: 10,
-      pageY: 200,
+      clientX: 10,
+      clientY: 200,
     });
     expect(wrapper.html()).toMatchSnapshot();
 

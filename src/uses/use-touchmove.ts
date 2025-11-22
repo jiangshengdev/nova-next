@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted, reactive } from 'vue';
-import { MoveParams } from './use-move';
+import { MoveParams, MovePosition } from './use-move';
 import { getPaddingLeft, getPaddingTop } from '../utils/dom';
 
 export interface TouchState {
@@ -24,6 +24,30 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     },
   });
 
+  function getRectLeft(): number {
+    return rect.left ?? rect.x ?? 0;
+  }
+
+  function getRectTop(): number {
+    return rect.top ?? rect.y ?? 0;
+  }
+
+  function resolveTouchPosition(touch: Touch): MovePosition {
+    const clientX =
+      typeof touch.clientX === 'number'
+        ? touch.clientX
+        : touch.pageX - window.pageXOffset;
+    const clientY =
+      typeof touch.clientY === 'number'
+        ? touch.clientY
+        : touch.pageY - window.pageYOffset;
+
+    const relativeX = clientX - getRectLeft() - border.left;
+    const relativeY = clientY - getRectTop() - border.top;
+
+    return { x: relativeX, y: relativeY };
+  }
+
   function onTouchmove(e: TouchEvent): void {
     if (e.cancelable) {
       e.preventDefault();
@@ -43,10 +67,8 @@ export function useTouchmove(params: MoveParams): TouchReturn {
       state.touch.moving = false;
     });
 
-    const x = firstFinger.pageX - rect.x - window.pageXOffset - border.left;
-    const y = firstFinger.pageY - rect.y - window.pageYOffset - border.top;
-
-    move?.call(null, { x, y });
+    const position = resolveTouchPosition(firstFinger);
+    move?.call(null, position);
   }
 
   function onTouchend(e: TouchEvent): void {
@@ -81,13 +103,9 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     border.left = getPaddingLeft(target);
     border.top = getPaddingTop(target);
 
-    const rectX = rect.x ?? 0;
-    const rectY = rect.y ?? 0;
-    const x = firstFinger.pageX - rectX - window.pageXOffset - border.left;
-    const y = firstFinger.pageY - rectY - window.pageYOffset - border.top;
-
+    const position = resolveTouchPosition(firstFinger);
     start?.call(null);
-    move?.call(null, { x, y });
+    move?.call(null, position);
 
     target.addEventListener('touchmove', onTouchmove);
     target.addEventListener('touchend', onTouchend);

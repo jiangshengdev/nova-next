@@ -14,10 +14,8 @@
     "gulpfile.ts",
     "vite.config.*",
     "vitest.config.*",
-    "jest.config.*",
     "playwright.config.*",
     "eslint.config.*",
-    "babel.config.*",
     "postcss.config.*",
     "docs/.vitepress/**/*.ts"
   ]

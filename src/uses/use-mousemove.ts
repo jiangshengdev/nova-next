@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted, reactive } from 'vue';
-import { MoveParams } from './use-move';
+import { MoveParams, MovePosition } from './use-move';
 import { getPaddingLeft, getPaddingTop } from '../utils/dom';
 
 export interface MouseState {
@@ -24,6 +24,41 @@ export function useMousemove(params: MoveParams): MouseReturn {
     },
   });
 
+  function getRectLeft(): number {
+    return rect.left ?? rect.x ?? 0;
+  }
+
+  function getRectTop(): number {
+    return rect.top ?? rect.y ?? 0;
+  }
+
+  function getClientCoordinate(event: MouseEvent, axis: 'x' | 'y'): number {
+    const clientProp = axis === 'x' ? 'clientX' : 'clientY';
+    const pageProp = axis === 'x' ? 'pageX' : 'pageY';
+    const pageOffset = axis === 'x' ? window.pageXOffset : window.pageYOffset;
+
+    const clientValue = event[clientProp as 'clientX' | 'clientY'];
+    if (typeof clientValue === 'number') {
+      return clientValue;
+    }
+
+    const pageValue = event[pageProp as 'pageX' | 'pageY'];
+    if (typeof pageValue === 'number') {
+      return pageValue - pageOffset;
+    }
+
+    return 0;
+  }
+
+  function resolvePosition(event: MouseEvent): MovePosition {
+    const clientX = getClientCoordinate(event, 'x');
+    const clientY = getClientCoordinate(event, 'y');
+    const relativeX = clientX - getRectLeft() - border.left;
+    const relativeY = clientY - getRectTop() - border.top;
+
+    return { x: relativeX, y: relativeY };
+  }
+
   function onMousemove(e: MouseEvent): void {
     e.preventDefault();
 
@@ -36,10 +71,8 @@ export function useMousemove(params: MoveParams): MouseReturn {
       state.mouse.moving = false;
     });
 
-    const x = e.pageX - rect.x - window.pageXOffset - border.left;
-    const y = e.pageY - rect.y - window.pageYOffset - border.top;
-
-    move?.call(null, { x, y });
+    const position = resolvePosition(e);
+    move?.call(null, position);
   }
 
   function onMouseup(): void {
@@ -61,13 +94,9 @@ export function useMousemove(params: MoveParams): MouseReturn {
     border.left = getPaddingLeft(target);
     border.top = getPaddingTop(target);
 
-    const rectX = rect.x ?? 0;
-    const rectY = rect.y ?? 0;
-    const x = e.pageX - rectX - window.pageXOffset - border.left;
-    const y = e.pageY - rectY - window.pageYOffset - border.top;
-
+    const position = resolvePosition(e);
     start?.call(null);
-    move?.call(null, { x, y });
+    move?.call(null, position);
 
     document.addEventListener('mousemove', onMousemove);
     document.addEventListener('mouseup', onMouseup);
