@@ -2,6 +2,7 @@
   "name": "@jiangshengdev/nova-next",
   "description": "Experimental Vue components",
   "version": "2.0.0-alpha.29",
+  "type": "module",
   "packageManager": "pnpm@10.22.0",
   "author": {
     "name": "jiangshengdev",
