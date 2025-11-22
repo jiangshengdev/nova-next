@@ -89,6 +89,8 @@ export function getVisualViewport(): VisualViewport {
     pageTop: window.pageYOffset,
     scale: 1,
     width: document.documentElement.clientWidth,
+    onresize: null,
+    onscroll: null,
   }
 }
 

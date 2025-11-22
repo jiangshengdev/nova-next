@@ -41,8 +41,12 @@ function hexNormalize(hex: string): string {
 
 function almostSameHsl(a: string, b: string): boolean {
   const useless = /[^\d.,]/g
-  const [aHue, aSaturation, aLightness, aAlpha = '1'] = a.replace(useless, '').split(',')
-  const [bHue, bSaturation, bLightness, bAlpha = '1'] = b.replace(useless, '').split(',')
+  const [aHue = '0', aSaturation = '0', aLightness = '0', aAlpha = '1'] = a
+    .replace(useless, '')
+    .split(',')
+  const [bHue = '0', bSaturation = '0', bLightness = '0', bAlpha = '1'] = b
+    .replace(useless, '')
+    .split(',')
 
   const sameHue = almostSameValue(parseInt(aHue), parseInt(bHue), 360)
   const sameSaturation = almostSameValue(parseInt(aSaturation), parseInt(bSaturation), 100)
@@ -54,8 +58,12 @@ function almostSameHsl(a: string, b: string): boolean {
 
 function almostSameRgb(a: string, b: string): boolean {
   const useless = /[^\d.,]/g
-  const [aRed, aGreen, aBlue, aAlpha = '1'] = a.replace(useless, '').split(',')
-  const [bRed, bGreen, bBlue, bAlpha = '1'] = b.replace(useless, '').split(',')
+  const [aRed = '0', aGreen = '0', aBlue = '0', aAlpha = '1'] = a
+    .replace(useless, '')
+    .split(',')
+  const [bRed = '0', bGreen = '0', bBlue = '0', bAlpha = '1'] = b
+    .replace(useless, '')
+    .split(',')
 
   const sameRed = almostSameValue(parseInt(aRed), parseInt(bRed), 255)
   const sameGreen = almostSameValue(parseInt(aGreen), parseInt(bGreen), 255)
@@ -139,7 +147,11 @@ describe('x11-colors', () => {
 describe('css-wg-colors', () => {
   test('hsl', () => {
     function validateHsl(data: string[][], hue: number): void {
-      const saturationKeys = data[0].slice(1)
+      const header = data[0]
+      if (!header) {
+        throw new Error('Invalid CSS WG HSL dataset')
+      }
+      const saturationKeys = header.slice(1)
       data.slice(1).forEach((lightList) => {
         const light = lightList[0]
         lightList.slice(1).forEach((color, index) => {

@@ -5,6 +5,14 @@ import { type ColorFormat } from '../color'
 import { getStyleOf } from '../../../utils/dom'
 import { describe, test, expect } from 'vitest'
 
+function atOrThrow<T>(items: T[], index: number): T {
+  const target = items[index]
+  if (target === undefined) {
+    throw new Error(`Expected item at index ${index}`)
+  }
+  return target
+}
+
 describe('color-picker', () => {
   test('render', async () => {
     const wrapper = mount({
@@ -388,7 +396,7 @@ describe('color-picker', () => {
     const pickerPreset = wrapper.findAll('.nova-color-picker-preset')
     expect(pickerPreset.length).toEqual(2)
 
-    const rebeccapurple = pickerPreset[1]
+    const rebeccapurple = atOrThrow(pickerPreset, 1)
     await rebeccapurple.trigger('click')
     await pickerTrigger.trigger('click')
     expect(print.text()).toEqual(preset[1])
@@ -424,14 +432,18 @@ describe('color-picker', () => {
 
     await pickerTrigger.trigger('click')
     const rgbNumberList = wrapper.findAll('.nova-color-picker-input input')
-    await rgbNumberList[0].setValue(255)
-    await rgbNumberList[1].setValue(0)
-    await rgbNumberList[2].setValue(255)
-    await rgbNumberList[3].setValue(0.2)
-    await rgbNumberList[0].trigger('blur')
-    await rgbNumberList[1].trigger('blur')
-    await rgbNumberList[2].trigger('blur')
-    await rgbNumberList[3].trigger('blur')
+    const redInput = atOrThrow(rgbNumberList, 0)
+    const greenInput = atOrThrow(rgbNumberList, 1)
+    const blueInput = atOrThrow(rgbNumberList, 2)
+    const alphaInput = atOrThrow(rgbNumberList, 3)
+    await redInput.setValue(255)
+    await greenInput.setValue(0)
+    await blueInput.setValue(255)
+    await alphaInput.setValue(0.2)
+    await redInput.trigger('blur')
+    await greenInput.trigger('blur')
+    await blueInput.trigger('blur')
+    await alphaInput.trigger('blur')
     await pickerTrigger.trigger('click')
     expect(print.text()).toEqual('#ff00ff33')
 
@@ -439,14 +451,18 @@ describe('color-picker', () => {
     const pickerSwitch = wrapper.find('.nova-color-picker-labels-switch')
     await pickerSwitch.trigger('click')
     const hslNumberList = wrapper.findAll('.nova-color-picker-input input')
-    await hslNumberList[0].setValue(120)
-    await hslNumberList[1].setValue(100)
-    await hslNumberList[2].setValue(50)
-    await hslNumberList[3].setValue(0.8)
-    await hslNumberList[0].trigger('blur')
-    await hslNumberList[1].trigger('blur')
-    await hslNumberList[2].trigger('blur')
-    await hslNumberList[3].trigger('blur')
+    const hueInput = atOrThrow(hslNumberList, 0)
+    const saturationInput = atOrThrow(hslNumberList, 1)
+    const lightnessInput = atOrThrow(hslNumberList, 2)
+    const hslAlphaInput = atOrThrow(hslNumberList, 3)
+    await hueInput.setValue(120)
+    await saturationInput.setValue(100)
+    await lightnessInput.setValue(50)
+    await hslAlphaInput.setValue(0.8)
+    await hueInput.trigger('blur')
+    await saturationInput.trigger('blur')
+    await lightnessInput.trigger('blur')
+    await hslAlphaInput.trigger('blur')
     await pickerTrigger.trigger('click')
     expect(print.text()).toEqual('#00ff00cc')
 
@@ -494,16 +510,20 @@ describe('color-picker', () => {
 
     await pickerTrigger.trigger('click')
     const rgbNumberList = wrapper.findAll('.nova-color-picker-input input')
-    await rgbNumberList[0].trigger('keydown', {
+    const redInput = atOrThrow(rgbNumberList, 0)
+    const greenInput = atOrThrow(rgbNumberList, 1)
+    const blueInput = atOrThrow(rgbNumberList, 2)
+    const alphaInput = atOrThrow(rgbNumberList, 3)
+    await redInput.trigger('keydown', {
       key: 'ArrowUp',
       ctrlKey: true,
     })
-    await rgbNumberList[1].trigger('keydown', {
+    await greenInput.trigger('keydown', {
       key: 'ArrowDown',
       shiftKey: true,
     })
-    await rgbNumberList[2].trigger('keydown', { key: 'ArrowUp' })
-    await rgbNumberList[3].trigger('keydown', {
+    await blueInput.trigger('keydown', { key: 'ArrowUp' })
+    await alphaInput.trigger('keydown', {
       key: 'ArrowDown',
       altKey: true,
     })
@@ -515,16 +535,20 @@ describe('color-picker', () => {
     const pickerSwitch = wrapper.find('.nova-color-picker-labels-switch')
     await pickerSwitch.trigger('click')
     const hslNumberList = wrapper.findAll('.nova-color-picker-input input')
-    await hslNumberList[0].trigger('keydown', {
+    const hueInput = atOrThrow(hslNumberList, 0)
+    const saturationInput = atOrThrow(hslNumberList, 1)
+    const lightnessInput = atOrThrow(hslNumberList, 2)
+    const hslAlphaInput = atOrThrow(hslNumberList, 3)
+    await hueInput.trigger('keydown', {
       key: 'ArrowUp',
       ctrlKey: true,
     })
-    await hslNumberList[1].trigger('keydown', {
+    await saturationInput.trigger('keydown', {
       key: 'ArrowDown',
       shiftKey: true,
     })
-    await hslNumberList[2].trigger('keydown', { key: 'ArrowUp' })
-    await hslNumberList[3].trigger('keydown', {
+    await lightnessInput.trigger('keydown', { key: 'ArrowUp' })
+    await hslAlphaInput.trigger('keydown', {
       key: 'ArrowDown',
       altKey: true,
     })
