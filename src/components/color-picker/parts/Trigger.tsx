@@ -41,7 +41,7 @@ export const ColorPickerTrigger = defineComponent({
       emit('assignRef', node)
     })
 
-    return (): JSX.Element => {
+    return () => {
       const language = props.environment.languageRef.value.colorPicker
 
       let triggerNode = (

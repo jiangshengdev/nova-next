@@ -240,7 +240,7 @@ export const NovaColorPicker = defineComponent({
       init()
     })
 
-    return (): JSX.Element => {
+    return () => {
       const language = environment.languageRef.value.colorPicker
 
       function createTrigger() {

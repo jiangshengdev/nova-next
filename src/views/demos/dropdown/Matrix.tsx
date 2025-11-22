@@ -14,7 +14,7 @@ export default defineComponent({
       state.placement = placement
     }
 
-    return (): JSX.Element => {
+    return () => {
       const pickerList = new Array(100).fill(null).map(() => {
         return (
           <li>

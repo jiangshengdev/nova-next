@@ -36,7 +36,7 @@ export const HueSlide = defineComponent({
       },
     })
 
-    return (): JSX.Element => {
+    return () => {
       return (
         <div class="nova-color-picker-hue-slide" ref={hueSlideRef}>
           <div class="nova-color-picker-hue-inner">

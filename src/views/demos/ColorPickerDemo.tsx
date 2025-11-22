@@ -6,7 +6,7 @@ import VModel from './color-picker/VModel'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => {
+    return () => {
       return (
         <section>
           <Normal />

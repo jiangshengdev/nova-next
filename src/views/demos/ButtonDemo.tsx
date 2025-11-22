@@ -8,7 +8,7 @@ import Multilingual from './button/Multilingual'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => (
+    return () => (
       <section>
         <Basic />
         <Primary />

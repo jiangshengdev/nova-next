@@ -61,7 +61,7 @@ export const HsvPanel = defineComponent({
       ]
     })
 
-    return (): JSX.Element => {
+    return () => {
       const x = numberFixed(props.saturation)
       const y = numberFixed(props.value)
 

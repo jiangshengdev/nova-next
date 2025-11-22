@@ -107,7 +107,7 @@ export const RgbaLabels = defineComponent({
       },
     )
 
-    return (): JSX.Element => {
+    return () => {
       const language = props.environment.languageRef.value.colorPicker
 
       const rNode = createChannel({

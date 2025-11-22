@@ -4,7 +4,7 @@ import './styles/common.css'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => (
+    return () => (
       <div class="demo-button-primary">
         <h3>Primary Buttons</h3>
         <div class="demo-button-group">

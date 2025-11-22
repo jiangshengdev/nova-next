@@ -15,7 +15,7 @@ export default defineComponent({
       console.log(e)
     }
 
-    return (): JSX.Element => (
+    return () => (
       <section>
         <div>
           <NovaInput

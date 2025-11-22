@@ -4,7 +4,7 @@ import Normal from './dropdown/Normal'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => (
+    return () => (
       <section>
         <Normal />
         <Matrix />

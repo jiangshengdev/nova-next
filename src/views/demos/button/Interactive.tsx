@@ -16,7 +16,7 @@ export default defineComponent({
       isActive.value = !isActive.value
     }
 
-    return (): JSX.Element => (
+    return () => (
       <div class="demo-button-interactive">
         <h3>Interactive Examples</h3>
 

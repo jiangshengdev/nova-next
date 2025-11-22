@@ -48,7 +48,7 @@ export function alphaNormalize(value: number): number {
   return floatNumber
 }
 
-export function createChannel(params: ChannelParams): JSX.Element {
+export function createChannel(params: ChannelParams) {
   const { label, title, value, onInput, onUpdate, onBlur } = params
 
   return (
@@ -62,7 +62,7 @@ export function createChannel(params: ChannelParams): JSX.Element {
   )
 }
 
-export function createAlpha(params: AlphaParams): JSX.Element | null {
+export function createAlpha(params: AlphaParams) {
   const { alpha, title, value, onInput, onUpdate, onBlur } = params
 
   if (!alpha) {

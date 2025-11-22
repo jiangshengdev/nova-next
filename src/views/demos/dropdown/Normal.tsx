@@ -22,7 +22,7 @@ export default defineComponent({
       },
     }
 
-    return (): JSX.Element => {
+    return () => {
       return (
         <div>
           <NovaDropdown>{slots}</NovaDropdown>

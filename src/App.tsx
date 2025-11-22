@@ -76,7 +76,7 @@ export default defineComponent({
       state.direction = 'rtl'
     }
 
-    return (): JSX.Element => (
+    return () => (
       <NovaEnvironment theme={state.theme} language={state.language}>
         {() => [
           <header id="header">

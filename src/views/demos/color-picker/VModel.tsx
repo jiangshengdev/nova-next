@@ -8,7 +8,7 @@ export default defineComponent({
       color: '#808080',
     })
 
-    return (): JSX.Element => (
+    return () => (
       <div>
         <div id="print">{state.color}</div>
         <NovaColorPicker v-model:value={state.color} theme="dark" />

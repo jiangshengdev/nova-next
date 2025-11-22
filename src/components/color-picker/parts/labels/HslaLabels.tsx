@@ -107,7 +107,7 @@ export const HslaLabels = defineComponent({
       },
     )
 
-    return (): JSX.Element => {
+    return () => {
       const language = props.environment.languageRef.value.colorPicker
 
       const hNode = createChannel({

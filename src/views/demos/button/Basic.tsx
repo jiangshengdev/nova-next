@@ -8,7 +8,7 @@ export default defineComponent({
       console.log('Button clicked!')
     }
 
-    return (): JSX.Element => (
+    return () => (
       <div class="demo-button-basic">
         <h3>Basic Buttons</h3>
         <div class="demo-button-group">

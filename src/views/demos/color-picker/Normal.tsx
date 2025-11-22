@@ -72,7 +72,7 @@ export default defineComponent({
       },
     }
 
-    return (): JSX.Element => {
+    return () => {
       const pickerProps = {
         class: 'demo-color-picker-normal',
         value: state.color,

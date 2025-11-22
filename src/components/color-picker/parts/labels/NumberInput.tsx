@@ -103,7 +103,7 @@ export const NumberInput = defineComponent({
       }
     }
 
-    return (): JSX.Element => {
+    return () => {
       return (
         <div class="nova-color-picker-input">
           <input type="text" value={props.value} ref={inputRef} onKeydown={onKeydown} {...attrs} />

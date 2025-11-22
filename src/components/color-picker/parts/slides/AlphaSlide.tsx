@@ -41,7 +41,7 @@ export const AlphaSlide = defineComponent({
       },
     })
 
-    return (): JSX.Element => {
+    return () => {
       const { red, green, blue } = props.color.toCssRgba()
       const currColorRgb = `${red}, ${green}, ${blue}`
       const currColorLinearGradient = `linear-gradient(180deg, rgba(${currColorRgb}, 1), rgba(${currColorRgb}, 0))`

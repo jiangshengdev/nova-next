@@ -176,7 +176,7 @@ export const HexLabel = defineComponent({
       }
     }
 
-    return (): JSX.Element => {
+    return () => {
       return (
         <div class="nova-color-picker-output">
           <div class="nova-color-picker-hex">
