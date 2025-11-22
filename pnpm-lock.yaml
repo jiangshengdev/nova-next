@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@jiangshengdev/material-design-icons-vue-next':
+        specifier: 1.0.0-alpha.9
+        version: 1.0.0-alpha.9(typescript@5.9.3)
       pinia:
         specifier: ^3.0.3
         version: 3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
@@ -505,6 +508,9 @@ packages:
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
+
+  '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.9':
+    resolution: {integrity: sha512-gAi0UjdohAZMzJqsy2SCW6CtK1XThlZYE6rzb0xnUPtxgChukcWX1W5ZpazyYmxwHWY643+C22VIgT9o8JD/pA==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2926,6 +2932,12 @@ snapshots:
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
+
+  '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.9(typescript@5.9.3)':
+    dependencies:
+      vue: 3.5.24(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
