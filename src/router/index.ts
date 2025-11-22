@@ -6,6 +6,7 @@ const ButtonDemo = () => import('@/views/demos/ButtonDemo')
 const InputDemo = () => import('@/views/demos/InputDemo')
 const ColorPickerDemo = () => import('@/views/demos/ColorPickerDemo')
 const DropdownDemo = () => import('@/views/demos/DropdownDemo')
+const EnvironmentDemo = () => import('@/views/demos/EnvironmentDemo')
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/input',
     component: InputDemo,
     name: 'Input',
+  },
+  {
+    path: '/environment',
+    component: EnvironmentDemo,
+    name: 'Environment',
   },
 ]
 

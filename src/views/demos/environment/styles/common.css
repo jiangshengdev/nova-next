@@ -1,0 +1,77 @@
+/* Common styles shared across all environment demos */
+
+h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h4 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.demo-environment-group {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.demo-environment-box {
+  padding: 16px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.demo-environment-nested-box {
+  padding: 12px;
+  margin-top: 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.demo-environment-description {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+}
+
+.demo-environment-description p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--nova-color-font);
+}
+
+.demo-environment-description code {
+  padding: 2px 6px;
+  background-color: var(--nova-color-border-component);
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.demo-environment-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* Section spacing */
+.demo-environment-basic,
+.demo-environment-nested,
+.demo-environment-language,
+.demo-environment-combined {
+  margin-bottom: 40px;
+}
