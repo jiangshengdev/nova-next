@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import { NovaButton } from '../../../index';
-import './styles/common.css';
+import { defineComponent } from 'vue'
+import { NovaButton } from '../../../index'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
@@ -19,11 +19,10 @@ export default defineComponent({
         </div>
         <div class="demo-button-description">
           <p>
-            Use <code>primary</code> prop to create a primary button with
-            highlighted styling.
+            Use <code>primary</code> prop to create a primary button with highlighted styling.
           </p>
         </div>
       </div>
-    );
+    )
   },
-});
+})

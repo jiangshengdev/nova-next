@@ -1,13 +1,13 @@
-import { defineComponent } from 'vue';
-import { NovaDropdown } from '../../../components/dropdown';
-import { NovaButton } from '../../../components/button';
-import './styles/normal.css';
+import { defineComponent } from 'vue'
+import { NovaDropdown } from '../../../components/dropdown'
+import { NovaButton } from '../../../components/button'
+import './styles/normal.css'
 
 export default defineComponent({
   setup() {
     const slots = {
       trigger: () => {
-        return <NovaButton>{() => 'Open'}</NovaButton>;
+        return <NovaButton>{() => 'Open'}</NovaButton>
       },
       default: () => {
         return (
@@ -18,9 +18,9 @@ export default defineComponent({
             <li>Lorem ipsum dolor sit amet.</li>
             <li>Lorem ipsum dolor sit amet.</li>
           </ul>
-        );
+        )
       },
-    };
+    }
 
     return (): JSX.Element => {
       return (
@@ -28,7 +28,7 @@ export default defineComponent({
           <NovaDropdown>{slots}</NovaDropdown>
           <NovaDropdown>{slots}</NovaDropdown>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

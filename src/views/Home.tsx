@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import { RouterLink } from 'vue-router';
+import { defineComponent } from 'vue'
+import { RouterLink } from 'vue-router'
 
 export default defineComponent({
   setup() {
@@ -9,6 +9,6 @@ export default defineComponent({
         <p>Experimental Vue components</p>
         <RouterLink to="/color-picker">ColorPicker</RouterLink>
       </section>
-    );
+    )
   },
-});
+})

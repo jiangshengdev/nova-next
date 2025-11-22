@@ -1,11 +1,11 @@
-import { defineComponent } from 'vue';
-import { NovaButton } from '../../../index';
-import './styles/common.css';
+import { defineComponent } from 'vue'
+import { NovaButton } from '../../../index'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
     function handleClick() {
-      console.log('Button clicked!');
+      console.log('Button clicked!')
     }
 
     return (): JSX.Element => (
@@ -17,6 +17,6 @@ export default defineComponent({
           <NovaButton type="reset">Reset Button</NovaButton>
         </div>
       </div>
-    );
+    )
   },
-});
+})

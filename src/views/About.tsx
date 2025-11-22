@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
-    return (): JSX.Element => <h1>About page!</h1>;
+    return (): JSX.Element => <h1>About page!</h1>
   },
-});
+})

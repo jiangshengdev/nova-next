@@ -1,17 +1,14 @@
-import { type InputHTMLAttributes, type FunctionalComponent } from 'vue';
-import { useEnvironment } from '../../uses/use-environment';
-import {
-  environmentProps,
-  type EnvironmentProps,
-} from '../environment/NovaEnvironment';
-import { type VueClass, type VueStyle } from '../../types/props';
+import { type InputHTMLAttributes, type FunctionalComponent } from 'vue'
+import { useEnvironment } from '../../uses/use-environment'
+import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
+import { type VueClass, type VueStyle } from '../../types/props'
 
 interface InputProps extends EnvironmentProps {
-  class?: VueClass;
-  wrapClass?: VueClass;
-  wrapStyle?: VueStyle;
-  disabled?: boolean;
-  readonly?: boolean;
+  class?: VueClass
+  wrapClass?: VueClass
+  wrapStyle?: VueStyle
+  disabled?: boolean
+  readonly?: boolean
 }
 
 const inputProps = {
@@ -36,12 +33,12 @@ const inputProps = {
     type: Boolean,
     default: false,
   },
-};
+}
 
-type NovaInputProps = InputProps & InputHTMLAttributes;
+type NovaInputProps = InputProps & InputHTMLAttributes
 
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
-  const environment = useEnvironment(props);
+  const environment = useEnvironment(props)
 
   const wrapClassList = [
     {
@@ -50,16 +47,12 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
       'nova-input-readonly': !!props.readonly,
     },
     props.wrapClass,
-  ];
+  ]
 
-  const classList = ['nova-input-text', props.class];
+  const classList = ['nova-input-text', props.class]
 
   return (
-    <div
-      class={wrapClassList}
-      style={props.wrapStyle}
-      data-nova-theme={environment.themeRef.value}
-    >
+    <div class={wrapClassList} style={props.wrapStyle} data-nova-theme={environment.themeRef.value}>
       <input
         type="text"
         class={classList}
@@ -69,11 +62,11 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
       />
       <div class="nova-input-border" />
     </div>
-  );
-};
+  )
+}
 
-NovaInput.props = inputProps;
-NovaInput.inheritAttrs = false;
-NovaInput.displayName = 'NovaInput';
+NovaInput.props = inputProps
+NovaInput.inheritAttrs = false
+NovaInput.displayName = 'NovaInput'
 
-export { NovaInput };
+export { NovaInput }

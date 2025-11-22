@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref, type Ref } from 'vue';
+import { defineComponent, reactive, ref, type Ref } from 'vue'
 import {
   type Direction,
   down,
@@ -6,57 +6,57 @@ import {
   getInputValue,
   setInputValue,
   up,
-} from '../../../../utils/dom';
-import { Color } from '../../color';
-import { numberLimit } from '../../../../utils/utils';
+} from '../../../../utils/dom'
+import { Color } from '../../color'
+import { numberLimit } from '../../../../utils/utils'
 
 interface TuningParams {
-  red: number;
-  green: number;
-  blue: number;
-  max: number;
-  length: number;
+  red: number
+  green: number
+  blue: number
+  max: number
+  length: number
 }
 
 interface HexLabelProps {
-  color: Color;
-  onColorInput?: (color: Color) => void;
-  onColorBlur?: (color: Color) => void;
+  color: Color
+  onColorInput?: (color: Color) => void
+  onColorBlur?: (color: Color) => void
 }
 
-type ColorEmit = 'colorInput' | 'colorBlur';
+type ColorEmit = 'colorInput' | 'colorBlur'
 
 function calcTuned(
   functionKeys: FunctionKeys,
   originNumber: number,
   direction: Direction,
-  tuningParams: TuningParams
+  tuningParams: TuningParams,
 ): string {
-  const { alt, shift, ctrl } = functionKeys;
+  const { alt, shift, ctrl } = functionKeys
 
-  let step = 0;
+  let step = 0
   if (alt) {
-    step += tuningParams.blue;
+    step += tuningParams.blue
   }
   if (shift) {
-    step += tuningParams.green;
+    step += tuningParams.green
   }
   if (ctrl) {
-    step += tuningParams.red;
+    step += tuningParams.red
   }
   if (!(alt || ctrl || shift)) {
-    step = tuningParams.blue;
+    step = tuningParams.blue
   }
 
-  let tunedNumber = originNumber;
+  let tunedNumber = originNumber
   if (direction === up) {
-    tunedNumber = originNumber + step;
+    tunedNumber = originNumber + step
   } else if (direction === down) {
-    tunedNumber = originNumber - step;
+    tunedNumber = originNumber - step
   }
-  tunedNumber = numberLimit(tunedNumber, 0, tuningParams.max);
+  tunedNumber = numberLimit(tunedNumber, 0, tuningParams.max)
 
-  return tunedNumber.toString(16).padStart(tuningParams.length, '0');
+  return tunedNumber.toString(16).padStart(tuningParams.length, '0')
 }
 
 const hexLabelProps = {
@@ -64,67 +64,67 @@ const hexLabelProps = {
     type: Object,
     required: true,
   },
-};
+}
 
 export const HexLabel = defineComponent({
   name: 'HexLabel',
   props: hexLabelProps,
   emits: ['colorInput', 'colorBlur'],
   setup(props: HexLabelProps, { emit }) {
-    const hexRef: Ref<HTMLElement | null> = ref(null);
+    const hexRef: Ref<HTMLElement | null> = ref(null)
 
     const state = reactive({
       hexShort: false,
-    });
+    })
 
     function updateColor(eventName: ColorEmit, hex: string): void {
       if (Color.hexRule.test(hex)) {
-        state.hexShort = hex.replace('#', '').length === 3;
+        state.hexShort = hex.replace('#', '').length === 3
 
-        const color = Color.fromHex(hex);
-        const sameColor = Color.sameColor(props.color as Color, color);
+        const color = Color.fromHex(hex)
+        const sameColor = Color.sameColor(props.color as Color, color)
         if (sameColor) {
-          return;
+          return
         }
 
-        emit(eventName, color);
+        emit(eventName, color)
       }
     }
 
     function onHexInput(e: Event): void {
-      const target = e.target as HTMLInputElement;
-      const value = getInputValue(target);
-      updateColor('colorInput', value);
+      const target = e.target as HTMLInputElement
+      const value = getInputValue(target)
+      updateColor('colorInput', value)
     }
 
     function onHexBlur(e: Event): void {
-      const target = e.target as HTMLInputElement;
-      const inputValue = getInputValue(target);
-      const hex = Color.hexNormalize(inputValue);
-      const hashHex = `#${hex}`;
+      const target = e.target as HTMLInputElement
+      const inputValue = getInputValue(target)
+      const hex = Color.hexNormalize(inputValue)
+      const hashHex = `#${hex}`
 
       if (inputValue !== hashHex) {
-        setInputValue(target, hashHex);
+        setInputValue(target, hashHex)
       }
 
-      updateColor('colorBlur', hex);
+      updateColor('colorBlur', hex)
     }
 
     function tuning(functionKeys: FunctionKeys, direction: Direction): void {
       if (!hexRef.value) {
-        return;
+        return
       }
 
-      const hexInput = hexRef.value as HTMLInputElement;
-      const hexValue = getInputValue(hexInput);
+      const hexInput = hexRef.value as HTMLInputElement
+      const hexValue = getInputValue(hexInput)
 
       if (!Color.hexRule.test(hexValue)) {
-        return;
+        return
       }
 
-      const pureHex = hexValue.replace('#', '');
-      const hexNumber = parseInt(pureHex, 16);
-      let tunedPureHex;
+      const pureHex = hexValue.replace('#', '')
+      const hexNumber = parseInt(pureHex, 16)
+      let tunedPureHex
 
       if (pureHex.length === 3) {
         const params = {
@@ -133,8 +133,8 @@ export const HexLabel = defineComponent({
           red: 0x100,
           max: 0xfff,
           length: 3,
-        };
-        tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params);
+        }
+        tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params)
       } else if (pureHex.length === 6) {
         const params = {
           blue: 0x000001,
@@ -142,17 +142,17 @@ export const HexLabel = defineComponent({
           red: 0x010000,
           max: 0xffffff,
           length: 6,
-        };
-        tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params);
+        }
+        tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params)
       }
 
       if (!tunedPureHex) {
-        return;
+        return
       }
 
-      const newHex = `#${tunedPureHex}`;
-      setInputValue(hexInput, newHex);
-      updateColor('colorInput', newHex);
+      const newHex = `#${tunedPureHex}`
+      setInputValue(hexInput, newHex)
+      updateColor('colorInput', newHex)
     }
 
     function onHexKeydown(e: KeyboardEvent): void {
@@ -160,19 +160,19 @@ export const HexLabel = defineComponent({
         alt: e.altKey,
         shift: e.shiftKey,
         ctrl: e.ctrlKey,
-      };
+      }
 
       switch (e.key) {
         case 'ArrowUp':
         case 'Up':
-          tuning(options, up);
-          e.preventDefault();
-          break;
+          tuning(options, up)
+          e.preventDefault()
+          break
         case 'ArrowDown':
         case 'Down':
-          tuning(options, down);
-          e.preventDefault();
-          break;
+          tuning(options, down)
+          e.preventDefault()
+          break
       }
     }
 
@@ -191,7 +191,7 @@ export const HexLabel = defineComponent({
             <div class="nova-color-picker-input-border" />
           </div>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

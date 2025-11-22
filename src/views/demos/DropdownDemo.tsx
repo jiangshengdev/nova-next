@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import Matrix from './dropdown/Matrix';
-import Normal from './dropdown/Normal';
+import { defineComponent } from 'vue'
+import Matrix from './dropdown/Matrix'
+import Normal from './dropdown/Normal'
 
 export default defineComponent({
   setup() {
@@ -9,6 +9,6 @@ export default defineComponent({
         <Normal />
         <Matrix />
       </section>
-    );
+    )
   },
-});
+})

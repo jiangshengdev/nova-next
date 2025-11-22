@@ -1,18 +1,18 @@
-import { defineComponent, reactive } from 'vue';
-import { NovaButton, NovaInput } from '../../index';
+import { defineComponent, reactive } from 'vue'
+import { NovaButton, NovaInput } from '../../index'
 
 export default defineComponent({
   setup() {
     const state = reactive({
       required: false,
-    });
+    })
 
     function toggleRequired() {
-      state.required = !state.required;
+      state.required = !state.required
     }
 
     function handleInput(e: Event) {
-      console.log(e);
+      console.log(e)
     }
 
     return (): JSX.Element => (
@@ -31,9 +31,7 @@ export default defineComponent({
             size={10}
             onInput={handleInput}
           />
-          <NovaButton onClick={toggleRequired}>
-            {() => 'Toggle required'}
-          </NovaButton>
+          <NovaButton onClick={toggleRequired}>{() => 'Toggle required'}</NovaButton>
         </div>
         <div>
           <NovaInput disabled />
@@ -41,6 +39,6 @@ export default defineComponent({
           <NovaInput value="✒" />
         </div>
       </section>
-    );
+    )
   },
-});
+})

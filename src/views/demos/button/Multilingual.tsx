@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import { NovaButton } from '../../../index';
-import './styles/common.css';
+import { defineComponent } from 'vue'
+import { NovaButton } from '../../../index'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
@@ -39,6 +39,6 @@ export default defineComponent({
           <NovaButton>Upload アップロード</NovaButton>
         </div>
       </div>
-    );
+    )
   },
-});
+})

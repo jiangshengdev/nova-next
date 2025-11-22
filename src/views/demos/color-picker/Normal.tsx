@@ -1,36 +1,36 @@
-import { defineComponent, reactive } from 'vue';
-import { Color, NovaButton, NovaColorPicker } from '../../../index';
+import { defineComponent, reactive } from 'vue'
+import { Color, NovaButton, NovaColorPicker } from '../../../index'
 import {
   type ColorPickerPresetScoped,
   type ColorPickerTriggerScoped,
-} from '../../../components/color-picker/NovaColorPicker';
-import hslData from '../../../components/color-picker/assets/css-wg/hsl';
-import './styles/normal.css';
+} from '../../../components/color-picker/NovaColorPicker'
+import hslData from '../../../components/color-picker/assets/css-wg/hsl'
+import './styles/normal.css'
 
 export default defineComponent({
   setup() {
-    const defaultColor = '#808040';
+    const defaultColor = '#808040'
 
     const state = reactive({
       color: defaultColor,
       disabled: false,
-    });
+    })
 
     function onUpdate(color: string): void {
-      state.color = color;
+      state.color = color
     }
 
     function onReset(): void {
-      state.color = defaultColor;
+      state.color = defaultColor
     }
 
     function onToggleDisable(): void {
-      state.disabled = !state.disabled;
+      state.disabled = !state.disabled
     }
 
     const slots = {
       trigger: (scoped: ColorPickerTriggerScoped) => {
-        const hex = scoped.color.toCssHexString();
+        const hex = scoped.color.toCssHexString()
         return (
           <div
             class="demo-color-picker-normal-trigger"
@@ -41,11 +41,11 @@ export default defineComponent({
             <i style={{ backgroundColor: hex }} />
             <span>{hex}</span>
           </div>
-        );
+        )
       },
       preset: (scoped: ColorPickerPresetScoped) => {
         function handleClick(cell: string) {
-          scoped.setColorAndPosition(Color.fromHex(cell));
+          scoped.setColorAndPosition(Color.fromHex(cell))
         }
 
         const panes = hslData.map((pane) => {
@@ -60,17 +60,17 @@ export default defineComponent({
                   onClick={() => handleClick(cell)}
                   style={{ backgroundColor: cell }}
                 />
-              );
-            });
+              )
+            })
 
-            return <ul>{list}</ul>;
-          });
-          return <div>{table}</div>;
-        });
+            return <ul>{list}</ul>
+          })
+          return <div>{table}</div>
+        })
 
-        return <div class="demo-color-picker-normal-preset-inner">{panes}</div>;
+        return <div class="demo-color-picker-normal-preset-inner">{panes}</div>
       },
-    };
+    }
 
     return (): JSX.Element => {
       const pickerProps = {
@@ -78,29 +78,19 @@ export default defineComponent({
         value: state.color,
         disabled: state.disabled,
         onUpdate,
-        preset: [
-          '#804040',
-          '#808040',
-          '#408040',
-          '#408080',
-          '#404080',
-          '#804080',
-          '#808080',
-        ],
-      };
+        preset: ['#804040', '#808040', '#408040', '#408080', '#404080', '#804080', '#808080'],
+      }
 
       return (
         <div>
           <div>
             {state.color}
             <NovaButton onClick={onReset}>{() => 'Reset'}</NovaButton>
-            <NovaButton onClick={onToggleDisable}>
-              {() => 'Toggle disable'}
-            </NovaButton>
+            <NovaButton onClick={onToggleDisable}>{() => 'Toggle disable'}</NovaButton>
           </div>
           <NovaColorPicker {...pickerProps}>{slots}</NovaColorPicker>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

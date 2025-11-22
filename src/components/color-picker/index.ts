@@ -1,4 +1,4 @@
-import { NovaColorPicker } from './NovaColorPicker';
-import { Color } from './color';
+import { NovaColorPicker } from './NovaColorPicker'
+import { Color } from './color'
 
-export { NovaColorPicker, Color };
+export { NovaColorPicker, Color }

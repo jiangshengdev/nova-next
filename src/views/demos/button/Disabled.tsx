@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import { NovaButton } from '../../../index';
-import './styles/common.css';
+import { defineComponent } from 'vue'
+import { NovaButton } from '../../../index'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
@@ -18,11 +18,11 @@ export default defineComponent({
         </div>
         <div class="demo-button-description">
           <p>
-            Disabled buttons cannot be clicked and have reduced opacity to
-            indicate their inactive state.
+            Disabled buttons cannot be clicked and have reduced opacity to indicate their inactive
+            state.
           </p>
         </div>
       </div>
-    );
+    )
   },
-});
+})

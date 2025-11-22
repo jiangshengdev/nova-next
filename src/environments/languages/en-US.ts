@@ -1,4 +1,4 @@
-import { type Language } from '../../types/language.ts';
+import { type Language } from '../../types/language.ts'
 
 const enUS: Language = {
   name: 'English, United States',
@@ -16,6 +16,6 @@ const enUS: Language = {
     saturation: 'Saturation',
     lightness: 'Lightness',
   },
-};
+}
 
-export { enUS };
+export { enUS }

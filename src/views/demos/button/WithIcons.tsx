@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import { NovaButton } from '../../../index';
+import { defineComponent } from 'vue'
+import { NovaButton } from '../../../index'
 import {
   MDICamera,
   MDITheaters,
@@ -7,8 +7,8 @@ import {
   MDISettings,
   MDIDelete,
   MDIFileDownload,
-} from '@jiangshengdev/material-design-icons-vue-next';
-import './styles/common.css';
+} from '@jiangshengdev/material-design-icons-vue-next'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
@@ -43,6 +43,6 @@ export default defineComponent({
           <NovaButton primary icon="✨" />
         </div>
       </div>
-    );
+    )
   },
-});
+})

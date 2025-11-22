@@ -1,19 +1,19 @@
-import { defineComponent, ref } from 'vue';
-import { NovaButton } from '../../../index';
-import { MDIRefresh } from '@jiangshengdev/material-design-icons-vue-next';
-import './styles/common.css';
+import { defineComponent, ref } from 'vue'
+import { NovaButton } from '../../../index'
+import { MDIRefresh } from '@jiangshengdev/material-design-icons-vue-next'
+import './styles/common.css'
 
 export default defineComponent({
   setup() {
-    const clickCount = ref(0);
-    const isActive = ref(false);
+    const clickCount = ref(0)
+    const isActive = ref(false)
 
     function handleCounterClick() {
-      clickCount.value++;
+      clickCount.value++
     }
 
     function handleToggleClick() {
-      isActive.value = !isActive.value;
+      isActive.value = !isActive.value
     }
 
     return (): JSX.Element => (
@@ -23,9 +23,7 @@ export default defineComponent({
         <h4>Click Counter</h4>
         <div class="demo-button-group">
           <NovaButton onClick={handleCounterClick}>
-            {clickCount.value === 0
-              ? 'Click me!'
-              : `Clicked ${clickCount.value} times`}
+            {clickCount.value === 0 ? 'Click me!' : `Clicked ${clickCount.value} times`}
           </NovaButton>
         </div>
 
@@ -41,21 +39,21 @@ export default defineComponent({
           <NovaButton
             primary
             onClick={() => {
-              alert('Form submitted!');
+              alert('Form submitted!')
             }}
           >
             Submit Form
           </NovaButton>
           <NovaButton
             onClick={() => {
-              console.log('Form reset');
+              console.log('Form reset')
             }}
           >
             Reset Form
           </NovaButton>
           <NovaButton
             onClick={() => {
-              console.log('Action cancelled');
+              console.log('Action cancelled')
             }}
           >
             Cancel
@@ -67,13 +65,13 @@ export default defineComponent({
           <NovaButton
             icon={<MDIRefresh />}
             onClick={() => {
-              console.log('Refreshing...');
+              console.log('Refreshing...')
             }}
           >
             Refresh
           </NovaButton>
         </div>
       </div>
-    );
+    )
   },
-});
+})

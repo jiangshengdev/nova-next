@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue';
-import Basic from './button/Basic';
-import Primary from './button/Primary';
-import Disabled from './button/Disabled';
-import WithIcons from './button/WithIcons';
-import Interactive from './button/Interactive';
-import Multilingual from './button/Multilingual';
+import { defineComponent } from 'vue'
+import Basic from './button/Basic'
+import Primary from './button/Primary'
+import Disabled from './button/Disabled'
+import WithIcons from './button/WithIcons'
+import Interactive from './button/Interactive'
+import Multilingual from './button/Multilingual'
 
 export default defineComponent({
   setup() {
@@ -17,6 +17,6 @@ export default defineComponent({
         <Interactive />
         <Multilingual />
       </section>
-    );
+    )
   },
-});
+})

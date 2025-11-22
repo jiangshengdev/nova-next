@@ -1,63 +1,52 @@
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  type PropType,
-  reactive,
-  ref,
-  watch,
-} from 'vue';
-import { type MovePosition } from '../../uses/use-move';
-import { Color, type ColorFormat } from './color';
-import { ColorPickerTrigger } from './parts/Trigger';
-import { HsvPanel } from './parts/HsvPanel';
-import { HueSlide } from './parts/slides/HueSlide';
-import { AlphaSlide } from './parts/slides/AlphaSlide';
-import { RgbaLabels } from './parts/labels/RgbaLabels';
-import { HslaLabels } from './parts/labels/HslaLabels';
-import { HexLabel } from './parts/labels/HexLabel';
-import { Preview } from './parts/Preview';
-import { PresetValues } from './parts/PresetValues';
-import { useEnvironment } from '../../uses/use-environment';
-import { MDIClose } from '@jiangshengdev/material-design-icons-vue-next';
-import { NovaDropdown } from '../dropdown';
+import { computed, defineComponent, onMounted, type PropType, reactive, ref, watch } from 'vue'
+import { type MovePosition } from '../../uses/use-move'
+import { Color, type ColorFormat } from './color'
+import { ColorPickerTrigger } from './parts/Trigger'
+import { HsvPanel } from './parts/HsvPanel'
+import { HueSlide } from './parts/slides/HueSlide'
+import { AlphaSlide } from './parts/slides/AlphaSlide'
+import { RgbaLabels } from './parts/labels/RgbaLabels'
+import { HslaLabels } from './parts/labels/HslaLabels'
+import { HexLabel } from './parts/labels/HexLabel'
+import { Preview } from './parts/Preview'
+import { PresetValues } from './parts/PresetValues'
+import { useEnvironment } from '../../uses/use-environment'
+import { MDIClose } from '@jiangshengdev/material-design-icons-vue-next'
+import { NovaDropdown } from '../dropdown'
 import {
   type DropdownInstance,
   type DropdownPanelScoped,
   dropdownProps,
   type DropdownProps,
   type DropdownTriggerScoped,
-} from '../dropdown/NovaDropdown';
-import {
-  environmentProps,
-  type EnvironmentProps,
-} from '../environment/NovaEnvironment';
-import { numberLimit } from '../../utils/utils';
+} from '../dropdown/NovaDropdown'
+import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
+import { numberLimit } from '../../utils/utils'
 
 //region Mode
-const modeRgba = Symbol('rgba');
-const modeHsla = Symbol('hsla');
+const modeRgba = Symbol('rgba')
+const modeHsla = Symbol('hsla')
 
 const labelsMap = new Map([
   [modeRgba, RgbaLabels],
   [modeHsla, HslaLabels],
-]);
+])
 
-const modeList = [...labelsMap.keys()];
-const modeSize = modeList.length;
+const modeList = [...labelsMap.keys()]
+const modeSize = modeList.length
 
 //endregion
 
 export interface ColorPickerProps extends EnvironmentProps, DropdownProps {
-  value?: string;
-  alpha?: boolean;
-  format?: ColorFormat;
-  preset?: string[];
-  onUpdate?: (color: string) => void;
-  onOpenChange?: (opened: boolean) => void;
+  value?: string
+  alpha?: boolean
+  format?: ColorFormat
+  preset?: string[]
+  onUpdate?: (color: string) => void
+  onOpenChange?: (opened: boolean) => void
 }
 
-const defaultValue = '#ff0000';
+const defaultValue = '#ff0000'
 
 const colorPickerProps = {
   ...environmentProps,
@@ -78,16 +67,16 @@ const colorPickerProps = {
     type: Array as PropType<string[]>,
     default: null,
   },
-};
+}
 
 export interface ColorPickerPresetScoped {
-  preset: string[];
-  color: Color;
-  setColorAndPosition: (color: Color) => void;
+  preset: string[]
+  color: Color
+  setColorAndPosition: (color: Color) => void
 }
 
 export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
-  color: Color;
+  color: Color
 }
 
 export const NovaColorPicker = defineComponent({
@@ -95,14 +84,14 @@ export const NovaColorPicker = defineComponent({
   props: colorPickerProps,
   emits: ['update', 'update:value'],
   setup(props, context) {
-    const emit = context.emit;
+    const emit = context.emit
 
-    const environment = useEnvironment(props);
-    const dropdownInstanceRef = ref<DropdownInstance | null>(null);
-    const colorPickerTriggerAutoFocusRef = ref<HTMLElement | null>(null);
-    const colorPickerPanelAutoFocusRef = ref<HTMLElement | null>(null);
+    const environment = useEnvironment(props)
+    const dropdownInstanceRef = ref<DropdownInstance | null>(null)
+    const colorPickerTriggerAutoFocusRef = ref<HTMLElement | null>(null)
+    const colorPickerPanelAutoFocusRef = ref<HTMLElement | null>(null)
 
-    const mode = props.format === 'hsl' ? modeHsla : modeRgba;
+    const mode = props.format === 'hsl' ? modeHsla : modeRgba
     const state = reactive({
       position: {
         /**
@@ -124,14 +113,14 @@ export const NovaColorPicker = defineComponent({
       },
       color: Color.fromCssLikeHsva(0, 100, 100, 1),
       mode,
-    });
+    })
 
     /**
      * [0, 360]
      */
     const hueDegrees = computed(() => {
-      return Math.round((state.position.hue / 200) * 360) % 360;
-    });
+      return Math.round((state.position.hue / 200) * 360) % 360
+    })
 
     const classList = computed(() => {
       return [
@@ -139,8 +128,8 @@ export const NovaColorPicker = defineComponent({
         {
           ['nova-color-picker-disabled']: props.disabled,
         },
-      ];
-    });
+      ]
+    })
 
     const panelClassList = computed(() => {
       return [
@@ -148,124 +137,124 @@ export const NovaColorPicker = defineComponent({
         {
           ['nova-color-picker-panel-has-alpha']: props.alpha,
         },
-      ];
-    });
+      ]
+    })
 
     function getColorFromPosition(): Color {
       return Color.fromCssLikeHsva(
         hueDegrees.value,
         state.position.saturation / 2,
         (200 - state.position.value) / 2,
-        (200 - state.position.alpha) / 200
-      );
+        (200 - state.position.alpha) / 200,
+      )
     }
 
     function setPositionFromColor(color: Color): void {
-      const hsva = color.toHsva();
+      const hsva = color.toHsva()
 
-      const hue = numberLimit((hsva.hue / 360) * 200, 0, 200);
-      const saturation = numberLimit(hsva.saturation * 200, 0, 200);
-      const value = numberLimit(200 - 200 * hsva.value, 0, 200);
-      const alpha = numberLimit(200 - 200 * hsva.alpha, 0, 200);
+      const hue = numberLimit((hsva.hue / 360) * 200, 0, 200)
+      const saturation = numberLimit(hsva.saturation * 200, 0, 200)
+      const value = numberLimit(200 - 200 * hsva.value, 0, 200)
+      const alpha = numberLimit(200 - 200 * hsva.alpha, 0, 200)
 
-      state.position.hue = hue;
-      state.position.saturation = saturation;
-      state.position.value = value;
-      state.position.alpha = alpha;
+      state.position.hue = hue
+      state.position.saturation = saturation
+      state.position.value = value
+      state.position.alpha = alpha
     }
 
     function setColor(color: Color): void {
       if (props.alpha) {
-        state.color = color;
+        state.color = color
       } else {
-        state.color = new Color(color.red, color.green, color.blue);
+        state.color = new Color(color.red, color.green, color.blue)
       }
     }
 
     function setColorAndPosition(color: Color): void {
-      setPositionFromColor(color);
-      setColor(color);
+      setPositionFromColor(color)
+      setColor(color)
     }
 
     function setColorFromPosition(): void {
-      setColor(getColorFromPosition());
+      setColor(getColorFromPosition())
     }
 
     function changePropsValue(color: Color): void {
       // JSX onUpdate
-      emit('update', color.toString(props.format));
+      emit('update', color.toString(props.format))
 
       // Template v-model:value
-      emit('update:value', color.toString(props.format));
+      emit('update:value', color.toString(props.format))
     }
 
     function switchMode(): void {
       let activeModeIndex = modeList.findIndex((mode) => {
-        return state.mode === mode;
-      });
+        return state.mode === mode
+      })
 
-      activeModeIndex++;
+      activeModeIndex++
       if (activeModeIndex >= modeSize) {
-        activeModeIndex = 0;
+        activeModeIndex = 0
       }
 
-      const nextMode = modeList[activeModeIndex] ?? state.mode;
-      state.mode = nextMode;
+      const nextMode = modeList[activeModeIndex] ?? state.mode
+      state.mode = nextMode
     }
 
     function onOpenChange(open: boolean) {
       if (!open) {
-        changePropsValue(state.color);
+        changePropsValue(state.color)
       }
     }
 
     watch(
       () => props.value,
       (value) => {
-        const color = Color.parse(value);
-        setColorAndPosition(color);
-      }
-    );
+        const color = Color.parse(value)
+        setColorAndPosition(color)
+      },
+    )
 
     watch(
       () => props.alpha,
       (value) => {
         if (!value) {
-          const { red, green, blue } = state.color;
-          const color = new Color(red, green, blue);
-          setColorAndPosition(color);
+          const { red, green, blue } = state.color
+          const color = new Color(red, green, blue)
+          setColorAndPosition(color)
         }
-      }
-    );
+      },
+    )
 
     function reset() {
-      const color = Color.parse(props.value);
-      setColorAndPosition(color);
+      const color = Color.parse(props.value)
+      setColorAndPosition(color)
     }
 
     function init(): void {
-      reset();
+      reset()
     }
 
     onMounted(() => {
-      init();
-    });
+      init()
+    })
 
     return (): JSX.Element => {
-      const language = environment.languageRef.value.colorPicker;
+      const language = environment.languageRef.value.colorPicker
 
       function createTrigger() {
         const triggerProps = {
           disabled: !!props.disabled,
           color: state.color,
           environment,
-        };
+        }
 
-        const trigger = context.slots.trigger;
+        const trigger = context.slots.trigger
 
         function onAssignRef(element: HTMLElement | null) {
           if (element) {
-            colorPickerTriggerAutoFocusRef.value = element;
+            colorPickerTriggerAutoFocusRef.value = element
           }
         }
 
@@ -273,24 +262,22 @@ export const NovaColorPicker = defineComponent({
           const triggerNode = () =>
             trigger({
               ...triggerProps,
-            });
+            })
           return (
             <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps}>
               {triggerNode}
             </ColorPickerTrigger>
-          );
+          )
         }
 
-        return (
-          <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps} />
-        );
+        return <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps} />
       }
 
       function createHsvPanel() {
         function onHsvMove(position: MovePosition): void {
-          state.position.saturation = numberLimit(position.x, 0, 200);
-          state.position.value = numberLimit(position.y, 0, 200);
-          setColorFromPosition();
+          state.position.saturation = numberLimit(position.x, 0, 200)
+          state.position.value = numberLimit(position.y, 0, 200)
+          setColorFromPosition()
         }
 
         return (
@@ -301,53 +288,47 @@ export const NovaColorPicker = defineComponent({
             value={state.position.value}
             onMove={onHsvMove}
           />
-        );
+        )
       }
 
       function createHue() {
         function onHueMove(position: MovePosition): void {
-          state.position.hue = numberLimit(position.y, 0, 200);
-          setColorFromPosition();
+          state.position.hue = numberLimit(position.y, 0, 200)
+          setColorFromPosition()
         }
 
-        return <HueSlide hue={state.position.hue} onMove={onHueMove} />;
+        return <HueSlide hue={state.position.hue} onMove={onHueMove} />
       }
 
       function createAlpha() {
         if (!props.alpha) {
-          return null;
+          return null
         }
 
         function onAlphaMove(position: MovePosition): void {
-          state.position.alpha = numberLimit(position.y, 0, 200);
-          setColorFromPosition();
+          state.position.alpha = numberLimit(position.y, 0, 200)
+          setColorFromPosition()
         }
 
-        return (
-          <AlphaSlide
-            alpha={state.position.alpha}
-            color={state.color}
-            onMove={onAlphaMove}
-          />
-        );
+        return <AlphaSlide alpha={state.position.alpha} color={state.color} onMove={onAlphaMove} />
       }
 
       function createSlides() {
-        const alphaSlideNode = createAlpha();
-        const hueSlideNode = createHue();
+        const alphaSlideNode = createAlpha()
+        const hueSlideNode = createHue()
 
         return (
           <div class="nova-color-picker-slides">
             {hueSlideNode}
             {alphaSlideNode}
           </div>
-        );
+        )
       }
 
       function createLabels() {
-        const CurrLabels = labelsMap.get(state.mode);
+        const CurrLabels = labelsMap.get(state.mode)
         if (!CurrLabels) {
-          return null;
+          return null
         }
 
         return (
@@ -358,20 +339,20 @@ export const NovaColorPicker = defineComponent({
             onColorBlur={setColorAndPosition}
             environment={environment}
           />
-        );
+        )
       }
 
       function createForm() {
         function onKeydown(e: KeyboardEvent) {
           switch (e.key) {
             case 'Enter':
-              switchMode();
-              e.stopPropagation();
-              break;
+              switchMode()
+              e.stopPropagation()
+              break
           }
         }
 
-        const labelsNode = createLabels();
+        const labelsNode = createLabels()
         return (
           <div class="nova-color-picker-form">
             <div
@@ -389,37 +370,31 @@ export const NovaColorPicker = defineComponent({
               onColorBlur={setColorAndPosition}
             />
           </div>
-        );
+        )
       }
 
       function createPreview() {
-        return (
-          <Preview
-            color={state.color}
-            value={props.value || defaultValue}
-            onReset={init}
-          />
-        );
+        return <Preview color={state.color} value={props.value || defaultValue} onReset={init} />
       }
 
       function createPreset() {
-        const slotPreset = context.slots.preset;
+        const slotPreset = context.slots.preset
         const presetProps = {
           preset: props.preset ?? [],
           color: state.color,
-        };
+        }
 
-        let slotPresetNode = null;
+        let slotPresetNode = null
         if (slotPreset) {
           slotPresetNode = () =>
             slotPreset({
               ...presetProps,
               setColorAndPosition,
-            });
+            })
         }
 
         if (!props.preset?.length && !slotPresetNode) {
-          return null;
+          return null
         }
 
         if (slotPresetNode) {
@@ -431,7 +406,7 @@ export const NovaColorPicker = defineComponent({
             >
               {slotPresetNode}
             </PresetValues>
-          );
+          )
         }
 
         return (
@@ -440,18 +415,18 @@ export const NovaColorPicker = defineComponent({
             color={state.color}
             onSelect={setColorAndPosition}
           />
-        );
+        )
       }
 
       function createDropdown() {
-        const hsvPanelNode = createHsvPanel();
-        const slidesNode = createSlides();
-        const formNode = createForm();
-        const previewNode = createPreview();
-        const presetNode = createPreset();
+        const hsvPanelNode = createHsvPanel()
+        const slidesNode = createSlides()
+        const formNode = createForm()
+        const previewNode = createPreview()
+        const presetNode = createPreset()
 
         function closeDropdown() {
-          dropdownInstanceRef.value?.close();
+          dropdownInstanceRef.value?.close()
         }
 
         const closeNode = (
@@ -466,15 +441,11 @@ export const NovaColorPicker = defineComponent({
               <MDIClose />
             </div>
           </div>
-        );
+        )
 
         const autoFocusNode = (
-          <div
-            class="nova-trap"
-            ref={colorPickerPanelAutoFocusRef}
-            tabindex={0}
-          />
-        );
+          <div class="nova-trap" ref={colorPickerPanelAutoFocusRef} tabindex={0} />
+        )
 
         return (
           <div class="nova-color-picker-panel-inner">
@@ -486,26 +457,23 @@ export const NovaColorPicker = defineComponent({
             {previewNode}
             {presetNode}
           </div>
-        );
+        )
       }
 
-      const triggerNode = createTrigger();
-      const dropdownNode = createDropdown();
+      const triggerNode = createTrigger()
+      const dropdownNode = createDropdown()
 
       const slots = {
-        trigger: ({
-          dropdownInstance,
-          triggerAutoFocusRef,
-        }: DropdownTriggerScoped) => {
-          dropdownInstanceRef.value = dropdownInstance;
-          triggerAutoFocusRef.value = colorPickerTriggerAutoFocusRef.value;
-          return triggerNode;
+        trigger: ({ dropdownInstance, triggerAutoFocusRef }: DropdownTriggerScoped) => {
+          dropdownInstanceRef.value = dropdownInstance
+          triggerAutoFocusRef.value = colorPickerTriggerAutoFocusRef.value
+          return triggerNode
         },
         default: ({ panelAutoFocusRef }: DropdownPanelScoped) => {
-          panelAutoFocusRef.value = colorPickerPanelAutoFocusRef.value;
-          return dropdownNode;
+          panelAutoFocusRef.value = colorPickerPanelAutoFocusRef.value
+          return dropdownNode
         },
-      };
+      }
 
       return (
         <NovaDropdown
@@ -520,7 +488,7 @@ export const NovaColorPicker = defineComponent({
           onOpenChange={onOpenChange}
           v-slots={slots}
         />
-      );
-    };
+      )
+    }
   },
-});
+})

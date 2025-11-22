@@ -9,39 +9,36 @@ import {
   vShow,
   watch,
   withDirectives,
-} from 'vue';
-import { type Environment, useEnvironment } from '../../uses/use-environment';
-import { durationLong, useDropdown } from '../../uses/use-dropdown';
-import {
-  type EnvironmentProps,
-  environmentProps,
-} from '../environment/NovaEnvironment';
-import { type Placement, type VueClass, type VueProps, type VueStyle } from '../../types/props';
-import { getFocusable } from '../../utils/dom';
+} from 'vue'
+import { type Environment, useEnvironment } from '../../uses/use-environment'
+import { durationLong, useDropdown } from '../../uses/use-dropdown'
+import { type EnvironmentProps, environmentProps } from '../environment/NovaEnvironment'
+import { type Placement, type VueClass, type VueProps, type VueStyle } from '../../types/props'
+import { getFocusable } from '../../utils/dom'
 
 export interface DropdownProps extends EnvironmentProps {
-  disabled?: boolean;
-  panelClass?: VueClass;
-  panelStyle?: VueStyle;
-  panelProps?: VueProps;
-  teleportToBody?: boolean;
-  environment?: Environment;
-  placement?: Placement;
-  onOpenChange?: (open: boolean) => void;
+  disabled?: boolean
+  panelClass?: VueClass
+  panelStyle?: VueStyle
+  panelProps?: VueProps
+  teleportToBody?: boolean
+  environment?: Environment
+  placement?: Placement
+  onOpenChange?: (open: boolean) => void
 }
 
 export interface DropdownInstance {
-  close: () => void;
+  close: () => void
 }
 
 export interface DropdownTriggerScoped {
-  disabled: boolean;
-  dropdownInstance: DropdownInstance;
-  triggerAutoFocusRef: Ref<HTMLElement | null>;
+  disabled: boolean
+  dropdownInstance: DropdownInstance
+  triggerAutoFocusRef: Ref<HTMLElement | null>
 }
 
 export interface DropdownPanelScoped {
-  panelAutoFocusRef: Ref<HTMLElement | null>;
+  panelAutoFocusRef: Ref<HTMLElement | null>
 }
 
 export const dropdownProps = {
@@ -74,45 +71,45 @@ export const dropdownProps = {
     type: String,
     default: 'bottomLeft',
   },
-};
+}
 
 export const NovaDropdown = defineComponent({
   name: 'NovaDropdown',
   props: dropdownProps,
   emits: ['openChange'],
   setup(props, { emit, slots }) {
-    let trapped = false;
+    let trapped = false
 
-    const environment = props.environment ?? useEnvironment(props);
+    const environment = props.environment ?? useEnvironment(props)
 
-    const triggerRef: Ref<HTMLElement | null> = ref(null);
-    const triggerAutoFocusRef: Ref<HTMLElement | null> = ref(null);
-    const panelRef: Ref<HTMLElement | null> = ref(null);
-    const panelAutoFocusRef: Ref<HTMLElement | null> = ref(null);
-    const trapHeaderRef: Ref<HTMLElement | null> = ref(null);
-    const trapTrailerRef: Ref<HTMLElement | null> = ref(null);
+    const triggerRef: Ref<HTMLElement | null> = ref(null)
+    const triggerAutoFocusRef: Ref<HTMLElement | null> = ref(null)
+    const panelRef: Ref<HTMLElement | null> = ref(null)
+    const panelAutoFocusRef: Ref<HTMLElement | null> = ref(null)
+    const trapHeaderRef: Ref<HTMLElement | null> = ref(null)
+    const trapTrailerRef: Ref<HTMLElement | null> = ref(null)
 
     function trapHeaderFocus() {
-      const focusable = getFocusable(panelRef.value);
-      nextFocus(focusable?.[focusable.length - 1]);
+      const focusable = getFocusable(panelRef.value)
+      nextFocus(focusable?.[focusable.length - 1])
     }
 
     function trapTrailerFocus() {
-      const focusable = getFocusable(panelRef.value);
-      nextFocus(focusable?.[0]);
+      const focusable = getFocusable(panelRef.value)
+      nextFocus(focusable?.[0])
     }
 
     function nextFocus(target: HTMLElement | undefined) {
       if (trapped) {
-        return;
+        return
       }
 
-      trapped = true;
-      target?.focus();
+      trapped = true
+      target?.focus()
 
       requestAnimationFrame(() => {
-        trapped = false;
-      });
+        trapped = false
+      })
     }
 
     const classList = computed(() => {
@@ -122,11 +119,11 @@ export const NovaDropdown = defineComponent({
           ['nova-dropdown-disabled']: props.disabled,
           ['nova-dropdown-opened']: dropdown.opened,
         },
-      ];
-    });
+      ]
+    })
     const panelClassList = computed(() => {
-      return ['nova-dropdown-panel', props.panelClass];
-    });
+      return ['nova-dropdown-panel', props.panelClass]
+    })
 
     const {
       dropdown,
@@ -143,38 +140,38 @@ export const NovaDropdown = defineComponent({
       triggerAutoFocusRef,
       props,
       onOpen: () => {
-        emit('openChange', true);
+        emit('openChange', true)
       },
       onClose: () => {
-        emit('openChange', false);
+        emit('openChange', false)
       },
-    });
+    })
 
     // TODO Find another way to communicate parent and child components
     const dropdownInstance: DropdownInstance = {
       close,
-    };
+    }
 
     watch(
       () => props.disabled,
       (value) => {
         if (value) {
-          dropdown.loaded = false;
-          dropdown.opened = false;
+          dropdown.loaded = false
+          dropdown.opened = false
         }
-      }
-    );
+      },
+    )
 
     return () => {
-      const slotDefault = slots.default;
-      const slotTrigger = slots.trigger;
+      const slotDefault = slots.default
+      const slotTrigger = slots.trigger
 
-      let slotTriggerNode: VNode[] | null = null;
+      let slotTriggerNode: VNode[] | null = null
       if (slotTrigger) {
         slotTriggerNode = slotTrigger({
           dropdownInstance,
           triggerAutoFocusRef,
-        });
+        })
       }
 
       function createTrigger() {
@@ -182,20 +179,20 @@ export const NovaDropdown = defineComponent({
           <div ref={triggerRef} class="nova-dropdown-trigger">
             {slotTriggerNode}
           </div>
-        );
+        )
       }
 
       function createPanel() {
         if (!dropdown.loaded || props.disabled) {
-          return null;
+          return null
         }
 
-        let beforeAppearFlag = false;
-        let afterAppearFlag = false;
+        let beforeAppearFlag = false
+        let afterAppearFlag = false
 
         const children = slotDefault?.({
           panelAutoFocusRef,
-        });
+        })
         const panelCoreNode = (
           <div
             class={panelClassList.value}
@@ -222,24 +219,24 @@ export const NovaDropdown = defineComponent({
             />
             <div class="nova-dropdown-panel-border" />
           </div>
-        );
+        )
 
         function onBeforeAppear(el: Element) {
           if (beforeAppearFlag) {
-            return;
+            return
           }
 
-          beforeAppearFlag = true;
-          onBeforeEnter(el);
+          beforeAppearFlag = true
+          onBeforeEnter(el)
         }
 
         function onAfterAppear(el: Element) {
           if (afterAppearFlag) {
-            return;
+            return
           }
 
-          afterAppearFlag = true;
-          onAfterEnter(el);
+          afterAppearFlag = true
+          onAfterEnter(el)
         }
 
         return (
@@ -256,28 +253,21 @@ export const NovaDropdown = defineComponent({
               onAfterLeave={onAfterLeave}
               onLeaveCancelled={onLeaveCancelled}
             >
-              {() =>
-                withDirectives(panelCoreNode as VNode, [
-                  [vShow, dropdown.opened],
-                ])
-              }
+              {() => withDirectives(panelCoreNode as VNode, [[vShow, dropdown.opened]])}
             </Transition>
           </Teleport>
-        );
+        )
       }
 
-      const panelNode = createPanel();
-      const triggerNode = createTrigger();
+      const panelNode = createPanel()
+      const triggerNode = createTrigger()
 
       return (
-        <div
-          class={classList.value}
-          data-nova-theme={environment.themeRef.value}
-        >
+        <div class={classList.value} data-nova-theme={environment.themeRef.value}>
           {triggerNode}
           {panelNode}
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

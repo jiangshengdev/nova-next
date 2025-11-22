@@ -1,6 +1,6 @@
-import { defineComponent, reactive } from 'vue';
-import { NovaButton, NovaColorPicker } from '../../../index';
-import { type ColorFormat } from '../../../components/color-picker/color';
+import { defineComponent, reactive } from 'vue'
+import { NovaButton, NovaColorPicker } from '../../../index'
+import { type ColorFormat } from '../../../components/color-picker/color'
 
 const hex = [
   '#80404080',
@@ -10,7 +10,7 @@ const hex = [
   '#40408080',
   '#80408080',
   '#80808080',
-];
+]
 const rgb = [
   'rgb(100%,  0%,  0%)',
   'rgb(100%,100%,  0%)',
@@ -19,7 +19,7 @@ const rgb = [
   'rgb(  0%,  0%,100%)',
   'rgb(100%,  0%,100%)',
   'rgb(100%,100%,100%)',
-];
+]
 const rgba = [
   'rgba(255,  0,  0,0.5)',
   'rgba(255,255,  0,0.5)',
@@ -29,7 +29,7 @@ const rgba = [
   'rgba(255,  0,255,0.5)',
   'rgba(255,255,255,0.5)',
   'rgba(  0,  0,  0,0.5)',
-];
+]
 const hsl = [
   'hsl(0,  100%,50%)',
   'hsl(30, 100%,50%)',
@@ -44,51 +44,51 @@ const hsl = [
   'hsl(300,100%,50%)',
   'hsl(330,100%,50%)',
   'hsl(360,100%,50%)',
-];
+]
 const hsla = [
   'hsla(240,100%,50%,0.05)',
   'hsla(240,100%,50%, 0.4)',
   'hsla(240,100%,50%, 0.7)',
   'hsla(240,100%,50%,   1)',
-];
-const preset = [...hex, ...rgb, ...rgba, ...hsl, ...hsla];
+]
+const preset = [...hex, ...rgb, ...rgba, ...hsl, ...hsla]
 
 function getRandomNumber(low = 0, high = 100): number {
-  return Math.floor(Math.random() * (high - low) + low);
+  return Math.floor(Math.random() * (high - low) + low)
 }
 
 export default defineComponent({
   setup() {
-    const defaultColor = 'rgba(128, 128, 64, 0.5)';
+    const defaultColor = 'rgba(128, 128, 64, 0.5)'
 
     const state = reactive({
       color: defaultColor,
       alpha: true,
       colorCustomValue: getRandomNumber(),
       colorPanelClass: 'custom-panel-class-name-' + getRandomNumber(),
-    });
+    })
 
     function onUpdate(color: string): void {
-      state.color = color;
+      state.color = color
     }
 
     function onReset(): void {
-      state.color = defaultColor;
+      state.color = defaultColor
     }
 
     function toggleAlpha(): void {
-      state.alpha = !state.alpha;
+      state.alpha = !state.alpha
     }
 
     function onClick(): void {
       setTimeout(() => {
-        state.colorCustomValue = getRandomNumber();
-        state.colorPanelClass = 'custom-panel-class-name-' + getRandomNumber();
-      }, 300);
+        state.colorCustomValue = getRandomNumber()
+        state.colorPanelClass = 'custom-panel-class-name-' + getRandomNumber()
+      }, 300)
     }
 
     function onOpenChange(open: boolean): void {
-      console.log(open);
+      console.log(open)
     }
 
     return (): JSX.Element => {
@@ -109,20 +109,18 @@ export default defineComponent({
         style: { margin: '10px' },
         ['data-custom']: state.colorCustomValue,
         preset,
-      };
+      }
 
       return (
         <div>
           <div>
             {state.color}
             <NovaButton onClick={onReset}>{() => 'Reset'}</NovaButton>
-            <NovaButton onClick={toggleAlpha}>
-              {() => 'Toggle alpha'}
-            </NovaButton>
+            <NovaButton onClick={toggleAlpha}>{() => 'Toggle alpha'}</NovaButton>
           </div>
           <NovaColorPicker {...pickerProps} />
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

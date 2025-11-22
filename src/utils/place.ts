@@ -1,43 +1,43 @@
-import { type VisualViewport } from '@/shims/visual-viewport';
-import { type Placement } from '../types/props';
+import { type VisualViewport } from '@/shims/visual-viewport'
+import { type Placement } from '../types/props'
 
-type MainAxisPlacement = 'start' | 'center' | 'end';
-type CrossAxisPlacement = 'start' | 'end';
+type MainAxisPlacement = 'start' | 'center' | 'end'
+type CrossAxisPlacement = 'start' | 'end'
 
 interface getAxisPlaceParams {
-  oldStart: number;
-  oldEnd: number;
-  newLength: number;
-  minLength: number;
-  maxLength: number;
+  oldStart: number
+  oldEnd: number
+  newLength: number
+  minLength: number
+  maxLength: number
 }
 
 export interface Offset {
-  left: number;
-  top: number;
+  left: number
+  top: number
 }
 
 export function place(
   oldRect: DOMRect,
   newRect: DOMRect,
   visualViewport: VisualViewport,
-  placement: Placement
+  placement: Placement,
 ): Offset {
-  const viewportWidth = visualViewport.width;
-  const viewportHeight = visualViewport.height;
-  const pageLeft = visualViewport.pageLeft;
-  const pageTop = visualViewport.pageTop;
+  const viewportWidth = visualViewport.width
+  const viewportHeight = visualViewport.height
+  const pageLeft = visualViewport.pageLeft
+  const pageTop = visualViewport.pageTop
 
-  const newWidth = newRect.width;
-  const newHeight = newRect.height;
+  const newWidth = newRect.width
+  const newHeight = newRect.height
 
-  const oldLeft = oldRect.left + pageLeft;
-  const oldTop = oldRect.top + pageTop;
-  const oldRight = oldRect.right + pageLeft;
-  const oldBottom = oldRect.bottom + pageTop;
+  const oldLeft = oldRect.left + pageLeft
+  const oldTop = oldRect.top + pageTop
+  const oldRight = oldRect.right + pageLeft
+  const oldBottom = oldRect.bottom + pageTop
 
-  const maxWidth = viewportWidth + pageLeft;
-  const maxHeight = viewportHeight + pageTop;
+  const maxWidth = viewportWidth + pageLeft
+  const maxHeight = viewportHeight + pageTop
 
   const verticalParams = {
     oldStart: oldTop,
@@ -45,7 +45,7 @@ export function place(
     newLength: newHeight,
     minLength: pageTop,
     maxLength: maxHeight,
-  };
+  }
 
   const horizontalParams = {
     oldStart: oldLeft,
@@ -53,150 +53,138 @@ export function place(
     newLength: newWidth,
     minLength: pageLeft,
     maxLength: maxWidth,
-  };
+  }
 
-  const getMainVerticalStart = () => getMainAxisPlace(verticalParams, 'start');
-  const getMainVerticalCenter = () =>
-    getMainAxisPlace(verticalParams, 'center');
-  const getMainVerticalEnd = () => getMainAxisPlace(verticalParams, 'end');
+  const getMainVerticalStart = () => getMainAxisPlace(verticalParams, 'start')
+  const getMainVerticalCenter = () => getMainAxisPlace(verticalParams, 'center')
+  const getMainVerticalEnd = () => getMainAxisPlace(verticalParams, 'end')
 
-  const getMainHorizontalStart = () =>
-    getMainAxisPlace(horizontalParams, 'start');
-  const getMainHorizontalCenter = () =>
-    getMainAxisPlace(horizontalParams, 'center');
-  const getMainHorizontalEnd = () => getMainAxisPlace(horizontalParams, 'end');
+  const getMainHorizontalStart = () => getMainAxisPlace(horizontalParams, 'start')
+  const getMainHorizontalCenter = () => getMainAxisPlace(horizontalParams, 'center')
+  const getMainHorizontalEnd = () => getMainAxisPlace(horizontalParams, 'end')
 
-  const getCrossVerticalStart = () =>
-    getCrossAxisPlace(verticalParams, 'start');
-  const getCrossVerticalEnd = () => getCrossAxisPlace(verticalParams, 'end');
+  const getCrossVerticalStart = () => getCrossAxisPlace(verticalParams, 'start')
+  const getCrossVerticalEnd = () => getCrossAxisPlace(verticalParams, 'end')
 
-  const getCrossHorizontalEnd = () =>
-    getCrossAxisPlace(horizontalParams, 'end');
-  const getCrossHorizontalStart = () =>
-    getCrossAxisPlace(horizontalParams, 'start');
+  const getCrossHorizontalEnd = () => getCrossAxisPlace(horizontalParams, 'end')
+  const getCrossHorizontalStart = () => getCrossAxisPlace(horizontalParams, 'start')
 
-  let left;
-  let top;
+  let left
+  let top
 
   switch (placement) {
     case 'topLeft':
-      left = getMainHorizontalStart();
-      top = getCrossVerticalStart();
-      break;
+      left = getMainHorizontalStart()
+      top = getCrossVerticalStart()
+      break
     case 'top':
-      left = getMainHorizontalCenter();
-      top = getCrossVerticalStart();
-      break;
+      left = getMainHorizontalCenter()
+      top = getCrossVerticalStart()
+      break
     case 'topRight':
-      left = getMainHorizontalEnd();
-      top = getCrossVerticalStart();
-      break;
+      left = getMainHorizontalEnd()
+      top = getCrossVerticalStart()
+      break
     case 'bottomLeft':
-      left = getMainHorizontalStart();
-      top = getCrossVerticalEnd();
-      break;
+      left = getMainHorizontalStart()
+      top = getCrossVerticalEnd()
+      break
     case 'bottom':
-      left = getMainHorizontalCenter();
-      top = getCrossVerticalEnd();
-      break;
+      left = getMainHorizontalCenter()
+      top = getCrossVerticalEnd()
+      break
     case 'bottomRight':
-      left = getMainHorizontalEnd();
-      top = getCrossVerticalEnd();
-      break;
+      left = getMainHorizontalEnd()
+      top = getCrossVerticalEnd()
+      break
     case 'leftTop':
-      left = getCrossHorizontalStart();
-      top = getMainVerticalStart();
-      break;
+      left = getCrossHorizontalStart()
+      top = getMainVerticalStart()
+      break
     case 'left':
-      left = getCrossHorizontalStart();
-      top = getMainVerticalCenter();
-      break;
+      left = getCrossHorizontalStart()
+      top = getMainVerticalCenter()
+      break
     case 'leftBottom':
-      left = getCrossHorizontalStart();
-      top = getMainVerticalEnd();
-      break;
+      left = getCrossHorizontalStart()
+      top = getMainVerticalEnd()
+      break
     case 'rightTop':
-      left = getCrossHorizontalEnd();
-      top = getMainVerticalStart();
-      break;
+      left = getCrossHorizontalEnd()
+      top = getMainVerticalStart()
+      break
     case 'right':
-      left = getCrossHorizontalEnd();
-      top = getMainVerticalCenter();
-      break;
+      left = getCrossHorizontalEnd()
+      top = getMainVerticalCenter()
+      break
     case 'rightBottom':
-      left = getCrossHorizontalEnd();
-      top = getMainVerticalEnd();
-      break;
+      left = getCrossHorizontalEnd()
+      top = getMainVerticalEnd()
+      break
   }
 
   return {
     left,
     top,
-  };
+  }
 }
 
-function getMainAxisPlace(
-  params: getAxisPlaceParams,
-  placement: MainAxisPlacement
-) {
-  const { oldStart, oldEnd, newLength, minLength, maxLength } = params;
+function getMainAxisPlace(params: getAxisPlaceParams, placement: MainAxisPlacement) {
+  const { oldStart, oldEnd, newLength, minLength, maxLength } = params
   if (newLength > maxLength - minLength) {
-    return minLength;
+    return minLength
   }
 
-  let newStart;
+  let newStart
 
   switch (placement) {
     case 'start':
-      newStart = oldStart;
-      break;
+      newStart = oldStart
+      break
     case 'center':
-      newStart = oldEnd - (oldEnd - oldStart) / 2 - newLength / 2;
-      break;
+      newStart = oldEnd - (oldEnd - oldStart) / 2 - newLength / 2
+      break
     case 'end':
-      newStart = oldEnd - newLength;
-      break;
+      newStart = oldEnd - newLength
+      break
   }
 
   if (newStart + newLength > maxLength) {
-    newStart = maxLength - newLength;
+    newStart = maxLength - newLength
   }
   if (newStart < minLength) {
-    newStart = minLength;
+    newStart = minLength
   }
 
-  return newStart;
+  return newStart
 }
 
-function getCrossAxisPlace(
-  params: getAxisPlaceParams,
-  placement: CrossAxisPlacement
-) {
-  const { oldStart, oldEnd, newLength, minLength, maxLength } = params;
+function getCrossAxisPlace(params: getAxisPlaceParams, placement: CrossAxisPlacement) {
+  const { oldStart, oldEnd, newLength, minLength, maxLength } = params
   if (newLength > maxLength - minLength) {
-    return minLength;
+    return minLength
   }
 
-  let newStart;
+  let newStart
 
   switch (placement) {
     case 'start':
-      newStart = oldStart - newLength;
+      newStart = oldStart - newLength
       if (newStart < minLength) {
-        newStart = oldEnd;
+        newStart = oldEnd
       }
-      break;
+      break
     case 'end':
-      newStart = oldEnd;
+      newStart = oldEnd
       if (newStart + newLength > maxLength) {
-        newStart = oldStart - newLength;
+        newStart = oldStart - newLength
       }
-      break;
+      break
   }
 
   if (newStart < minLength) {
-    newStart = minLength;
+    newStart = minLength
   }
 
-  return newStart;
+  return newStart
 }

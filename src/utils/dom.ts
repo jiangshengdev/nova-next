@@ -1,86 +1,83 @@
-import { type VisualViewport } from '@/shims/visual-viewport';
+import { type VisualViewport } from '@/shims/visual-viewport'
 
-const defaultSearchLimit = 1024;
+const defaultSearchLimit = 1024
 
 export interface FunctionKeys {
-  alt: boolean;
-  shift: boolean;
-  ctrl: boolean;
+  alt: boolean
+  shift: boolean
+  ctrl: boolean
 }
 
-export const up = Symbol('up');
-export const down = Symbol('down');
-export type Direction = typeof up | typeof down;
+export const up = Symbol('up')
+export const down = Symbol('down')
+export type Direction = typeof up | typeof down
 
 export function getInputValue(target: HTMLInputElement): string {
-  return target.value.trim();
+  return target.value.trim()
 }
 
-export function setInputValue(
-  target: HTMLInputElement,
-  value: string | number
-): void {
-  target.value = value.toString();
+export function setInputValue(target: HTMLInputElement, value: string | number): void {
+  target.value = value.toString()
 }
 
 export function getElementPosition(element: HTMLElement): DOMRect {
-  return element.getBoundingClientRect();
+  return element.getBoundingClientRect()
 }
 
 export function isInElement(
   departure: HTMLElement,
   destination: HTMLElement,
-  searchLimit = defaultSearchLimit
+  searchLimit = defaultSearchLimit,
 ): boolean {
-  let currElement: HTMLElement | null = departure;
+  let currElement: HTMLElement | null = departure
   for (let i = 0; i < searchLimit; i++) {
     if (currElement === destination) {
-      return true;
+      return true
     }
     if (!currElement) {
-      return false;
+      return false
     }
-    currElement = currElement.parentElement;
+    currElement = currElement.parentElement
   }
 
-  return false;
+  return false
 }
 
 export function getStyleOf(element: HTMLElement, prop: string): string {
-  return getComputedStyle(element).getPropertyValue(prop);
+  return getComputedStyle(element).getPropertyValue(prop)
 }
 
 export function getPixelNumber(pixel: string): number {
   if (!pixel) {
-    return 0;
+    return 0
   }
 
   if (pixel.indexOf('px') !== pixel.length - 2) {
-    throw new Error('Can only get pixel type');
+    throw new Error('Can only get pixel type')
   }
 
-  return parseFloat(pixel);
+  return parseFloat(pixel)
 }
 
 export function getPaddingTop(element: HTMLElement): number {
-  const borderTopWidth = getStyleOf(element, 'padding-top');
+  const borderTopWidth = getStyleOf(element, 'padding-top')
 
-  return getPixelNumber(borderTopWidth);
+  return getPixelNumber(borderTopWidth)
 }
 
 export function getPaddingLeft(element: HTMLElement): number {
-  const borderLeftWidth = getStyleOf(element, 'padding-left');
+  const borderLeftWidth = getStyleOf(element, 'padding-left')
 
-  return getPixelNumber(borderLeftWidth);
+  return getPixelNumber(borderLeftWidth)
 }
 
 export function getVisualViewport(): VisualViewport {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const visualViewport = window.visualViewport;
+  const visualViewport = window.visualViewport
 
   if (visualViewport) {
-    return visualViewport;
+    return visualViewport
   }
 
   return {
@@ -94,7 +91,7 @@ export function getVisualViewport(): VisualViewport {
     pageTop: window.pageYOffset,
     scale: 1,
     width: document.documentElement.clientWidth,
-  };
+  }
 }
 
 export function setStyles(element: HTMLElement, styles: unknown): void {
@@ -103,34 +100,32 @@ export function setStyles(element: HTMLElement, styles: unknown): void {
   Reflect.ownKeys(styles).forEach((key) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    element.style[key] = styles[key];
-  });
+    element.style[key] = styles[key]
+  })
 }
 
 export function isTouchSupported(): boolean {
-  return window.ontouchstart !== undefined;
+  return window.ontouchstart !== undefined
 }
 
 export function getFocusable(target: HTMLElement | null): HTMLElement[] | null {
   if (!target) {
-    return null;
+    return null
   }
 
-  const mayFocusable = target.querySelectorAll(
-    'a,button,details,input,select,textarea,[tabindex]'
-  );
+  const mayFocusable = target.querySelectorAll('a,button,details,input,select,textarea,[tabindex]')
 
   return Array.from(mayFocusable).filter((item) => {
-    const tabindex = item.getAttribute('tabindex');
+    const tabindex = item.getAttribute('tabindex')
 
     if (item.getAttribute('data-nova-trap')) {
-      return false;
+      return false
     }
 
     if (item.getAttribute('disabled')) {
-      return false;
+      return false
     }
 
-    return !(tabindex && tabindex.indexOf('-') !== -1);
-  }) as HTMLElement[];
+    return !(tabindex && tabindex.indexOf('-') !== -1)
+  }) as HTMLElement[]
 }
