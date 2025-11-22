@@ -12,7 +12,7 @@ export async function rollupDts() {
   await new Promise<void>((resolve, reject) => {
     const args = [
       '--project',
-      'tsconfig.json',
+      'tsconfig.app.json',
       '--declaration',
       '--emitDeclarationOnly',
       '--outDir',

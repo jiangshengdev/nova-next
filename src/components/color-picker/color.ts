@@ -211,7 +211,7 @@ export class Color {
     const [red, green, blue] = getRgbFromText(
       `${textRed},${textGreen},${textBlue}`
     );
-    const alpha = parseFloat(textAlpha);
+    const alpha = parseFloat(textAlpha ?? '1');
 
     return new Color(red, green, blue, alpha);
   }
@@ -242,7 +242,7 @@ export class Color {
     const [hue, saturation, lightness] = getHslFromText(
       `${textHue},${textSaturation},${textLightness}`
     );
-    const alpha = parseFloat(textAlpha);
+    const alpha = parseFloat(textAlpha ?? '1');
 
     return Color.fromCssHsla(hue, saturation, lightness, alpha);
   }

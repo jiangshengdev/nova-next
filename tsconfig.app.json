@@ -1,0 +1,33 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": false,
+    "declarationDir": "./temp",
+    "esModuleInterop": true,
+    "jsxImportSource": "vue",
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": false,
+    "useDefineForClassFields": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vite/client"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.mts",
+    "src/**/*.cts",
+    "src/**/*.vue",
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "exclude": ["src/**/__tests__/*", "node_modules", "temp"]
+}

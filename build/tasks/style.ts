@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { dest, series, src } from 'gulp';
+import type { TaskFunction } from 'gulp';
 import autoprefixer from 'autoprefixer';
 import postcss from 'gulp-postcss';
 import atImport from 'postcss-import';
@@ -26,7 +27,7 @@ async function components() {
     return component(file, `./dist/css/${componentName}.css`);
   });
 
-  return await Promise.all(list);
+  await Promise.all(list);
 }
 
 async function bundle() {
@@ -34,4 +35,6 @@ async function bundle() {
   await component('./src/styles/themes/index.css', './dist/css/themes.css');
 }
 
-export default series(components, bundle);
+const buildStyles: TaskFunction = series(components, bundle);
+
+export default buildStyles;

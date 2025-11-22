@@ -209,7 +209,8 @@ export const NovaColorPicker = defineComponent({
         activeModeIndex = 0;
       }
 
-      state.mode = modeList[activeModeIndex];
+      const nextMode = modeList[activeModeIndex] ?? state.mode;
+      state.mode = nextMode;
     }
 
     function onOpenChange(open: boolean) {

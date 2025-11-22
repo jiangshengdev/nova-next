@@ -34,6 +34,9 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     }
 
     const firstFinger = e.changedTouches[0];
+    if (!firstFinger) {
+      return;
+    }
 
     state.touch.moving = true;
     requestAnimationFrame(() => {
@@ -69,6 +72,9 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     }
 
     const firstFinger = e.changedTouches[0];
+    if (!firstFinger) {
+      return;
+    }
 
     const target: HTMLElement = ref.value as HTMLElement;
     rect = target.getBoundingClientRect();
