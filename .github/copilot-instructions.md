@@ -1,22 +1,23 @@
-# Nova Next • Copilot Instructions
+# Nova Next • Copilot 指南
 
-- **Framework & entry points**: `src/main.ts` bootstraps Vue 3 + TSX, mounts `App.tsx`, and applies router plus global styles from `src/styles`; vite alias `@` targets `src/` (see `vite.config.ts`).
-- **Environment context**: Wrap visual components in `NovaEnvironment` (`src/components/environment`) to propagate theme + language via `useEnvironment`; components expect `environmentProps` and pass `data-nova-theme` for theming.
-- **Public surface**: `src/index.ts` re-exports `NovaButton`, `NovaInput`, `NovaColorPicker`, `NovaDropdown`, and language helpers; match this structure when adding publishable widgets so consumers share one entry module.
-- **Routing + demos**: `src/router/index.ts` lazy-loads TSX views under `src/views`; demos in `src/views/demos/**` act as manual regression playgrounds, so extend these when showcasing new component capabilities.
-- **Styling conventions**: Component styles live in `src/components/<name>/styles` and rely on CSS vars defined in `src/styles/themes/**`; prefer BEM-like `nova-*` class prefixes and respect `data-nova-theme` attributes toggled in `App.tsx`.
-- **Language packs**: Author i18n text in `src/environments/languages/*.ts` conforming to `types/language.ts`; color picker copies strings via `environment.languageRef.value.colorPicker`.
-- **Dropdown + focus mgmt**: Overlays route through `NovaDropdown` (`src/components/dropdown`) which teleports panels, traps focus with `.nova-trap`, and animates placement using `use-dropdown` + `utils/place.ts`; reuse these slots/instances instead of rolling bespoke popovers.
-- **Pointer utilities**: Drag / slide behavior (HSV panel, hue/alpha bars) use `use-move`, `use-mousemove`, and `use-touchmove` to normalize pointer + touch events; wire new gestures through these hooks to keep behavior consistent across inputs.
-- **Color math**: `components/color-picker/color.ts` exposes the immutable `Color` class for parsing/formatting hex, rgb, hsl and powering preset logic; prefer this helper over ad-hoc color math to stay in sync with serialization formats.
-- **Testing approach**: Vitest config (`vitest.config.ts`) reuses Vite settings, runs in jsdom, and loads `tests/setup.ts` to disable transition stubs; unit specs (e.g., `components/button/__tests__`) mount TSX wrappers and snapshot HTML under `__snapshots__`.
-- **E2E**: Playwright specs live in `e2e/`; config auto-starts `pnpm dev` locally or `pnpm preview` on CI and sets `baseURL` 5173/4173—no need to rewrite server hooks when adding suites.
-- **Build + type safety**: `pnpm build` concurrently runs `vue-tsc --build` and `vite build` via `npm-run-all2`; keep both clean before submitting CI fixes.
-- **Scripts to remember**: `pnpm dev`, `pnpm test:unit`, `pnpm test:e2e`, `pnpm lint` (runs `oxlint` + `eslint`), and `pnpm format` (Prettier + @prettier/plugin-oxc for TSX) are the expected workflows; repo targets Node 20.19+ per `package.json`.
-- **Playground verification**: When changing UI/interaction-heavy components, validate `src/views/demos/*` in the dev server plus snapshot updates, then run `pnpm test:e2e --project=chromium` if dropdown or routing behavior shifts.
-- **Focus & accessibility**: Dropdown + color picker rely on `aria-*` strings from language packs and keyboard handlers (`Enter`, `Escape`, `Tab` traps) defined in their TSX files; preserve these patterns when expanding props to avoid regressions.
-- **Theme persistence**: `App.tsx` stores the theme in `localStorage` (`nova-theme`) and applies it via `<html data-nova-theme>`; any global styles or new layout components should read CSS vars instead of hard-coded colors to stay compatible with the switcher.
-- **Publishing guardrails**: Components set `FunctionalComponent` metadata (`displayName`, `inheritAttrs`) for downstream tooling; ensure new exports follow suit so library consumers receive predictable names + attribute forwarding.
-- **CI expectations**: Snapshot drift or lint failures block merges; update `__snapshots__` alongside feature changes and keep `pnpm lint:oxlint` warnings at zero (strict `correctness` rules enforced).
-- **Iconography**: Color picker close button and other controls pull from `@jiangshengdev/material-design-icons-vue-next`; prefer this package (already tree-shaken) for new icons to avoid bundling duplicates.
-- **Data flow mental model**: Inputs/events mutate reactive `state` objects, computed props derive render-ready values, and watchers sync `props` ↔ internal state (e.g., `NovaColorPicker` watchers on `value` and `alpha`); follow this triad to keep complex widgets predictable.
+- **沟通语言**：项目内的文档、代码注释与机器人回复全部统一为简体中文，请在提交前确认未混入其他语言。
+- **框架与入口**：`src/main.ts` 负责挂载 Vue 3 + TSX 的 `App.tsx`，同时加载路由与 `src/styles` 下的全局样式；在 `vite.config.ts` 中配置的 `@` 指向 `src/`，引入模块时直接复用。
+- **环境上下文**：所有视觉组件通过 `NovaEnvironment`（`src/components/environment`）注入主题与语言，内部使用 `useEnvironment` 获取 `themeRef` 与 `languageRef`；组件通常声明 `environmentProps` 并透传 `data-nova-theme` 以驱动皮肤。
+- **公共出口**：`src/index.ts` 统一导出 `NovaButton`、`NovaInput`、`NovaColorPicker`、`NovaDropdown` 以及语言工具，新增可复用组件时保持同样的入口结构，方便外部一次性引入。
+- **路由与演示页**：`src/router/index.ts` 以懒加载方式挂载 `src/views` 下的 TSX 视图；`src/views/demos/**` 是手动回归与玩法展示区，扩展组件能力时同步补充对应 demo。
+- **样式规范**：每个组件的样式存放在 `src/components/<name>/styles`，依赖 `src/styles/themes/**` 中的 CSS 变量；类名使用 `nova-*` 前缀并尊重 `App.tsx` 设置的 `data-nova-theme`。
+- **语言包**：i18n 文案位于 `src/environments/languages/*.ts`，结构遵循 `types/language.ts`；例如取色器通过 `environment.languageRef.value.colorPicker` 读取 aria 文案。
+- **下拉层与焦点管理**：所有浮层统一走 `NovaDropdown`（`src/components/dropdown`），内部用 `use-dropdown` + `utils/place.ts` 计算定位，通过 `.nova-trap` 处理焦点环；自定义弹层时复用已有触发/面板插槽。
+- **指针工具链**：拖拽或滑块逻辑（HSV 面板、Hue/Alpha 滑条）依赖 `use-move`、`use-mousemove`、`use-touchmove` 做事件归一化，新增手势请接入这些 hook 以保持多端一致。
+- **颜色算法**：`components/color-picker/color.ts` 提供不可变 `Color` 类，支持 hex/rgb/hsl 解析与格式化，并承载预设逻辑；不要重复造轮子以免串格式。
+- **测试策略**：Vitest 配置在 `vitest.config.ts`，复用 Vite 配置、运行 jsdom，并在 `tests/setup.ts` 关闭过渡 stub；单测（如 `components/button/__tests__`）以 TSX 包装器挂载并在 `__snapshots__` 下比对输出。
+- **端到端测试**：Playwright 用例位于 `e2e/`，`playwright.config.ts` 会在本地启动 `pnpm dev`、在 CI 启动 `pnpm preview`，`baseURL` 分别为 5173/4173，新增场景时无需改动服务器脚本。
+- **构建与类型**：`pnpm build` 借助 `npm-run-all2` 并行执行 `vue-tsc --build` 与 `vite build`；在合入前保持两者无报错，避免 CI 阻塞。
+- **常用脚本**：`pnpm dev`、`pnpm test:unit`、`pnpm test:e2e`、`pnpm lint`（串行 `oxlint` + `eslint`）以及 `pnpm format`（Prettier + @prettier/plugin-oxc）是默认工作流，`package.json` 要求 Node ≥ 20.19。
+- **演练校验**：涉及交互或视觉改动时，请在 `src/views/demos/*` 中验证效果并更新快照；若影响下拉或路由行为，再跑 `pnpm test:e2e --project=chromium`。
+- **无障碍关注点**：下拉与取色器的 aria 文案来自语言包，键盘逻辑（Enter、Escape、Tab Trap）写在各自 TSX 文件；扩展属性时务必保持这些模式。
+- **主题持久化**：`App.tsx` 通过 `localStorage` 的 `nova-theme` 记录主题，并写入 `<html data-nova-theme>`；新的全局样式请依赖主题变量而非硬编码颜色。
+- **对外约束**：组件会设置 `FunctionalComponent` 元数据（`displayName`、`inheritAttrs`）供下游工具使用，新增导出时同步补齐，确保消费方可追踪。
+- **CI 要求**：单测快照或 lint 失败会阻断合并；功能调整需同步更新 `__snapshots__`，并保证 `pnpm lint:oxlint` 零警告（强制 correctness 规则）。
+- **图标使用**：取色器关闭按钮等控制使用 `@jiangshengdev/material-design-icons-vue-next`，保持该依赖的图标来源，避免重复打包。
+- **数据流心智模型**：输入/事件写入响应式 `state`，`computed` 派生可渲染数据，`watch` 保持 `props` 与内部状态同步（如取色器对 `value`、`alpha` 的联动）；新增复杂组件时复用该模型以降低不可预期状态。
