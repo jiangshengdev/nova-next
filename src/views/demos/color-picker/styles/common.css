@@ -1,0 +1,61 @@
+/* 颜色选择器 Demo 通用样式 */
+
+h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h4 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.demo-color-picker-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.demo-color-picker-value {
+  padding: 4px 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--nova-color-font);
+}
+
+.demo-color-picker-description {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: var(--nova-color-bg-component);
+  border-radius: var(--nova-radius);
+  border: var(--nova-border);
+}
+
+.demo-color-picker-description p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--nova-color-font);
+}
+
+.demo-color-picker-description code {
+  padding: 2px 6px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+/* 各个 Demo 区块的间距 */
+.demo-color-picker-basic,
+.demo-color-picker-disabled,
+.demo-color-picker-format,
+.demo-color-picker-preset {
+  margin-bottom: 40px;
+}
