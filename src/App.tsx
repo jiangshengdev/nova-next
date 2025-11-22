@@ -98,6 +98,9 @@ export default defineComponent({
                   <RouterLink to="/input">Input</RouterLink>
                 </li>
                 <li>
+                  <RouterLink to="/environment">Environment</RouterLink>
+                </li>
+                <li>
                   <RouterLink to="/about">About</RouterLink>
                 </li>
               </ul>
