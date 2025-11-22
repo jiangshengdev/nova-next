@@ -1,8 +1,8 @@
-import { defineComponent, reactive, ref, Ref } from 'vue';
+import { defineComponent, reactive, ref, type Ref } from 'vue';
 import {
-  Direction,
+  type Direction,
   down,
-  FunctionKeys,
+  type FunctionKeys,
   getInputValue,
   setInputValue,
   up,

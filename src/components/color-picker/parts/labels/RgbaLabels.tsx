@@ -7,9 +7,9 @@ import {
   createAlpha,
   createChannel,
   intNormalize,
-  UpdateParams,
+  type UpdateParams,
 } from './label-utils';
-import { Environment } from '../../../../uses/use-environment';
+import { type Environment } from '../../../../uses/use-environment';
 
 type rgbChannel = 'red' | 'green' | 'blue';
 type ColorEmit = 'colorInput' | 'colorBlur';

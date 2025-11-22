@@ -1,13 +1,13 @@
-import { defineComponent, Ref, ref, useAttrs } from 'vue';
+import { defineComponent, type Ref, ref, useAttrs } from 'vue';
 import {
-  Direction,
+  type Direction,
   down,
-  FunctionKeys,
+  type FunctionKeys,
   getInputValue,
   setInputValue,
   up,
 } from '../../../../utils/dom';
-import { UpdateParams } from './label-utils';
+import { type UpdateParams } from './label-utils';
 import { numberFixed } from '../../../../utils/utils';
 
 interface NumberInputProps {

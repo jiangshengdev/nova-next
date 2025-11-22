@@ -1,6 +1,6 @@
 // Copy from @vue/runtime-dom/dist/runtime-dom.d.ts
 
-import { AllowedComponentProps, Events } from 'vue';
+import { type AllowedComponentProps, type Events } from 'vue';
 
 type StringKeyOf<T> = Extract<keyof T, string>;
 

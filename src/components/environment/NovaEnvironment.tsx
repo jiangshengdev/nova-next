@@ -1,7 +1,7 @@
-import { computed, defineComponent, PropType, provide } from 'vue';
+import { computed, defineComponent, type PropType, provide } from 'vue';
 import { languageKey, themeKey } from '../../utils/symbols';
 import { languageDefault, themeDefault } from '../../uses/use-environment';
-import { Language } from '../../types/language';
+import { type Language } from '../../types/language.ts';
 
 export interface EnvironmentProps {
   theme?: string;

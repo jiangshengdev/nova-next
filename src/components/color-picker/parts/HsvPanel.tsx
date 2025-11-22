@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue';
-import { MovePosition, useMove } from '../../../uses/use-move';
+import { type MovePosition, useMove } from '../../../uses/use-move';
 import { Color } from '../color';
 import { numberFixed } from '../../../utils/utils';
 

@@ -1,5 +1,5 @@
-import { VisualViewport } from '../shims/visual-viewport';
-import { Placement } from '../types/props';
+import { type VisualViewport } from '@/shims/visual-viewport';
+import { type Placement } from '../types/props';
 
 type MainAxisPlacement = 'start' | 'center' | 'end';
 type CrossAxisPlacement = 'start' | 'end';

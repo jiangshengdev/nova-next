@@ -1,4 +1,4 @@
-import { Language } from '../../types/language';
+import { type Language } from '../../types/language.ts';
 
 const zhCN: Language = {
   name: 'Chinese Simplified',

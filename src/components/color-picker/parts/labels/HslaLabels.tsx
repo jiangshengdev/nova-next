@@ -7,9 +7,9 @@ import {
   createAlpha,
   createChannel,
   intNormalize,
-  UpdateParams,
+  type UpdateParams,
 } from './label-utils';
-import { Environment } from '../../../../uses/use-environment';
+import { type Environment } from '../../../../uses/use-environment';
 
 type hslChannel = 'hue' | 'saturation' | 'lightness';
 type ColorEmit = 'colorInput' | 'colorBlur';

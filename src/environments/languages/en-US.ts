@@ -1,4 +1,4 @@
-import { Language } from '../../types/language';
+import { type Language } from '../../types/language.ts';
 
 const enUS: Language = {
   name: 'English, United States',

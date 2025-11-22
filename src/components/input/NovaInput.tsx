@@ -1,10 +1,10 @@
-import { InputHTMLAttributes, FunctionalComponent } from 'vue';
+import { type InputHTMLAttributes, type FunctionalComponent } from 'vue';
 import { useEnvironment } from '../../uses/use-environment';
 import {
   environmentProps,
-  EnvironmentProps,
+  type EnvironmentProps,
 } from '../environment/NovaEnvironment';
-import { VueClass, VueStyle } from '../../types/props';
+import { type VueClass, type VueStyle } from '../../types/props';
 
 interface InputProps extends EnvironmentProps {
   class?: VueClass;

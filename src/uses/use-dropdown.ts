@@ -1,4 +1,4 @@
-import { nextTick, onBeforeUnmount, onMounted, reactive, Ref } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, reactive, type Ref } from 'vue';
 import {
   getElementPosition,
   getFocusable,
@@ -6,9 +6,9 @@ import {
   isInElement,
   setStyles,
 } from '../utils/dom';
-import { VisualViewport } from '../shims/visual-viewport';
-import { Offset, place } from '../utils/place';
-import { Placement } from '../types/props';
+import { type VisualViewport } from '@/shims/visual-viewport';
+import { type Offset, place } from '../utils/place';
+import { type Placement } from '../types/props';
 
 interface UseDropdownParams {
   triggerRef: Ref<HTMLElement | null>;

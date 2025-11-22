@@ -1,4 +1,4 @@
-import { VisualViewport } from '../shims/visual-viewport';
+import { type VisualViewport } from '@/shims/visual-viewport';
 
 const defaultSearchLimit = 1024;
 

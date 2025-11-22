@@ -2,13 +2,13 @@ import {
   computed,
   defineComponent,
   onMounted,
-  PropType,
+  type PropType,
   reactive,
   ref,
   watch,
 } from 'vue';
-import { MovePosition } from '../../uses/use-move';
-import { Color, ColorFormat } from './color';
+import { type MovePosition } from '../../uses/use-move';
+import { Color, type ColorFormat } from './color';
 import { ColorPickerTrigger } from './parts/Trigger';
 import { HsvPanel } from './parts/HsvPanel';
 import { HueSlide } from './parts/slides/HueSlide';
@@ -22,15 +22,15 @@ import { useEnvironment } from '../../uses/use-environment';
 import { MDIClose } from '@jiangshengdev/material-design-icons-vue-next';
 import { NovaDropdown } from '../dropdown';
 import {
-  DropdownInstance,
-  DropdownPanelScoped,
+  type DropdownInstance,
+  type DropdownPanelScoped,
   dropdownProps,
-  DropdownProps,
-  DropdownTriggerScoped,
+  type DropdownProps,
+  type DropdownTriggerScoped,
 } from '../dropdown/NovaDropdown';
 import {
   environmentProps,
-  EnvironmentProps,
+  type EnvironmentProps,
 } from '../environment/NovaEnvironment';
 import { numberLimit } from '../../utils/utils';
 

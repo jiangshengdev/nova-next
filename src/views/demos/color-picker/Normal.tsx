@@ -1,8 +1,8 @@
 import { defineComponent, reactive } from 'vue';
 import { Color, NovaButton, NovaColorPicker } from '../../../index';
 import {
-  ColorPickerPresetScoped,
-  ColorPickerTriggerScoped,
+  type ColorPickerPresetScoped,
+  type ColorPickerTriggerScoped,
 } from '../../../components/color-picker/NovaColorPicker';
 import hslData from '../../../components/color-picker/assets/css-wg/hsl';
 import './styles/normal.css';

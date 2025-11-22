@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted, reactive } from 'vue';
-import { MoveParams, MovePosition } from './use-move';
+import { type MoveParams, type MovePosition } from './use-move';
 import { getPaddingLeft, getPaddingTop } from '../utils/dom';
 
 export interface MouseState {

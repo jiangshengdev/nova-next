@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 import { mount } from '@vue/test-utils';
 import { NovaColorPicker } from '../NovaColorPicker';
-import { ColorFormat } from '../color';
+import { type ColorFormat } from '../color';
 import { getStyleOf } from '../../../utils/dom';
 
 describe('color-picker', () => {

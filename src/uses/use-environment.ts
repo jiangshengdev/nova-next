@@ -1,8 +1,8 @@
-import { computed, inject, Ref, ref, toRef } from 'vue';
+import { computed, inject, type Ref, ref, toRef } from 'vue';
 import { languageKey, themeKey } from '../utils/symbols';
-import { Language } from '../types/language';
+import { type Language } from '../types/language';
 import { enUS } from '../environments/languages';
-import { EnvironmentProps } from '../components/environment/NovaEnvironment';
+import { type EnvironmentProps } from '../components/environment/NovaEnvironment';
 
 export const themeDefault = 'light';
 export const languageDefault = enUS;

@@ -2,21 +2,21 @@ import {
   computed,
   defineComponent,
   ref,
-  Ref,
+  type Ref,
   Teleport,
   Transition,
-  VNode,
+  type VNode,
   vShow,
   watch,
   withDirectives,
 } from 'vue';
-import { Environment, useEnvironment } from '../../uses/use-environment';
+import { type Environment, useEnvironment } from '../../uses/use-environment';
 import { durationLong, useDropdown } from '../../uses/use-dropdown';
 import {
-  EnvironmentProps,
+  type EnvironmentProps,
   environmentProps,
 } from '../environment/NovaEnvironment';
-import { Placement, VueClass, VueProps, VueStyle } from '../../types/props';
+import { type Placement, type VueClass, type VueProps, type VueStyle } from '../../types/props';
 import { getFocusable } from '../../utils/dom';
 
 export interface DropdownProps extends EnvironmentProps {

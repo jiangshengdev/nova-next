@@ -1,4 +1,4 @@
-import { FunctionalComponent, PropType } from 'vue';
+import { type FunctionalComponent, type PropType } from 'vue';
 import { Color } from '../color';
 
 interface PreviewProps {

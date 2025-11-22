@@ -1,6 +1,6 @@
-import { Ref } from 'vue';
-import { MouseState, useMousemove } from './use-mousemove';
-import { TouchState, useTouchmove } from './use-touchmove';
+import { type Ref } from 'vue';
+import { type MouseState, useMousemove } from './use-mousemove';
+import { type TouchState, useTouchmove } from './use-touchmove';
 
 export interface MovePosition {
   x: number;
