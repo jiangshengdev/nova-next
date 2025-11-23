@@ -9,7 +9,7 @@ import {
   intNormalize,
   type UpdateParams,
 } from './label-utils'
-import { type Environment } from '../../../../uses/use-environment'
+import { type EnvironmentContext } from '../../../../uses/use-environment'
 
 type hslChannel = 'hue' | 'saturation' | 'lightness'
 type ColorEmit = 'colorInput' | 'colorBlur'
@@ -17,7 +17,7 @@ type ColorEmit = 'colorInput' | 'colorBlur'
 interface HslaLabelsProps {
   alpha: boolean
   color: Color
-  environment: Environment
+  environment: EnvironmentContext
   onColorInput?: (color: Color) => void
   onColorBlur?: (color: Color) => void
 }

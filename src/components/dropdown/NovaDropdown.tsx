@@ -10,7 +10,7 @@ import {
   watch,
   withDirectives,
 } from 'vue'
-import { type Environment, useEnvironment } from '../../uses/use-environment'
+import { type EnvironmentContext, useEnvironment } from '../../uses/use-environment'
 import { durationLong, useDropdown } from '../../uses/use-dropdown'
 import { type EnvironmentProps, environmentProps } from '../environment/NovaEnvironment'
 import { type Placement, type VueClass, type VueProps, type VueStyle } from '../../types/props'
@@ -22,7 +22,7 @@ export interface DropdownProps extends EnvironmentProps {
   panelStyle?: VueStyle
   panelProps?: VueProps
   teleportToBody?: boolean
-  environment?: Environment
+  environment?: EnvironmentContext
   placement?: Placement
   onOpenChange?: (open: boolean) => void
 }
