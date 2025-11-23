@@ -24,10 +24,11 @@
 
 ## 3. 组件类型未暴露（Minor）
 
-- 【待处理】
+- 【已解决】
 
 - 位置：`src/components/input/index.ts`
 - 描述：虽然在实现文件中声明了 `NovaInputProps`，但未对外导出，外部无法获取该类型用于封装或类型推断，API 不完整。
 - 可能的解决方案建议：
 	1. 在 `NovaInput.tsx` 中 `export type NovaInputProps` 并在 `src/components/input/index.ts`、`src/index.ts` 透传。
 	2. 若不对外暴露类型，可在 README/API 文档中明确限制，避免调用方误用。
+- 处理进度：已在 `NovaInput.tsx` 导出 `NovaInputProps`，并由 `src/components/input/index.ts` 与 `src/index.ts` 统一透出类型供外部消费。
