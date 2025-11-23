@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`input > render 1`] = `
+exports[`input basic > 基础态渲染 1`] = `
 "<div>
   <div class="nova-input" data-nova-theme="light"><input type="text" class="nova-input-text" value="">
     <div class="nova-input-border"></div>
@@ -9,6 +9,17 @@ exports[`input > render 1`] = `
     <div class="nova-input-border"></div>
   </div>
   <div class="nova-input nova-input-readonly" data-nova-theme="light"><input type="text" class="nova-input-text" readonly="" value="">
+    <div class="nova-input-border"></div>
+  </div>
+</div>"
+`;
+
+exports[`input basic > 自定义类名与样式渲染正确 1`] = `
+"<div>
+  <div class="nova-input custom-wrap" style="color: red;" data-nova-theme="light"><input type="text" class="nova-input-text custom-input" value="">
+    <div class="nova-input-border"></div>
+  </div>
+  <div class="nova-input custom-wrap is-muted" style="background: rgba(0, 0, 0, 0.1);" data-nova-theme="light"><input type="text" class="nova-input-text custom-input focused" value="prefill">
     <div class="nova-input-border"></div>
   </div>
 </div>"
