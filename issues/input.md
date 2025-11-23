@@ -13,13 +13,14 @@
 
 ## 2. wrapStyle 类型不一致（Minor）
 
-- 【待处理】
+- 【已解决】
 
 - 位置：`src/components/input/NovaInput.tsx`
 - 描述：类型声明允许 `string | CSSProperties`，运行时 `props` 却仅接受 `Object`，若传入字符串样式会被 Vue 视为非法类型并被忽略，与类型签名不符。
 - 可能的解决方案建议：
 	1. 将 `wrapStyle` 的 prop `type` 扩展为 `[String, Object]`，与类型声明保持一致。
 	2. 或者在类型层面改为 `CSSProperties`，避免字符串被误认为支持。
+- 处理进度：`NovaInput.tsx` 已将 `wrapStyle` 支持扩展为 `[String, Object]` 并添加 `wrapStyle accepts string value` 单测覆盖。
 
 ## 3. 组件类型未暴露（Minor）
 

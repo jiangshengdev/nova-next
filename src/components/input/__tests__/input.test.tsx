@@ -60,4 +60,14 @@ describe('input', () => {
     await wrapper.get('input').setValue('nova')
     expect(onInput).toHaveBeenCalled()
   })
+
+  test('wrapStyle accepts string value', () => {
+    const wrapper = mount(NovaInput, {
+      props: {
+        wrapStyle: 'color: red;',
+      },
+    })
+
+    expect(wrapper.attributes('style')).toContain('color: red;')
+  })
 })

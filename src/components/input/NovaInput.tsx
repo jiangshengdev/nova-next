@@ -24,7 +24,7 @@ const inputProps = {
     default: null,
   },
   wrapStyle: {
-    type: Object,
+    type: [String, Object],
     default: null,
   },
   disabled: {
