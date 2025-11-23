@@ -2,12 +2,12 @@ import { type ButtonHTMLAttributes, type FunctionalComponent, type PropType, typ
 import { useEnvironment } from '../../uses/use-environment'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 
-export interface ButtonProps extends EnvironmentProps {
+export interface NovaButtonBaseProps extends EnvironmentProps {
   primary?: boolean
   icon?: VNode | string
 }
 
-const buttonProps = {
+const novaButtonPropDefs = {
   ...environmentProps,
   primary: {
     type: Boolean,
@@ -19,7 +19,7 @@ const buttonProps = {
   },
 }
 
-export type NovaButtonProps = ButtonProps & ButtonHTMLAttributes
+export type NovaButtonProps = NovaButtonBaseProps & ButtonHTMLAttributes
 
 const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   const environment = useEnvironment(props)
@@ -30,7 +30,7 @@ const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   const icon = context.slots.icon?.() || props.icon
 
   // 根据当前内容与属性动态拼装样式
-  const classList = [
+  const buttonClasses = [
     'nova-button',
     { 'nova-button-icon-only': icon && !children },
     { 'nova-button-primary': props.primary },
@@ -52,7 +52,7 @@ const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
 
   return (
     <button
-      class={classList}
+      class={buttonClasses}
       type="button"
       data-nova-theme={environment.themeRef.value}
       {...context.attrs}
@@ -63,7 +63,7 @@ const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   )
 }
 
-NovaButton.props = buttonProps
+NovaButton.props = novaButtonPropDefs
 NovaButton.inheritAttrs = false
 NovaButton.displayName = 'NovaButton'
 
