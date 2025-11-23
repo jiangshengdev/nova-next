@@ -1,5 +1,5 @@
 import { NumberInput } from './NumberInput'
-import { numberFixed, numberLimit } from '../../../../utils/utils'
+import { numberFixed, numberLimit } from '@/utils/utils.ts'
 
 export const alphaRule = /^((0)|(1)|(\d+(\.\d{1,2})?))$/
 

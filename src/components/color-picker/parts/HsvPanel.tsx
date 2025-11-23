@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref } from 'vue'
-import { type MovePosition, useMove } from '../../../uses/use-move'
+import { type MovePosition, useMove } from '@/uses/use-move.ts'
 import { Color } from '../color'
-import { numberFixed } from '../../../utils/utils'
+import { numberFixed } from '@/utils/utils.ts'
 
 interface HsvPanelProps {
   color: Color

@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
-import { NovaDropdown } from '../../../components/dropdown'
-import { NovaButton } from '../../../components/button'
-import { type Placement } from '../../../types/props'
+import { NovaDropdown } from '@/components/dropdown'
+import { NovaButton } from '@/components/button'
+import { type Placement } from '@/types/props.ts'
 import './styles/common.css'
 
 export default defineComponent({

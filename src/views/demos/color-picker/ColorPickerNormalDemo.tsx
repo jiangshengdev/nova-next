@@ -3,7 +3,7 @@ import { Color, NovaButton, NovaColorPicker } from '../../../index'
 import {
   type ColorPickerPresetScoped,
   type ColorPickerTriggerScoped,
-} from '../../../components/color-picker/NovaColorPicker'
+} from '@/components/color-picker/NovaColorPicker.tsx'
 import hslData from '../../../components/color-picker/assets/css-wg/hsl'
 import './styles/normal.css'
 

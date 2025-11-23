@@ -1,5 +1,5 @@
 import { defineComponent, reactive, watch } from 'vue'
-import { getInputValue } from '../../../../utils/dom'
+import { getInputValue } from '@/utils/dom.ts'
 import { Color } from '../../color'
 import {
   alphaNormalize,
@@ -9,7 +9,7 @@ import {
   intNormalize,
   type UpdateParams,
 } from './label-utils'
-import { type EnvironmentContext } from '../../../../uses/use-environment'
+import { type EnvironmentContext } from '@/uses/use-environment.ts'
 
 type rgbChannel = 'red' | 'green' | 'blue'
 type ColorEmit = 'colorInput' | 'colorBlur'

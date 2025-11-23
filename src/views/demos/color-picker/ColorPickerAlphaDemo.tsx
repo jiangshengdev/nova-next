@@ -1,6 +1,6 @@
 import { defineComponent, reactive } from 'vue'
 import { NovaButton, NovaColorPicker } from '../../../index'
-import { type ColorFormat } from '../../../components/color-picker/color'
+import { type ColorFormat } from '@/components/color-picker/color.ts'
 
 const hex = [
   '#80404080',

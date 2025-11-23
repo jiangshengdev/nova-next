@@ -1,7 +1,7 @@
 import { computed, inject, type Ref, ref, toRef } from 'vue'
 import { languageKey, themeKey } from '../utils/symbols'
 import { type Language } from '../types/language'
-import { enUS } from '../environments/languages'
+import { enUS } from '@/environments/languages'
 import { type EnvironmentProps } from '../components/environment/NovaEnvironment'
 
 export const fallbackTheme = 'light'

@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, type PropType, reactive, ref, watch } from 'vue'
-import { type MovePosition } from '../../uses/use-move'
+import { type MovePosition } from '@/uses/use-move.ts'
 import { Color, type ColorFormat } from './color'
 import { ColorPickerTrigger } from './parts/Trigger'
 import { HsvPanel } from './parts/HsvPanel'
@@ -10,7 +10,7 @@ import { HslaLabels } from './parts/labels/HslaLabels'
 import { HexLabel } from './parts/labels/HexLabel'
 import { Preview } from './parts/Preview'
 import { PresetValues } from './parts/PresetValues'
-import { useEnvironment } from '../../uses/use-environment'
+import { useEnvironment } from '@/uses/use-environment.ts'
 import { MDIClose } from '@jiangshengdev/material-design-icons-vue-next'
 import { NovaDropdown } from '../dropdown'
 import {
@@ -21,7 +21,7 @@ import {
   type DropdownTriggerScoped,
 } from '../dropdown/NovaDropdown'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
-import { numberLimit } from '../../utils/utils'
+import { numberLimit } from '@/utils/utils.ts'
 
 //region Mode
 const modeRgba = Symbol('rgba')

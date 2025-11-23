@@ -2,8 +2,8 @@ import { defineComponent, nextTick, ref } from 'vue'
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 import { NovaEnvironment } from '../NovaEnvironment'
-import { fallbackLanguage, fallbackTheme, useEnvironment } from '../../../uses/use-environment'
-import { enUS, zhCN } from '../../../environments/languages'
+import { fallbackLanguage, fallbackTheme, useEnvironment } from '@/uses/use-environment.ts'
+import { enUS, zhCN } from '@/environments/languages'
 
 const EnvProbe = defineComponent({
   name: 'EnvProbe',

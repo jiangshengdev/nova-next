@@ -6,9 +6,9 @@ import {
   getInputValue,
   setInputValue,
   up,
-} from '../../../../utils/dom'
+} from '@/utils/dom.ts'
 import { Color } from '../../color'
-import { numberLimit } from '../../../../utils/utils'
+import { numberLimit } from '@/utils/utils.ts'
 
 interface TuningParams {
   red: number

@@ -1,4 +1,4 @@
-import { numberFixed, numberLimit } from '../../utils/utils'
+import { numberFixed, numberLimit } from '@/utils/utils.ts'
 
 const colorFormatError = 'Color format error'
 

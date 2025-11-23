@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { NovaDropdown } from '../../../components/dropdown'
-import { NovaButton } from '../../../components/button'
+import { NovaDropdown } from '@/components/dropdown'
+import { NovaButton } from '@/components/button'
 import './styles/common.css'
 
 export default defineComponent({

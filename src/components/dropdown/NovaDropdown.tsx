@@ -10,11 +10,11 @@ import {
   watch,
   withDirectives,
 } from 'vue'
-import { type EnvironmentContext, useEnvironment } from '../../uses/use-environment'
-import { durationLong, useDropdown } from '../../uses/use-dropdown'
+import { type EnvironmentContext, useEnvironment } from '@/uses/use-environment.ts'
+import { durationLong, useDropdown } from '@/uses/use-dropdown.ts'
 import { type EnvironmentProps, environmentProps } from '../environment/NovaEnvironment'
-import { type Placement, type VueClass, type VueProps, type VueStyle } from '../../types/props'
-import { getFocusable } from '../../utils/dom'
+import { type Placement, type VueClass, type VueProps, type VueStyle } from '@/types/props.ts'
+import { getFocusable } from '@/utils/dom.ts'
 
 export interface DropdownProps extends EnvironmentProps {
   disabled?: boolean

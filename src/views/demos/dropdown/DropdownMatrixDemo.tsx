@@ -1,7 +1,7 @@
 import { defineComponent, reactive } from 'vue'
 import { NovaButton, NovaColorPicker } from '../../../index'
 import './styles/martrix.css'
-import { type Placement } from '../../../types/props'
+import { type Placement } from '@/types/props.ts'
 
 export default defineComponent({
   setup() {

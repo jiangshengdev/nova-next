@@ -1,6 +1,6 @@
 import { computed, defineComponent, onMounted, ref, type Ref } from 'vue'
 import { Color } from '../color'
-import { type EnvironmentContext } from '../../../uses/use-environment'
+import { type EnvironmentContext } from '@/uses/use-environment.ts'
 
 export interface ColorPickerTriggerProps {
   color: Color

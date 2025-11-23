@@ -1,6 +1,6 @@
 import { defineComponent, reactive } from 'vue'
 import { NovaColorPicker } from '../../../index'
-import { type ColorFormat } from '../../../components/color-picker/color'
+import { type ColorFormat } from '@/components/color-picker/color.ts'
 import './styles/common.css'
 
 export default defineComponent({

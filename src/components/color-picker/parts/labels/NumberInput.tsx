@@ -6,9 +6,9 @@ import {
   getInputValue,
   setInputValue,
   up,
-} from '../../../../utils/dom'
+} from '@/utils/dom.ts'
 import { type UpdateParams } from './label-utils'
-import { numberFixed } from '../../../../utils/utils'
+import { numberFixed } from '@/utils/utils.ts'
 
 interface NumberInputProps {
   value?: string

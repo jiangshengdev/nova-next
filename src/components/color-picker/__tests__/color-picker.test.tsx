@@ -2,7 +2,7 @@ import { reactive } from 'vue'
 import { mount } from '@vue/test-utils'
 import { NovaColorPicker } from '../NovaColorPicker'
 import { type ColorFormat } from '../color'
-import { getStyleOf } from '../../../utils/dom'
+import { getStyleOf } from '@/utils/dom.ts'
 import { describe, test, expect } from 'vitest'
 
 function atOrThrow<T>(items: T[], index: number): T {

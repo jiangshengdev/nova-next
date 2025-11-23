@@ -1,5 +1,5 @@
 import { type ButtonHTMLAttributes, type FunctionalComponent, type PropType, type VNode } from 'vue'
-import { useEnvironment } from '../../uses/use-environment'
+import { useEnvironment } from '@/uses/use-environment.ts'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 
 export interface NovaButtonBaseProps extends EnvironmentProps {

@@ -1,7 +1,7 @@
 import { defineComponent, type PropType, provide } from 'vue'
-import { languageKey, themeKey } from '../../utils/symbols'
-import { useEnvironment } from '../../uses/use-environment'
-import { type Language } from '../../types/language.ts'
+import { languageKey, themeKey } from '@/utils/symbols.ts'
+import { useEnvironment } from '@/uses/use-environment.ts'
+import { type Language } from '@/types/language.ts'
 
 export interface EnvironmentProps {
   theme?: string

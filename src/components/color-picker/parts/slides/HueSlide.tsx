@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref } from 'vue'
-import { type MovePosition, useMove } from '../../../../uses/use-move'
-import { numberFixed } from '../../../../utils/utils'
+import { type MovePosition, useMove } from '@/uses/use-move.ts'
+import { numberFixed } from '@/utils/utils.ts'
 
 interface HueSlideProps {
   hue: number
