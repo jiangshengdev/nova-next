@@ -2,13 +2,14 @@
 
 ## 1. v-model 无法受控（Major）
 
-- 【待处理】
+- 【已解决】
 
 - 位置：`src/components/input/NovaInput.tsx`
 - 描述：组件未实现 `modelValue` prop 及 `update:modelValue` 事件，`v-model` 编译产物被直接透传给原生 `<input>`，既无法反映外部受控值，也无法向父组件派发输入变更，导致双向绑定失效。
 - 可能的解决方案建议：
 	1. 声明 `modelValue` 与 `update:modelValue`，内联输入事件中 emit 更新值。
 	2. 将受控值绑定到 `<input value>`，并在 `input`/`change` 事件里同步 props。
+- 处理进度：`src/components/input/NovaInput.tsx` 已新增 `modelValue` prop、`update:modelValue` emit 及受控 value 绑定，`input.test.tsx` 同步补测 v-model 行为。
 
 ## 2. wrapStyle 类型不一致（Minor）
 

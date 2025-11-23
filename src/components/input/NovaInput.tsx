@@ -9,6 +9,8 @@ interface InputProps extends EnvironmentProps {
   wrapStyle?: VueStyle
   disabled?: boolean
   readonly?: boolean
+  modelValue?: string | number
+  'onUpdate:modelValue'?: (value: string) => void
 }
 
 const inputProps = {
@@ -33,12 +35,30 @@ const inputProps = {
     type: Boolean,
     default: false,
   },
+  modelValue: {
+    type: [String, Number],
+    default: null,
+  },
 }
 
 type NovaInputProps = InputProps & InputHTMLAttributes
 
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
   const environment = useEnvironment(props)
+  const onInputAttr = context.attrs.onInput as ((event: Event) => void) | undefined
+  const attrValue = context.attrs.value as string | number | undefined
+  const inputAttrs = { ...context.attrs } as Record<string, unknown>
+
+  delete inputAttrs.onInput
+  delete inputAttrs.value
+
+  const handleInput = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    context.emit?.('update:modelValue', target.value)
+    if (typeof onInputAttr === 'function') {
+      onInputAttr(event)
+    }
+  }
 
   const wrapClassList = [
     {
@@ -50,13 +70,16 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
   ]
 
   const classList = ['nova-input-text', props.class]
+  const inputValue = props.modelValue ?? attrValue ?? ''
 
   return (
     <div class={wrapClassList} style={props.wrapStyle} data-nova-theme={environment.themeRef.value}>
       <input
         type="text"
         class={classList}
-        {...context.attrs}
+        {...inputAttrs}
+        value={inputValue}
+        onInput={handleInput}
         disabled={!!props.disabled}
         readonly={!!props.readonly}
       />
@@ -66,7 +89,9 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
 }
 
 NovaInput.props = inputProps
+NovaInput.emits = ['update:modelValue']
 NovaInput.inheritAttrs = false
 NovaInput.displayName = 'NovaInput'
 
 export { NovaInput }
+export type { NovaInputProps }
