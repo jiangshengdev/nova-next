@@ -19,7 +19,7 @@ const buttonProps = {
   },
 }
 
-type NovaButtonProps = ButtonProps & ButtonHTMLAttributes
+export type NovaButtonProps = ButtonProps & ButtonHTMLAttributes
 
 const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   const environment = useEnvironment(props)

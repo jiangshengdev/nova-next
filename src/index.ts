@@ -6,3 +6,4 @@ import { Color, NovaColorPicker } from './components/color-picker'
 import { NovaDropdown } from './components/dropdown'
 
 export { enUS, zhCN, NovaEnvironment, NovaButton, NovaInput, NovaColorPicker, Color, NovaDropdown }
+export type { NovaButtonProps } from './components/button'
