@@ -1,6 +1,7 @@
+import { markRaw } from 'vue'
 import { type Language } from '../../types/language.ts'
 
-const enUS: Language = {
+const enUS = markRaw<Language>({
   name: 'English, United States',
   colorPicker: {
     aria: {
@@ -16,6 +17,6 @@ const enUS: Language = {
     saturation: 'Saturation',
     lightness: 'Lightness',
   },
-}
+})
 
 export { enUS }

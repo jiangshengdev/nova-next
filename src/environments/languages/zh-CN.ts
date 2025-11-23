@@ -1,6 +1,7 @@
+import { markRaw } from 'vue'
 import { type Language } from '../../types/language.ts'
 
-const zhCN: Language = {
+const zhCN = markRaw<Language>({
   name: 'Chinese Simplified',
   colorPicker: {
     aria: {
@@ -16,6 +17,6 @@ const zhCN: Language = {
     saturation: '饱和度',
     lightness: '亮度',
   },
-}
+})
 
 export { zhCN }
