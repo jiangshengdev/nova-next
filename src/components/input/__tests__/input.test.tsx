@@ -5,25 +5,27 @@ import { describe, test, expect, vi } from 'vitest'
 
 describe('input', () => {
   test('render', () => {
-    const wrapper = mount({
+    const RenderWrapper = defineComponent({
+      name: 'InputRenderWrapper',
       setup() {
-        return () => {
-          return (
-            <div>
-              <NovaInput />
-              <NovaInput disabled />
-              <NovaInput readonly />
-            </div>
-          )
-        }
+        return () => (
+          <div>
+            <NovaInput />
+            <NovaInput disabled />
+            <NovaInput readonly />
+          </div>
+        )
       },
     })
+
+    const wrapper = mount(RenderWrapper)
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   test('v-model syncs value', async () => {
     const wrapper = mount(
       defineComponent({
+        name: 'InputModelWrapper',
         setup() {
           const valueRef = ref('hello')
           const updateValue = (value: string) => {
