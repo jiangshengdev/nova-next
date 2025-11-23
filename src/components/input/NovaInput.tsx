@@ -3,27 +3,27 @@ import { useEnvironment } from '../../uses/use-environment'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { type VueClass, type VueStyle } from '../../types/props'
 
-interface InputProps extends EnvironmentProps {
+interface NovaInputBaseProps extends EnvironmentProps {
   class?: VueClass
-  wrapClass?: VueClass
-  wrapStyle?: VueStyle
+  wrapperClass?: VueClass
+  wrapperStyle?: VueStyle
   disabled?: boolean
   readonly?: boolean
   modelValue?: string | number
   'onUpdate:modelValue'?: (value: string) => void
 }
 
-const inputProps = {
+const novaInputPropDefs = {
   ...environmentProps,
   class: {
     type: [String, Array, Object],
     default: null,
   },
-  wrapClass: {
+  wrapperClass: {
     type: [String, Array, Object],
     default: null,
   },
-  wrapStyle: {
+  wrapperStyle: {
     type: [String, Object],
     default: null,
   },
@@ -41,12 +41,12 @@ const inputProps = {
   },
 }
 
-type NovaInputProps = InputProps & InputHTMLAttributes
+type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
 
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
   const environment = useEnvironment(props)
   const onInputAttr = context.attrs.onInput as ((event: Event) => void) | undefined
-  const attrValue = context.attrs.value as string | number | undefined
+  const fallbackModelValue = context.attrs.value as string | number | undefined
   const inputAttrs = { ...context.attrs } as Record<string, unknown>
 
   delete inputAttrs.onInput
@@ -60,23 +60,27 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
     }
   }
 
-  const wrapClassList = [
+  const inputWrapperClasses = [
     {
       'nova-input': true,
       'nova-input-disabled': !!props.disabled,
       'nova-input-readonly': !!props.readonly,
     },
-    props.wrapClass,
+    props.wrapperClass,
   ]
 
-  const classList = ['nova-input-text', props.class]
-  const inputValue = props.modelValue ?? attrValue ?? ''
+  const fieldClasses = ['nova-input-text', props.class]
+  const inputValue = props.modelValue ?? fallbackModelValue ?? ''
 
   return (
-    <div class={wrapClassList} style={props.wrapStyle} data-nova-theme={environment.themeRef.value}>
+    <div
+      class={inputWrapperClasses}
+      style={props.wrapperStyle}
+      data-nova-theme={environment.themeRef.value}
+    >
       <input
         type="text"
-        class={classList}
+        class={fieldClasses}
         {...inputAttrs}
         value={inputValue}
         onInput={handleInput}
@@ -88,7 +92,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
   )
 }
 
-NovaInput.props = inputProps
+NovaInput.props = novaInputPropDefs
 NovaInput.emits = ['update:modelValue']
 NovaInput.inheritAttrs = false
 NovaInput.displayName = 'NovaInput'

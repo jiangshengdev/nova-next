@@ -11,16 +11,16 @@
 	2. 将受控值绑定到 `<input value>`，并在 `input`/`change` 事件里同步 props。
 - 处理进度：`src/components/input/NovaInput.tsx` 已新增 `modelValue` prop、`update:modelValue` emit 及受控 value 绑定，`input.test.tsx` 同步补测 v-model 行为。
 
-## 2. wrapStyle 类型不一致（Minor）
+## 2. wrapperStyle 类型不一致（Minor）
 
 - 【已解决】
 
 - 位置：`src/components/input/NovaInput.tsx`
 - 描述：类型声明允许 `string | CSSProperties`，运行时 `props` 却仅接受 `Object`，若传入字符串样式会被 Vue 视为非法类型并被忽略，与类型签名不符。
 - 可能的解决方案建议：
-	1. 将 `wrapStyle` 的 prop `type` 扩展为 `[String, Object]`，与类型声明保持一致。
+	1. 将 `wrapperStyle` 的 prop `type` 扩展为 `[String, Object]`，与类型声明保持一致。
 	2. 或者在类型层面改为 `CSSProperties`，避免字符串被误认为支持。
-- 处理进度：`NovaInput.tsx` 已将 `wrapStyle` 支持扩展为 `[String, Object]` 并添加 `wrapStyle accepts string value` 单测覆盖。
+- 处理进度：`NovaInput.tsx` 已将 `wrapperStyle` 支持扩展为 `[String, Object]` 并添加 `wrapperStyle accepts string value` 单测覆盖。
 
 ## 3. 组件类型未暴露（Minor）
 

@@ -24,11 +24,11 @@ describe('input basic', () => {
       setup() {
         return () => (
           <div>
-            <NovaInput wrapClass="custom-wrap" class="custom-input" wrapStyle="color: red;" />
+            <NovaInput wrapperClass="custom-wrap" class="custom-input" wrapperStyle="color: red;" />
             <NovaInput
-              wrapClass={['custom-wrap', 'is-muted']}
+              wrapperClass={['custom-wrap', 'is-muted']}
               class={{ 'custom-input': true, focused: true }}
-              wrapStyle={{ background: 'rgba(0, 0, 0, 0.1)' }}
+              wrapperStyle={{ background: 'rgba(0, 0, 0, 0.1)' }}
               modelValue="prefill"
             />
           </div>

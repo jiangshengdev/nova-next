@@ -44,10 +44,10 @@ describe('input behavior', () => {
     expect(onInput).toHaveBeenCalledTimes(1)
   })
 
-  test('wrapStyle 支持字符串形式', () => {
+  test('wrapperStyle 支持字符串形式', () => {
     const wrapper = mount(NovaInput, {
       props: {
-        wrapStyle: 'color: red;',
+        wrapperStyle: 'color: red;',
       },
     })
 
@@ -70,10 +70,10 @@ describe('input behavior', () => {
     expect((wrapper.get('input').element as HTMLInputElement).value).toBe('from-attr')
   })
 
-  test('class 与 wrapClass 会应用到对应元素', () => {
+  test('class 与 wrapperClass 会应用到对应元素', () => {
     const wrapper = mount(NovaInput, {
       props: {
-        wrapClass: ['custom-wrap', 'is-focused'],
+        wrapperClass: ['custom-wrap', 'is-focused'],
         class: 'custom-input',
       },
     })
