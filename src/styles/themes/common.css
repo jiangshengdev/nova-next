@@ -4,11 +4,15 @@
 
 .md-icon {
   vertical-align: top;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   svg {
     vertical-align: top;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

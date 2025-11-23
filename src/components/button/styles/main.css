@@ -2,7 +2,10 @@
   font-family: var(--nova-font-sans-serif);
   vertical-align: top;
   text-align: center;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   cursor: pointer;
   line-height: var(--nova-line-height);
   min-height: 30px;
@@ -42,18 +45,13 @@
 .nova-button-icon {
   width: 20px;
   height: 20px;
-  display: inline-block;
-  vertical-align: top;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   .md-icon {
     font-size: 18px;
     margin: 1px;
-  }
-
-  + span {
-    display: inline-block;
-    vertical-align: top;
-    text-indent: 5px;
   }
 }
 

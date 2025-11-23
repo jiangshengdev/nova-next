@@ -47,7 +47,7 @@ const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
     if (!children) {
       return null
     }
-    return <span>{children}</span>
+    return children
   }
 
   return (

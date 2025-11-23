@@ -2,22 +2,22 @@
 
 exports[`button > render 1`] = `
 "<div><button class="nova-button" type="button" data-nova-theme="light">
-    <!----><span>Button</span>
+    <!---->Button
   </button><button class="nova-button nova-button-primary" type="button" data-nova-theme="light">
-    <!----><span>Primary</span>
+    <!---->Primary
   </button><button class="nova-button" type="button" data-nova-theme="light" disabled="">
-    <!----><span>Disabled</span>
+    <!---->Disabled
   </button></div>"
 `;
 
 exports[`button > render with icon prop 1`] = `
-"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span><span>Launch</span></button><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon"><span>Icon</span></span><span>With Icon</span></button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
+"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span>Launch</button><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon"><span>Icon</span></span>With Icon</button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
     <!---->
   </button></div>"
 `;
 
 exports[`button > render with slot icon (backward compatibility) 1`] = `
-"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span><span>Launch</span></button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
+"<div><button class="nova-button" type="button" data-nova-theme="light"><span class="nova-button-icon">🚀</span>Launch</button><button class="nova-button nova-button-icon-only" type="button" data-nova-theme="light"><span class="nova-button-icon">⭐</span>
     <!---->
   </button></div>"
 `;
