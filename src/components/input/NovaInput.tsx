@@ -54,6 +54,9 @@ const formatInputValue = (value: ModelValueLike) => {
 
 const resolveNextModelValue = (input: HTMLInputElement, reference: ModelValueLike) => {
   if (typeof reference === 'number') {
+    if (input.value === '') {
+      return ''
+    }
     const numericValue = Number.isNaN(input.valueAsNumber)
       ? Number(input.value)
       : input.valueAsNumber
