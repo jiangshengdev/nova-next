@@ -35,11 +35,11 @@
 
 ## 4. modelValue 类型与事件不一致（Major）
 
-- 【待处理】
+- 【已解决】
 
 - 位置：`src/components/input/NovaInput.tsx`
 - 描述：组件声明 `modelValue` 支持 `string | number`，但 `handleInput` 始终通过 `event.target.value` 以字符串形式派发 `update:modelValue`，同时 `'onUpdate:modelValue'` 的 prop 类型被限定为 `(value: string) => void`，导致传入数字时会被强制转成字符串且类型推断报错，API 与实现不符。
 - 可能的解决方案建议：
   1.  根据声明类型保留原始数值，可在解析/派发时检测并转换为 number。
   2.  若仅支持字符串，应将 `modelValue` 与 `'onUpdate:modelValue'` 的类型同步调整为 `string` 并在文档中说明。
-- 处理进度：未修复。
+- 处理进度：`src/components/input/NovaInput.tsx` 根据受控值类型自动保持数字或字符串并同步 `'onUpdate:modelValue'` 类型，`src/components/input/__tests__/input.behavior.test.tsx` 新增「数字模型会保持 number 类型」用例验证。

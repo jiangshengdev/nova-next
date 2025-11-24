@@ -10,7 +10,7 @@ interface NovaInputBaseProps extends EnvironmentProps {
   disabled?: boolean
   readonly?: boolean
   modelValue?: string | number
-  'onUpdate:modelValue'?: (value: string) => void
+  'onUpdate:modelValue'?: (value: string | number) => void
 }
 
 const novaInputPropDefs = {
@@ -54,7 +54,18 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
 
   const handleInput = (event: Event) => {
     const target = event.target as HTMLInputElement
-    context.emit?.('update:modelValue', target.value)
+    const nextValue = (() => {
+      const referenceValue = props.modelValue ?? fallbackModelValue
+      if (typeof referenceValue === 'number') {
+        const valueAsNumber = Number.isNaN(target.valueAsNumber)
+          ? Number(target.value)
+          : target.valueAsNumber
+        return valueAsNumber
+      }
+      return target.value
+    })()
+
+    context.emit?.('update:modelValue', nextValue)
     if (typeof onInputAttr === 'function') {
       onInputAttr(event)
     }
@@ -70,7 +81,9 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
   ]
 
   const fieldClasses = ['nova-input-text', props.class]
-  const inputValue = props.modelValue ?? fallbackModelValue ?? ''
+  const referenceValue = props.modelValue ?? fallbackModelValue
+  const inputValue =
+    typeof referenceValue === 'number' ? String(referenceValue) : (referenceValue ?? '')
 
   return (
     <div
