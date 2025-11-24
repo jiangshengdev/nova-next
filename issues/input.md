@@ -32,3 +32,14 @@
   1.  在 `NovaInput.tsx` 中 `export type NovaInputProps` 并在 `src/components/input/index.ts`、`src/index.ts` 透传。
   2.  若不对外暴露类型，可在 README/API 文档中明确限制，避免调用方误用。
 - 处理进度：已在 `NovaInput.tsx` 导出 `NovaInputProps`，并由 `src/components/input/index.ts` 与 `src/index.ts` 统一透出类型供外部消费。
+
+## 4. modelValue 类型与事件不一致（Major）
+
+- 【待处理】
+
+- 位置：`src/components/input/NovaInput.tsx`
+- 描述：组件声明 `modelValue` 支持 `string | number`，但 `handleInput` 始终通过 `event.target.value` 以字符串形式派发 `update:modelValue`，同时 `'onUpdate:modelValue'` 的 prop 类型被限定为 `(value: string) => void`，导致传入数字时会被强制转成字符串且类型推断报错，API 与实现不符。
+- 可能的解决方案建议：
+  1.  根据声明类型保留原始数值，可在解析/派发时检测并转换为 number。
+  2.  若仅支持字符串，应将 `modelValue` 与 `'onUpdate:modelValue'` 的类型同步调整为 `string` 并在文档中说明。
+- 处理进度：未修复。
