@@ -1,5 +1,6 @@
 import {
   type ButtonHTMLAttributes,
+  type ComponentPropsOptions,
   type FunctionalComponent,
   type PropType,
   type VNodeChild,
@@ -12,7 +13,7 @@ export interface NovaButtonBaseProps extends EnvironmentProps {
   icon?: VNodeChild
 }
 
-const novaButtonPropDefs = {
+const novaButtonPropDefs: ComponentPropsOptions<NovaButtonProps> = {
   ...environmentProps,
   primary: {
     type: Boolean,

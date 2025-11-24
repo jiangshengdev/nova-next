@@ -1,8 +1,8 @@
 import {
-  type InputHTMLAttributes,
+  type ComponentPropsOptions,
   type FunctionalComponent,
+  type InputHTMLAttributes,
   type PropType,
-  type ComponentObjectPropsOptions,
 } from 'vue'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
@@ -18,7 +18,7 @@ interface NovaInputBaseProps extends EnvironmentProps {
   'onUpdate:modelValue'?: (value: string) => void
 }
 
-const novaInputPropDefs: ComponentObjectPropsOptions<NovaInputProps> = {
+const novaInputPropDefs: ComponentPropsOptions<NovaInputProps> = {
   ...environmentProps,
   class: {
     type: [String, Array, Object] as PropType<VueClass>,
