@@ -43,16 +43,16 @@ const novaInputPropDefs = {
 
 type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
 
-type ModelValueLike = string | number | undefined
+type PrimitiveInputValue = string | number | undefined
 
-const formatInputValue = (value: ModelValueLike) => {
+const formatInputValue = (value: PrimitiveInputValue) => {
   if (typeof value === 'number') {
     return String(value)
   }
   return value ?? ''
 }
 
-const resolveNextModelValue = (input: HTMLInputElement, reference: ModelValueLike) => {
+const resolveNextModelValue = (input: HTMLInputElement, reference: PrimitiveInputValue) => {
   if (typeof reference === 'number') {
     if (input.value === '') {
       return ''
@@ -69,7 +69,7 @@ const resolveNextModelValue = (input: HTMLInputElement, reference: ModelValueLik
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) => {
   // 环境上下文
   const { themeRef } = useEnvironment(props)
-  const { class: fieldClass, wrapperClass, wrapperStyle, disabled, readonly, modelValue } = props
+  const { class: inputClass, wrapperClass, wrapperStyle, disabled, readonly, modelValue } = props
 
   const {
     onInput: onInputAttrRaw,
@@ -78,15 +78,15 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     ...nativeInputAttrs
   } = attrs as typeof attrs & {
     onInput?: ((event: Event) => void) | undefined
-    value?: ModelValueLike
+    value?: PrimitiveInputValue
     type?: string
   }
 
   const onInputAttr = onInputAttrRaw as ((event: Event) => void) | undefined
 
   // 内容计算
-  const readReferenceValue = () => modelValue ?? fallbackModelValue
-  const referenceValue = readReferenceValue()
+  const resolveInputValue = () => modelValue ?? fallbackModelValue
+  const referenceValue = resolveInputValue()
   const inputValue = formatInputValue(referenceValue)
   const inputType = typeof inputTypeAttr === 'string' ? inputTypeAttr : 'text'
 
@@ -99,7 +99,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     ] as Array<string | VueClass | false | null>
   ).filter(Boolean) as Array<string | VueClass>
 
-  const fieldClasses = (['nova-input-text', fieldClass] as Array<string | VueClass | null>).filter(
+  const inputClasses = (['nova-input-text', inputClass] as Array<string | VueClass | null>).filter(
     Boolean,
   ) as Array<string | VueClass>
 
@@ -109,7 +109,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     }
 
     const target = event.target as HTMLInputElement
-    const nextValue = resolveNextModelValue(target, readReferenceValue())
+    const nextValue = resolveNextModelValue(target, resolveInputValue())
 
     emit?.('update:modelValue', nextValue)
     if (typeof onInputAttr === 'function') {
@@ -120,7 +120,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
   // 渲染输出
   const inputProps = {
     type: inputType,
-    class: fieldClasses,
+    class: inputClasses,
     ...nativeInputAttrs,
     value: inputValue,
     onInput: handleInput,
