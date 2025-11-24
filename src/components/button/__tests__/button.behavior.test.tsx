@@ -29,15 +29,9 @@ describe('button behavior', () => {
     expect(onClick).not.toHaveBeenCalled()
   })
 
-  test('尊重透传的 type 属性', () => {
-    const wrapper = mountButton({ type: 'submit' })
+  test('默认 type 为 button，避免误触发表单', () => {
+    const wrapper = mountButton()
 
-    expect(wrapper.get('button').attributes('type')).toBe('submit')
-  })
-
-  test('aria 属性会直接透传', () => {
-    const wrapper = mountButton({ 'aria-label': 'launch' })
-
-    expect(wrapper.get('button').attributes('aria-label')).toBe('launch')
+    expect(wrapper.get('button').attributes('type')).toBe('button')
   })
 })

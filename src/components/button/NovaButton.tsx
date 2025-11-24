@@ -1,10 +1,15 @@
-import { type ButtonHTMLAttributes, type FunctionalComponent, type PropType, type VNode } from 'vue'
+import {
+  type ButtonHTMLAttributes,
+  type FunctionalComponent,
+  type PropType,
+  type VNodeChild,
+} from 'vue'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 
 export interface NovaButtonBaseProps extends EnvironmentProps {
   primary?: boolean
-  icon?: VNode | string
+  icon?: VNodeChild
 }
 
 const novaButtonPropDefs = {
@@ -14,7 +19,7 @@ const novaButtonPropDefs = {
     default: false,
   },
   icon: {
-    type: [Object, String] as PropType<VNode | string>,
+    type: null as unknown as PropType<VNodeChild>,
     default: null,
   },
 }
@@ -22,43 +27,28 @@ const novaButtonPropDefs = {
 export type NovaButtonProps = NovaButtonBaseProps & ButtonHTMLAttributes
 
 const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
-  const environment = useEnvironment(props)
+  // 环境上下文
+  const { themeRef } = useEnvironment(props)
+  const { slots, attrs } = context
 
-  // 同时支持插槽与直接子节点
-  const children = context.slots.default?.()
-  // 图标既可以来自插槽也可以来自 props
-  const icon = context.slots.icon?.() || props.icon
+  // 内容计算
+  const { primary, icon: fallbackIcon } = props
+
+  const children = slots.default?.()
+  const icon = slots.icon?.() || fallbackIcon
 
   // 根据当前内容与属性动态拼装样式
   const buttonClasses = [
     'nova-button',
-    { 'nova-button-icon-only': icon && !children },
-    { 'nova-button-primary': props.primary },
-  ]
+    icon && !children ? 'nova-button-icon-only' : null,
+    primary ? 'nova-button-primary' : null,
+  ].filter(Boolean) as string[]
 
-  const renderIcon = () => {
-    if (!icon) {
-      return null
-    }
-    return <span class="nova-button-icon">{icon}</span>
-  }
-
-  const renderChildren = () => {
-    if (!children) {
-      return null
-    }
-    return children
-  }
-
+  // 渲染输出
   return (
-    <button
-      class={buttonClasses}
-      type="button"
-      data-nova-theme={environment.themeRef.value}
-      {...context.attrs}
-    >
-      {renderIcon()}
-      {renderChildren()}
+    <button class={buttonClasses} type="button" data-nova-theme={themeRef.value} {...attrs}>
+      {icon && <span class="nova-button-icon">{icon}</span>}
+      {children}
     </button>
   )
 }
