@@ -1,10 +1,10 @@
-import { type CSSProperties } from 'vue'
+import { type StyleValue } from 'vue'
 
 export interface VueProps {
   [key: string]: unknown
 }
 
-export type VueStyle = string | CSSProperties
+export type VueStyle = StyleValue
 
 export type VueClass = unknown
 

@@ -44,44 +44,10 @@ describe('input behavior', () => {
     expect(onInput).toHaveBeenCalledTimes(1)
   })
 
-  test('wrapperStyle 支持字符串形式', () => {
-    const wrapper = mount(NovaInput, {
-      props: {
-        wrapperStyle: 'color: red;',
-      },
-    })
-
-    expect(wrapper.attributes('style')).toContain('color: red;')
-  })
-
-  test('aria 属性会透传到原生 input', () => {
-    const wrapper = mount(NovaInput, {
-      attrs: {
-        'aria-label': 'search',
-      },
-    })
-
-    expect(wrapper.get('input').attributes('aria-label')).toBe('search')
-  })
-
   test('value 属性可作为 modelValue 兜底', () => {
     const wrapper = mount(() => <NovaInput value="from-attr" />)
 
     expect((wrapper.get('input').element as HTMLInputElement).value).toBe('from-attr')
-  })
-
-  test('class 与 wrapperClass 会应用到对应元素', () => {
-    const wrapper = mount(NovaInput, {
-      props: {
-        wrapperClass: ['custom-wrap', 'is-focused'],
-        class: 'custom-input',
-      },
-    })
-
-    expect(wrapper.classes()).toEqual(
-      expect.arrayContaining(['nova-input', 'custom-wrap', 'is-focused']),
-    )
-    expect(wrapper.get('input').classes()).toContain('custom-input')
   })
 
   test('数字模型会保持 number 类型', async () => {

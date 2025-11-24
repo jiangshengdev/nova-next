@@ -5,10 +5,10 @@ exports[`input basic > 基础态渲染 1`] = `
   <div class="nova-input" data-nova-theme="light"><input type="text" class="nova-input-text" value="">
     <div class="nova-input-border"></div>
   </div>
-  <div class="nova-input nova-input-disabled" data-nova-theme="light"><input type="text" class="nova-input-text" disabled="" value="">
+  <div class="nova-input nova-input-disabled" data-nova-theme="light"><input type="text" class="nova-input-text" disabled="" aria-disabled="true" value="">
     <div class="nova-input-border"></div>
   </div>
-  <div class="nova-input nova-input-readonly" data-nova-theme="light"><input type="text" class="nova-input-text" readonly="" value="">
+  <div class="nova-input nova-input-readonly" data-nova-theme="light"><input type="text" class="nova-input-text" readonly="" aria-readonly="true" value="">
     <div class="nova-input-border"></div>
   </div>
 </div>"

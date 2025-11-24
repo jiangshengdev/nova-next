@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes, type FunctionalComponent } from 'vue'
+import { type InputHTMLAttributes, type FunctionalComponent, type PropType } from 'vue'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { type VueClass, type VueStyle } from '@/types/props.ts'
@@ -24,7 +24,7 @@ const novaInputPropDefs = {
     default: null,
   },
   wrapperStyle: {
-    type: [String, Object],
+    type: [String, Array, Object, Boolean] as PropType<VueStyle>,
     default: null,
   },
   disabled: {
@@ -43,63 +43,93 @@ const novaInputPropDefs = {
 
 type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
 
-const NovaInput: FunctionalComponent<NovaInputProps> = (props, context) => {
-  const environment = useEnvironment(props)
-  const onInputAttr = context.attrs.onInput as ((event: Event) => void) | undefined
-  const fallbackModelValue = context.attrs.value as string | number | undefined
-  const inputAttrs = { ...context.attrs } as Record<string, unknown>
+type ModelValueLike = string | number | undefined
 
-  delete inputAttrs.onInput
-  delete inputAttrs.value
+const formatInputValue = (value: ModelValueLike) => {
+  if (typeof value === 'number') {
+    return String(value)
+  }
+  return value ?? ''
+}
+
+const resolveNextModelValue = (input: HTMLInputElement, reference: ModelValueLike) => {
+  if (typeof reference === 'number') {
+    const numericValue = Number.isNaN(input.valueAsNumber)
+      ? Number(input.value)
+      : input.valueAsNumber
+    return numericValue
+  }
+
+  return input.value
+}
+
+const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) => {
+  // 环境上下文
+  const { themeRef } = useEnvironment(props)
+  const { class: fieldClass, wrapperClass, wrapperStyle, disabled, readonly, modelValue } = props
+
+  const {
+    onInput: onInputAttrRaw,
+    value: fallbackModelValue,
+    type: inputTypeAttr,
+    ...nativeInputAttrs
+  } = attrs as typeof attrs & {
+    onInput?: ((event: Event) => void) | undefined
+    value?: ModelValueLike
+    type?: string
+  }
+
+  const onInputAttr = onInputAttrRaw as ((event: Event) => void) | undefined
+
+  // 内容计算
+  const readReferenceValue = () => modelValue ?? fallbackModelValue
+  const referenceValue = readReferenceValue()
+  const inputValue = formatInputValue(referenceValue)
+  const inputType = typeof inputTypeAttr === 'string' ? inputTypeAttr : 'text'
+
+  const wrapperClasses = (
+    [
+      'nova-input',
+      disabled && 'nova-input-disabled',
+      readonly && 'nova-input-readonly',
+      wrapperClass,
+    ] as Array<string | VueClass | false | null>
+  ).filter(Boolean) as Array<string | VueClass>
+
+  const fieldClasses = (['nova-input-text', fieldClass] as Array<string | VueClass | null>).filter(
+    Boolean,
+  ) as Array<string | VueClass>
 
   const handleInput = (event: Event) => {
-    const target = event.target as HTMLInputElement
-    const nextValue = (() => {
-      const referenceValue = props.modelValue ?? fallbackModelValue
-      if (typeof referenceValue === 'number') {
-        const valueAsNumber = Number.isNaN(target.valueAsNumber)
-          ? Number(target.value)
-          : target.valueAsNumber
-        return valueAsNumber
-      }
-      return target.value
-    })()
+    if (disabled || readonly) {
+      return
+    }
 
-    context.emit?.('update:modelValue', nextValue)
+    const target = event.target as HTMLInputElement
+    const nextValue = resolveNextModelValue(target, readReferenceValue())
+
+    emit?.('update:modelValue', nextValue)
     if (typeof onInputAttr === 'function') {
       onInputAttr(event)
     }
   }
 
-  const inputWrapperClasses = [
-    {
-      'nova-input': true,
-      'nova-input-disabled': !!props.disabled,
-      'nova-input-readonly': !!props.readonly,
-    },
-    props.wrapperClass,
-  ]
-
-  const fieldClasses = ['nova-input-text', props.class]
-  const referenceValue = props.modelValue ?? fallbackModelValue
-  const inputValue =
-    typeof referenceValue === 'number' ? String(referenceValue) : (referenceValue ?? '')
+  // 渲染输出
+  const inputProps = {
+    type: inputType,
+    class: fieldClasses,
+    ...nativeInputAttrs,
+    value: inputValue,
+    onInput: handleInput,
+    disabled: !!disabled,
+    readonly: !!readonly,
+    'aria-disabled': disabled || undefined,
+    'aria-readonly': readonly || undefined,
+  }
 
   return (
-    <div
-      class={inputWrapperClasses}
-      style={props.wrapperStyle}
-      data-nova-theme={environment.themeRef.value}
-    >
-      <input
-        type="text"
-        class={fieldClasses}
-        {...inputAttrs}
-        value={inputValue}
-        onInput={handleInput}
-        disabled={!!props.disabled}
-        readonly={!!props.readonly}
-      />
+    <div class={wrapperClasses} style={wrapperStyle} data-nova-theme={themeRef.value}>
+      <input {...inputProps} />
       <div class="nova-input-border" />
     </div>
   )
