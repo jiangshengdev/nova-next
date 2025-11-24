@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { NovaEnvironment, NovaButton } from '../../../index'
+import { NovaButton, NovaEnvironment } from '../../../index'
 import { enUS, zhCN } from '@/environments/languages'
 import './styles/common.css'
 

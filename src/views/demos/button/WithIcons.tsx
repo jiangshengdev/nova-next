@@ -2,11 +2,11 @@ import { defineComponent } from 'vue'
 import { NovaButton } from '../../../index'
 import {
   MDICamera,
-  MDITheaters,
-  MDIHome,
-  MDISettings,
   MDIDelete,
   MDIFileDownload,
+  MDIHome,
+  MDISettings,
+  MDITheaters,
 } from '@jiangshengdev/material-design-icons-vue-next'
 import './styles/common.css'
 

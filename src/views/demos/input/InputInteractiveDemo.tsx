@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { NovaInput, NovaButton } from '../../../index'
+import { NovaButton, NovaInput } from '../../../index'
 import './styles/common.css'
 
 export default defineComponent({

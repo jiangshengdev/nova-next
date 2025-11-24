@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { NovaColorPicker } from '../NovaColorPicker'
 import { type ColorFormat } from '../color'
 import { getStyleOf } from '@/utils/dom.ts'
-import { describe, test, expect } from 'vitest'
+import { describe, expect, test } from 'vitest'
 
 function atOrThrow<T>(items: T[], index: number): T {
   const target = items[index]
