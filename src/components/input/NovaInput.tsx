@@ -1,4 +1,9 @@
-import { type InputHTMLAttributes, type FunctionalComponent, type PropType } from 'vue'
+import {
+  type InputHTMLAttributes,
+  type FunctionalComponent,
+  type PropType,
+  type ComponentObjectPropsOptions,
+} from 'vue'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { type VueClass, type VueStyle } from '@/types/props.ts'
@@ -13,7 +18,7 @@ interface NovaInputBaseProps extends EnvironmentProps {
   'onUpdate:modelValue'?: (value: string) => void
 }
 
-const novaInputPropDefs = {
+const novaInputPropDefs: ComponentObjectPropsOptions<NovaInputProps> = {
   ...environmentProps,
   class: {
     type: [String, Array, Object] as PropType<VueClass>,
@@ -49,13 +54,11 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
   const { class: inputClass, wrapperClass, wrapperStyle, disabled, readonly, modelValue } = props
 
   const {
-    onInput: onInputAttrRaw,
+    onInput: onInputAttr,
     value: fallbackModelValue,
     type: inputTypeAttr,
     ...nativeInputAttrs
   } = attrs as InputHTMLAttributes
-
-  const onInputAttr = onInputAttrRaw as ((event: Event) => void) | undefined
 
   // 内容计算
   const inputValue = modelValue ?? (fallbackModelValue as string | undefined) ?? ''
@@ -70,7 +73,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
 
   const inputClasses = ['nova-input-text', inputClass].filter(Boolean) as VueClass
 
-  const handleInput = (event: Event) => {
+  const handleInput = (event: InputEvent) => {
     if (disabled || readonly) {
       return
     }
@@ -85,7 +88,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
   }
 
   // 渲染输出
-  const inputProps = {
+  const inputProps: InputHTMLAttributes = {
     type: inputType,
     class: inputClasses,
     ...nativeInputAttrs,
