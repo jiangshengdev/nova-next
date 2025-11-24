@@ -10,8 +10,8 @@ describe('input behavior', () => {
       defineComponent({
         name: 'InputModelWrapper',
         setup() {
-          const updateValue = (value: string | number) => {
-            modelValue.value = String(value)
+          const updateValue = (value: string) => {
+            modelValue.value = value
           }
 
           return () => (
@@ -48,62 +48,5 @@ describe('input behavior', () => {
     const wrapper = mount(() => <NovaInput value="from-attr" />)
 
     expect((wrapper.get('input').element as HTMLInputElement).value).toBe('from-attr')
-  })
-
-  test('数字模型会保持 number 类型', async () => {
-    const modelValue = ref<string | number>(1)
-    const updateValue = (value: string | number) => {
-      modelValue.value = value
-    }
-
-    const wrapper = mount(
-      defineComponent({
-        name: 'NumericModelWrapper',
-        setup() {
-          return () => (
-            <NovaInput
-              type="number"
-              {...{
-                modelValue: modelValue.value,
-                'onUpdate:modelValue': updateValue,
-              }}
-            />
-          )
-        },
-      }),
-    )
-
-    await wrapper.get('input').setValue('42')
-
-    expect(modelValue.value).toBe(42)
-    expect(typeof modelValue.value).toBe('number')
-  })
-
-  test('数字模型在清空时返回空字符串', async () => {
-    const modelValue = ref<string | number>(5)
-    const updateValue = (value: string | number) => {
-      modelValue.value = value
-    }
-
-    const wrapper = mount(
-      defineComponent({
-        name: 'NumericModelClearWrapper',
-        setup() {
-          return () => (
-            <NovaInput
-              type="number"
-              {...{
-                modelValue: modelValue.value,
-                'onUpdate:modelValue': updateValue,
-              }}
-            />
-          )
-        },
-      }),
-    )
-
-    await wrapper.get('input').setValue('')
-
-    expect(modelValue.value).toBe('')
   })
 })

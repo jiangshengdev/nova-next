@@ -9,18 +9,18 @@ interface NovaInputBaseProps extends EnvironmentProps {
   wrapperStyle?: VueStyle
   disabled?: boolean
   readonly?: boolean
-  modelValue?: string | number
-  'onUpdate:modelValue'?: (value: string | number) => void
+  modelValue?: string
+  'onUpdate:modelValue'?: (value: string) => void
 }
 
 const novaInputPropDefs = {
   ...environmentProps,
   class: {
-    type: [String, Array, Object],
+    type: [String, Array, Object] as PropType<VueClass>,
     default: null,
   },
   wrapperClass: {
-    type: [String, Array, Object],
+    type: [String, Array, Object] as PropType<VueClass>,
     default: null,
   },
   wrapperStyle: {
@@ -36,35 +36,12 @@ const novaInputPropDefs = {
     default: false,
   },
   modelValue: {
-    type: [String, Number],
+    type: String,
     default: null,
   },
 }
 
 type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
-
-type PrimitiveInputValue = string | number | undefined
-
-const formatInputValue = (value: PrimitiveInputValue) => {
-  if (typeof value === 'number') {
-    return String(value)
-  }
-  return value ?? ''
-}
-
-const resolveNextModelValue = (input: HTMLInputElement, reference: PrimitiveInputValue) => {
-  if (typeof reference === 'number') {
-    if (input.value === '') {
-      return ''
-    }
-    const numericValue = Number.isNaN(input.valueAsNumber)
-      ? Number(input.value)
-      : input.valueAsNumber
-    return numericValue
-  }
-
-  return input.value
-}
 
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) => {
   // 环境上下文
@@ -76,32 +53,22 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     value: fallbackModelValue,
     type: inputTypeAttr,
     ...nativeInputAttrs
-  } = attrs as typeof attrs & {
-    onInput?: ((event: Event) => void) | undefined
-    value?: PrimitiveInputValue
-    type?: string
-  }
+  } = attrs as InputHTMLAttributes
 
   const onInputAttr = onInputAttrRaw as ((event: Event) => void) | undefined
 
   // 内容计算
-  const resolveInputValue = () => modelValue ?? fallbackModelValue
-  const referenceValue = resolveInputValue()
-  const inputValue = formatInputValue(referenceValue)
+  const inputValue = modelValue ?? (fallbackModelValue as string | undefined) ?? ''
   const inputType = typeof inputTypeAttr === 'string' ? inputTypeAttr : 'text'
 
-  const wrapperClasses = (
-    [
-      'nova-input',
-      disabled && 'nova-input-disabled',
-      readonly && 'nova-input-readonly',
-      wrapperClass,
-    ] as Array<string | VueClass | false | null>
-  ).filter(Boolean) as Array<string | VueClass>
+  const wrapperClasses = [
+    'nova-input',
+    disabled && 'nova-input-disabled',
+    readonly && 'nova-input-readonly',
+    wrapperClass,
+  ].filter(Boolean) as VueClass
 
-  const inputClasses = (['nova-input-text', inputClass] as Array<string | VueClass | null>).filter(
-    Boolean,
-  ) as Array<string | VueClass>
+  const inputClasses = ['nova-input-text', inputClass].filter(Boolean) as VueClass
 
   const handleInput = (event: Event) => {
     if (disabled || readonly) {
@@ -109,7 +76,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     }
 
     const target = event.target as HTMLInputElement
-    const nextValue = resolveNextModelValue(target, resolveInputValue())
+    const nextValue = target.value
 
     emit?.('update:modelValue', nextValue)
     if (typeof onInputAttr === 'function') {

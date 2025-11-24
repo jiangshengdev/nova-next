@@ -19,7 +19,7 @@ export default defineComponent({
         <div class="demo-input-group">
           <NovaInput type="email" placeholder="邮箱 (type=email)" />
           <NovaInput type="password" placeholder="密码 (type=password)" />
-          <NovaInput type="number" placeholder="数字 (type=number)" />
+          <NovaInput type="search" placeholder="搜索 (type=search)" />
         </div>
 
         <h4>其他属性</h4>
@@ -33,7 +33,7 @@ export default defineComponent({
           <p>
             NovaInput 支持所有标准的 HTML input 属性，如 <code>required</code>、
             <code>minlength</code>、<code>maxlength</code>、<code>type</code>、<code>name</code>、
-            <code>id</code> 等。
+            <code>id</code> 等（数值输入请改用 NovaNumberInput）。
           </p>
         </div>
       </div>
