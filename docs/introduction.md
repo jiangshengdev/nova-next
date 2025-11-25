@@ -23,6 +23,6 @@ import { NovaButton } from '@jiangshengdev/nova-next'
 
 ## 更多内容
 
-- 在 `docs/getting-started.md` 查看完整快速开始流程。
-- 访问按钮、输入框、取色器等组件文档，了解 Props、示例与最佳实践。
+- 前往 [快速开始](/getting-started) 了解完整集成流程。
+- 查看 [NovaButton 按钮](/components/button/) 等组件文档，获取 Props 与示例。
 - 如需演练交互，可运行 `pnpm docs:dev` 查看文档站点或 `pnpm play` 打开 playground。

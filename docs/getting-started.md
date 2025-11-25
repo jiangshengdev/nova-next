@@ -69,4 +69,4 @@ const handleClick = () => {
 ## 下一步
 
 - 继续在页面中导入其他组件与样式文件，例如输入框或取色器。
-- 使用 `NovaEnvironment` 统一主题与语言，或前往按钮文档查看更多示例。
+- 使用 `NovaEnvironment` 统一主题与语言，或前往 [NovaButton 按钮](/components/button/) 查看更多示例。
