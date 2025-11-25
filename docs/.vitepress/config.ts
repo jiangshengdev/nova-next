@@ -5,6 +5,7 @@ export default defineConfig({
   title: 'Nova next',
   description: 'Experimental Vue components',
   themeConfig: {
+    outline: [2, 3],
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
@@ -18,6 +19,10 @@ export default defineConfig({
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' },
         ],
+      },
+      {
+        text: '组件',
+        items: [{ text: 'NovaButton 按钮', link: '/components/button/' }],
       },
     ],
 

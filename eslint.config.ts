@@ -43,7 +43,7 @@ export default defineConfigWithVueTs(
     },
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/.vitepress/cache/**']),
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
