@@ -43,7 +43,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '介绍',
+        text: '',
         items: [
           { text: '简介', link: '/introduction' },
           { text: '快速开始', link: '/getting-started' },
