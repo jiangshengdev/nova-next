@@ -46,10 +46,13 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
-    "format": "prettier --write e2e/ issues/ playground/ src/ tests/",
+    "format": "prettier --write docs/ e2e/ issues/ playground/ src/ tests/",
     "xo": "xo",
     "release": "bumpp && pnpm publish",
-    "prepublishOnly": "pnpm run build && pnpm run styles:build"
+    "prepublishOnly": "pnpm run build && pnpm run styles:build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.9",
@@ -87,6 +90,7 @@
     "typescript": "~5.9.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.3",
+    "vitepress": "2.0.0-alpha.15",
     "vitest": "^3.2.4",
     "vue-router": "^4.6.3",
     "vue-tsc": "^3.1.1",
