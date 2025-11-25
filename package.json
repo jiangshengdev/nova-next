@@ -6,19 +6,46 @@
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/author/library#readme",
+  "bugs": {
+    "url": "https://github.com/author/library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/author/library.git"
+  },
+  "author": "Author Name <author.name@mail.com>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "play": "vite",
+    "play:build": "run-p type-check \"play:build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "build-only": "vite build",
+    "play:build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
     "format": "prettier --write e2e/ issues/ playground/ src/ tests/",
-    "xo": "xo"
+    "xo": "xo",
+    "release": "bumpp && pnpm publish",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.9",
@@ -40,6 +67,7 @@
     "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.8.1",
+    "bumpp": "^10.3.1",
     "eslint": "^9.37.0",
     "eslint-plugin-oxlint": "~1.30.0",
     "eslint-plugin-playwright": "^2.2.2",
@@ -49,6 +77,7 @@
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.30.0",
     "prettier": "3.6.2",
+    "tsdown": "^0.16.6",
     "typescript": "~5.9.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.3",
