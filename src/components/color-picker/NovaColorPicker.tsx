@@ -38,12 +38,14 @@ const modeSize = modeList.length
 // endregion
 
 export interface ColorPickerProps extends EnvironmentProps, DropdownProps {
+  modelValue?: string
   value?: string
   alpha?: boolean
   format?: ColorFormat
   preset?: string[]
   onUpdate?: (color: string) => void
   onOpenChange?: (opened: boolean) => void
+  'onUpdate:modelValue'?: (color: string) => void
 }
 
 const defaultValue = '#ff0000'
@@ -51,6 +53,10 @@ const defaultValue = '#ff0000'
 const colorPickerProps = {
   ...environmentProps,
   ...dropdownProps,
+  modelValue: {
+    type: String,
+    default: null,
+  },
   value: {
     type: String,
     default: defaultValue,
@@ -82,7 +88,7 @@ export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
 export const NovaColorPicker = defineComponent({
   name: 'NovaColorPicker',
   props: colorPickerProps,
-  emits: ['update', 'update:value'],
+  emits: ['update', 'update:modelValue'],
   setup(props, context) {
     const emit = context.emit
 
@@ -180,12 +186,26 @@ export const NovaColorPicker = defineComponent({
       setColor(getColorFromPosition())
     }
 
-    function changePropsValue(color: Color): void {
-      // JSX onUpdate
-      emit('update', color.toString(props.format))
+    const externalValue = computed(() => {
+      if (props.modelValue !== null && props.modelValue !== undefined) {
+        return props.modelValue
+      }
 
-      // Template v-model:value
-      emit('update:value', color.toString(props.format))
+      if (props.value !== null && props.value !== undefined) {
+        return props.value
+      }
+
+      return defaultValue
+    })
+
+    function changePropsValue(color: Color): void {
+      const nextValue = color.toString(props.format)
+
+      // JSX onUpdate
+      emit('update', nextValue)
+
+      // Template v-model (3.5 默认语法)
+      emit('update:modelValue', nextValue)
     }
 
     function switchMode(): void {
@@ -210,14 +230,11 @@ export const NovaColorPicker = defineComponent({
       }
     }
 
-    watch(
-      () => props.value,
-      (value) => {
-        const color = Color.parse(value)
+    watch(externalValue, (value) => {
+      const color = Color.parse(value)
 
-        setColorAndPosition(color)
-      },
-    )
+      setColorAndPosition(color)
+    })
 
     watch(
       () => props.alpha,
@@ -232,7 +249,7 @@ export const NovaColorPicker = defineComponent({
     )
 
     function reset() {
-      const color = Color.parse(props.value)
+      const color = Color.parse(externalValue.value)
 
       setColorAndPosition(color)
     }
@@ -382,7 +399,7 @@ export const NovaColorPicker = defineComponent({
       }
 
       function createPreview() {
-        return <Preview color={state.color} value={props.value || defaultValue} onReset={init} />
+        return <Preview color={state.color} value={externalValue.value} onReset={init} />
       }
 
       function createPreset() {

@@ -11,8 +11,8 @@ export default defineComponent({
     return () => (
       <div>
         <div id="print">{state.color}</div>
-        <NovaColorPicker v-model:value={state.color} theme="dark" />
-        <NovaColorPicker v-model:value={state.color} theme="light" />
+        <NovaColorPicker v-model={state.color} theme="dark" />
+        <NovaColorPicker v-model={state.color} theme="light" />
       </div>
     )
   },

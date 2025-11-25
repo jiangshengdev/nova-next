@@ -88,6 +88,59 @@ describe('color-picker', () => {
     expect(print.text()).toEqual('#408080')
   })
 
+  test('v-model 默认语法', async () => {
+    const wrapper = mount({
+      setup() {
+        const state = reactive({
+          color: '#808080',
+        })
+
+        function onModelUpdate(value: string): void {
+          state.color = value
+        }
+
+        return () => (
+          <div>
+            <span id="print">{state.color}</span>
+            <NovaColorPicker
+              modelValue={state.color}
+              teleportToBody={false}
+              {...{ 'onUpdate:modelValue': onModelUpdate }}
+            />
+          </div>
+        )
+      },
+    })
+
+    const print = wrapper.find('#print')
+
+    expect(print.text()).toEqual('#808080')
+
+    const pickerTrigger = wrapper.find('.nova-dropdown-trigger')
+
+    await pickerTrigger.trigger('click')
+
+    const hueSlide = wrapper.find('.nova-color-picker-hue-slide')
+
+    await hueSlide.trigger('mousedown', {
+      clientX: 10,
+      clientY: 100,
+    })
+    await hueSlide.trigger('mouseup')
+
+    const pickerValue = wrapper.find('.nova-color-picker-value')
+
+    await pickerValue.trigger('mousedown', {
+      clientX: 100,
+      clientY: 100,
+    })
+    await pickerValue.trigger('mouseup')
+
+    await pickerTrigger.trigger('click')
+
+    expect(print.text()).toEqual('#408080')
+  })
+
   test('disabled', async () => {
     const wrapper = mount({
       setup() {
