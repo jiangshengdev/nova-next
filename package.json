@@ -17,7 +17,8 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
-    "format": "prettier --write e2e/ issues/ src/ tests/"
+    "format": "prettier --write e2e/ issues/ src/ tests/",
+    "xo": "xo"
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.9",
@@ -52,6 +53,7 @@
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.1.1"
+    "vue-tsc": "^3.1.1",
+    "xo": "^1.2.3"
   }
 }
