@@ -1,7 +1,7 @@
 {
   "name": "@jiangshengdev/nova-next",
   "version": "3.0.0-alpha.1",
-  "private": true,
+  "private": false,
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
