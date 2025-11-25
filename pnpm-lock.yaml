@@ -11,15 +11,9 @@ importers:
       '@jiangshengdev/material-design-icons-vue-next':
         specifier: 1.0.0-alpha.9
         version: 1.0.0-alpha.9(typescript@5.9.3)
-      pinia:
-        specifier: ^3.0.3
-        version: 3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
       vue:
         specifier: ^3.5.22
         version: 3.5.24(typescript@5.9.3)
-      vue-router:
-        specifier: ^4.6.3
-        version: 4.6.3(vue@3.5.24(typescript@5.9.3))
     devDependencies:
       '@playwright/test':
         specifier: ^1.56.1
@@ -96,6 +90,9 @@ importers:
       oxlint:
         specifier: ~1.30.0
         version: 1.30.0
+      pinia:
+        specifier: ^3.0.3
+        version: 3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -114,6 +111,9 @@ importers:
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@22.19.1)(jiti@2.6.1)(jsdom@27.2.0)(lightningcss@1.30.2)(yaml@2.8.1)
+      vue-router:
+        specifier: ^4.6.3
+        version: 4.6.3(vue@3.5.24(typescript@5.9.3))
       vue-tsc:
         specifier: ^3.1.1
         version: 3.1.4(typescript@5.9.3)

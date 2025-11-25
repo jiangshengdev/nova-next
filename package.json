@@ -52,9 +52,7 @@
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.9",
-    "pinia": "^3.0.3",
-    "vue": "^3.5.22",
-    "vue-router": "^4.6.3"
+    "vue": "^3.5.22"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
@@ -82,12 +80,14 @@
     "lodash-es": "^4.17.21",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.30.0",
+    "pinia": "^3.0.3",
     "prettier": "3.6.2",
     "tsdown": "^0.16.6",
     "typescript": "~5.9.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^3.2.4",
+    "vue-router": "^4.6.3",
     "vue-tsc": "^3.1.1",
     "xo": "^1.2.3"
   }
