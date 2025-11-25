@@ -35,25 +35,31 @@ function calcTuned(
   const { alt, shift, ctrl } = functionKeys
 
   let step = 0
+
   if (alt) {
     step += tuningParams.blue
   }
+
   if (shift) {
     step += tuningParams.green
   }
+
   if (ctrl) {
     step += tuningParams.red
   }
+
   if (!(alt || ctrl || shift)) {
     step = tuningParams.blue
   }
 
   let tunedNumber = originNumber
+
   if (direction === up) {
     tunedNumber = originNumber + step
   } else if (direction === down) {
     tunedNumber = originNumber - step
   }
+
   tunedNumber = numberLimit(tunedNumber, 0, tuningParams.max)
 
   return tunedNumber.toString(16).padStart(tuningParams.length, '0')
@@ -83,6 +89,7 @@ export const HexLabel = defineComponent({
 
         const color = Color.fromHex(hex)
         const sameColor = Color.sameColor(props.color as Color, color)
+
         if (sameColor) {
           return
         }
@@ -94,6 +101,7 @@ export const HexLabel = defineComponent({
     function onHexInput(e: Event): void {
       const target = e.target as HTMLInputElement
       const value = getInputValue(target)
+
       updateColor('colorInput', value)
     }
 
@@ -134,6 +142,7 @@ export const HexLabel = defineComponent({
           max: 0xfff,
           length: 3,
         }
+
         tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params)
       } else if (pureHex.length === 6) {
         const params = {
@@ -143,6 +152,7 @@ export const HexLabel = defineComponent({
           max: 0xffffff,
           length: 6,
         }
+
         tunedPureHex = calcTuned(functionKeys, hexNumber, direction, params)
       }
 
@@ -151,6 +161,7 @@ export const HexLabel = defineComponent({
       }
 
       const newHex = `#${tunedPureHex}`
+
       setInputValue(hexInput, newHex)
       updateColor('colorInput', newHex)
     }

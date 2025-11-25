@@ -32,6 +32,7 @@ function almostSameHex(a: string, b: string): boolean {
 
 function almostSameValue(a: number, b: number, max: number): boolean {
   const error = max / 100
+
   return Math.abs(a - b) <= error
 }
 
@@ -77,6 +78,7 @@ describe('x11-colors', () => {
       const blue = percentToValue(parseInt(x11Color.blue), 255)
       const hex = Color.fromCssRgba(red, green, blue).toHex()
       const sameHex = almostSameHex(hex, hexNormalize(x11Color.hex))
+
       expect(sameHex).toBeTruthy()
     })
   })
@@ -84,6 +86,7 @@ describe('x11-colors', () => {
   test('hex to rgb', () => {
     x11Colors.forEach((x11Color) => {
       const { red, green, blue } = Color.fromHex(x11Color.hex).toCssRgba()
+
       expect(valueToPercent(red, 255).toString()).toEqual(x11Color.red)
       expect(valueToPercent(green, 255).toString()).toEqual(x11Color.green)
       expect(valueToPercent(blue, 255).toString()).toEqual(x11Color.blue)
@@ -97,6 +100,7 @@ describe('x11-colors', () => {
       const lightness = parseInt(x11Color.light)
       const hex = Color.fromCssHsla(hue, saturation, lightness).toHex()
       const sameHex = almostSameHex(hex, hexNormalize(x11Color.hex))
+
       expect(sameHex).toBeTruthy()
     })
   })
@@ -107,6 +111,7 @@ describe('x11-colors', () => {
       const sameH = almostSameValue(hue, parseInt(x11Color.hue), 360)
       const sameS = almostSameValue(saturation, parseInt(x11Color.hslSaturation), 100)
       const sameL = almostSameValue(lightness, parseInt(x11Color.light), 100)
+
       expect(sameH).toBeTruthy()
       expect(sameS).toBeTruthy()
       expect(sameL).toBeTruthy()
@@ -120,6 +125,7 @@ describe('x11-colors', () => {
       const value = parseInt(x11Color.value)
       const hex = Color.fromCssLikeHsva(hue, saturation, value).toHex()
       const sameHex = almostSameHex(hex, hexNormalize(x11Color.hex))
+
       expect(sameHex).toBeTruthy()
     })
   })
@@ -133,6 +139,7 @@ describe('x11-colors', () => {
       const sameHue = almostSameValue(hue, originHue, 360)
       const sameSaturation = almostSameValue(Math.round(saturation * 100), originSaturation, 100)
       const sameValue = almostSameValue(Math.round(value * 100), originValue, 100)
+
       expect(sameHue).toBeTruthy()
       expect(sameSaturation).toBeTruthy()
       expect(sameValue).toBeTruthy()
@@ -144,26 +151,33 @@ describe('css-wg-colors', () => {
   test('hsl', () => {
     function validateHsl(data: string[][], hue: number): void {
       const header = data[0]
+
       if (!header) {
         throw new Error('Invalid CSS WG HSL dataset')
       }
+
       const saturationKeys = header.slice(1)
+
       data.slice(1).forEach((lightList) => {
         const light = lightList[0]
+
         lightList.slice(1).forEach((color, index) => {
           const originHsl = `hsl(${hue}, ${saturationKeys[index]}, ${light})`
           const outputHex = Color.fromCssHslString(originHsl).toHex()
           const sameHex = almostSameHex(outputHex, hexNormalize(color))
+
           expect(sameHex).toBeTruthy()
         })
       })
 
       data.slice(2, -1).forEach((lightList) => {
         const light = lightList[0]
+
         lightList.slice(1, -1).forEach((color, index) => {
           const originHsl = `hsl(${hue}, ${saturationKeys[index]}, ${light})`
           const outputHsl = Color.fromHex(color).toCssHslaString()
           const sameHsl = almostSameHsl(originHsl, outputHsl)
+
           expect(sameHsl).toBeTruthy()
         })
       })
@@ -182,6 +196,7 @@ describe('mdn-colors', () => {
         expect(() => {
           Color.parse(mdnColor.css)
         }).toThrowError()
+
         return
       }
 
@@ -191,6 +206,7 @@ describe('mdn-colors', () => {
 
       const color = Color.parse(mdnColor.css)
       const sameRgb = almostSameRgb(color.toCssRgbaString(), mdnColor.rgb)
+
       expect(sameRgb).toBeTruthy()
     })
   })

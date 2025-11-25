@@ -10,6 +10,7 @@ export function numberLimit(value: number, min = 0, max = Infinity): number {
   } else if (value > max) {
     return max
   }
+
   return value
 }
 

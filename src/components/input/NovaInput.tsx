@@ -82,6 +82,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     const nextValue = target.value
 
     emit?.('update:modelValue', nextValue)
+
     if (typeof onInputAttr === 'function') {
       onInputAttr(event)
     }

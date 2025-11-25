@@ -17,9 +17,11 @@ export default defineComponent({
 
     function initTheme() {
       const theme = localStorage.getItem(storageThemeKey)
+
       if (theme) {
         state.theme = theme
       }
+
       setDocumentTheme(state.theme)
     }
 

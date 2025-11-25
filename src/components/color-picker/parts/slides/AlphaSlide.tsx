@@ -29,6 +29,7 @@ export const AlphaSlide = defineComponent({
 
     const alphaThumbStyle = computed(() => {
       const y = numberFixed(props.alpha)
+
       return {
         transform: `translate(0, ${y}px)`,
       }

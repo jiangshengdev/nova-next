@@ -7,9 +7,11 @@ import { describe, expect, test } from 'vitest'
 
 function atOrThrow<T>(items: T[], index: number): T {
   const target = items[index]
+
   if (target === undefined) {
     throw new Error(`Expected item at index ${index}`)
   }
+
   return target
 }
 
@@ -30,6 +32,7 @@ describe('color-picker', () => {
         }
       },
     })
+
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.find('.nova-dropdown-trigger').trigger('click')
@@ -57,18 +60,22 @@ describe('color-picker', () => {
     })
 
     const print = wrapper.find('#print')
+
     expect(print.text()).toEqual('#808080')
 
     const pickerTrigger = wrapper.find('.nova-dropdown-trigger')
+
     await pickerTrigger.trigger('click')
 
     const hueSlide = wrapper.find('.nova-color-picker-hue-slide')
+
     await hueSlide.trigger('mousedown', {
       clientX: 10,
       clientY: 100,
     })
     await hueSlide.trigger('mouseup')
     const pickerValue = wrapper.find('.nova-color-picker-value')
+
     await pickerValue.trigger('mousedown', {
       clientX: 100,
       clientY: 100,
@@ -112,10 +119,12 @@ describe('color-picker', () => {
     })
 
     const pickerTrigger = wrapper.find('.nova-dropdown-trigger')
+
     await pickerTrigger.trigger('click')
     expect(wrapper.html()).toMatchSnapshot()
 
     const classListBefore = wrapper.find('.nova-color-picker').classes()
+
     expect(classListBefore).toContain('nova-color-picker-disabled')
 
     await wrapper.find('#toggle').trigger('click')
@@ -123,6 +132,7 @@ describe('color-picker', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     const classListAfter = wrapper.find('.nova-color-picker').classes()
+
     expect(classListAfter).not.toContain('nova-color-picker-disabled')
   })
 
@@ -162,11 +172,13 @@ describe('color-picker', () => {
     })
 
     const classList = wrapper.find('.nova-color-picker').classes()
+
     expect(classList).toContain('array-class')
     expect(classList).toContain('object-class')
 
     await wrapper.find('.nova-dropdown-trigger').trigger('click')
     const panelClassList = wrapper.find('.nova-dropdown-panel').classes()
+
     expect(panelClassList).toContain('array-panel-class')
     expect(panelClassList).toContain('object-panel-class')
     expect(wrapper.html()).toMatchSnapshot()
@@ -203,11 +215,13 @@ describe('color-picker', () => {
 
     const picker = wrapper.find('.nova-color-picker')
     const bg = getStyleOf(picker.element as HTMLElement, 'background-color')
+
     expect(bg).toEqual('rgb(128, 128, 128)')
 
     await wrapper.find('.nova-dropdown-trigger').trigger('click')
     const panel = wrapper.find('.nova-dropdown-panel')
     const panelBg = getStyleOf(panel.element as HTMLElement, 'background-color')
+
     expect(panelBg).toEqual('rgb(128, 128, 128)')
   })
 
@@ -235,6 +249,7 @@ describe('color-picker', () => {
     })
 
     const trigger = wrapper.find('.nova-dropdown-trigger')
+
     await trigger.trigger('click')
     expect(wrapper.html()).toMatchSnapshot()
 
@@ -276,13 +291,16 @@ describe('color-picker', () => {
     })
 
     const print = wrapper.find('#print')
+
     expect(print.text()).toEqual('#80808080')
 
     const pickerTrigger = wrapper.find('.nova-dropdown-trigger')
+
     await pickerTrigger.trigger('click')
     expect(wrapper.html()).toMatchSnapshot()
 
     const alphaSlide = wrapper.find('.nova-color-picker-alpha-slide')
+
     await alphaSlide.trigger('mousedown', {
       clientX: 10,
       clientY: 200,
@@ -390,13 +408,16 @@ describe('color-picker', () => {
 
     const pickerTrigger = wrapper.find('.nova-dropdown-trigger')
     const print = wrapper.find('#print')
+
     await pickerTrigger.trigger('click')
     expect(wrapper.html()).toMatchSnapshot()
 
     const pickerPreset = wrapper.findAll('.nova-color-picker-preset')
+
     expect(pickerPreset.length).toEqual(2)
 
     const rebeccapurple = atOrThrow(pickerPreset, 1)
+
     await rebeccapurple.trigger('click')
     await pickerTrigger.trigger('click')
     expect(print.text()).toEqual(preset[1])
@@ -436,6 +457,7 @@ describe('color-picker', () => {
     const greenInput = atOrThrow(rgbNumberList, 1)
     const blueInput = atOrThrow(rgbNumberList, 2)
     const alphaInput = atOrThrow(rgbNumberList, 3)
+
     await redInput.setValue(255)
     await greenInput.setValue(0)
     await blueInput.setValue(255)
@@ -449,12 +471,14 @@ describe('color-picker', () => {
 
     await pickerTrigger.trigger('click')
     const pickerSwitch = wrapper.find('.nova-color-picker-labels-switch')
+
     await pickerSwitch.trigger('click')
     const hslNumberList = wrapper.findAll('.nova-color-picker-input input')
     const hueInput = atOrThrow(hslNumberList, 0)
     const saturationInput = atOrThrow(hslNumberList, 1)
     const lightnessInput = atOrThrow(hslNumberList, 2)
     const hslAlphaInput = atOrThrow(hslNumberList, 3)
+
     await hueInput.setValue(120)
     await saturationInput.setValue(100)
     await lightnessInput.setValue(50)
@@ -468,6 +492,7 @@ describe('color-picker', () => {
 
     await pickerTrigger.trigger('click')
     const hex = wrapper.find('.nova-color-picker-hex input')
+
     await hex.setValue('#ff0')
     await hex.trigger('blur')
     await pickerTrigger.trigger('click')
@@ -514,6 +539,7 @@ describe('color-picker', () => {
     const greenInput = atOrThrow(rgbNumberList, 1)
     const blueInput = atOrThrow(rgbNumberList, 2)
     const alphaInput = atOrThrow(rgbNumberList, 3)
+
     await redInput.trigger('keydown', {
       key: 'ArrowUp',
       ctrlKey: true,
@@ -533,12 +559,14 @@ describe('color-picker', () => {
     await init.trigger('click')
     await pickerTrigger.trigger('click')
     const pickerSwitch = wrapper.find('.nova-color-picker-labels-switch')
+
     await pickerSwitch.trigger('click')
     const hslNumberList = wrapper.findAll('.nova-color-picker-input input')
     const hueInput = atOrThrow(hslNumberList, 0)
     const saturationInput = atOrThrow(hslNumberList, 1)
     const lightnessInput = atOrThrow(hslNumberList, 2)
     const hslAlphaInput = atOrThrow(hslNumberList, 3)
+
     await hueInput.trigger('keydown', {
       key: 'ArrowUp',
       ctrlKey: true,
@@ -558,6 +586,7 @@ describe('color-picker', () => {
     await init.trigger('click')
     await pickerTrigger.trigger('click')
     const hexInput = wrapper.find('.nova-color-picker-hex input')
+
     await hexInput.trigger('keydown', { key: 'ArrowDown', ctrlKey: true })
     await hexInput.trigger('keydown', { key: 'ArrowDown', shiftKey: true })
     await hexInput.trigger('keydown', { key: 'ArrowUp' })

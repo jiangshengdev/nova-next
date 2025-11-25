@@ -23,7 +23,7 @@ import {
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { numberLimit } from '@/utils/utils.ts'
 
-//region Mode
+// region Mode
 const modeRgba = Symbol('rgba')
 const modeHsla = Symbol('hsla')
 
@@ -35,7 +35,7 @@ const labelsMap = new Map([
 const modeList = [...labelsMap.keys()]
 const modeSize = modeList.length
 
-//endregion
+// endregion
 
 export interface ColorPickerProps extends EnvironmentProps, DropdownProps {
   value?: string
@@ -194,11 +194,13 @@ export const NovaColorPicker = defineComponent({
       })
 
       activeModeIndex++
+
       if (activeModeIndex >= modeSize) {
         activeModeIndex = 0
       }
 
       const nextMode = modeList[activeModeIndex] ?? state.mode
+
       state.mode = nextMode
     }
 
@@ -212,6 +214,7 @@ export const NovaColorPicker = defineComponent({
       () => props.value,
       (value) => {
         const color = Color.parse(value)
+
         setColorAndPosition(color)
       },
     )
@@ -222,6 +225,7 @@ export const NovaColorPicker = defineComponent({
         if (!value) {
           const { red, green, blue } = state.color
           const color = new Color(red, green, blue)
+
           setColorAndPosition(color)
         }
       },
@@ -229,6 +233,7 @@ export const NovaColorPicker = defineComponent({
 
     function reset() {
       const color = Color.parse(props.value)
+
       setColorAndPosition(color)
     }
 
@@ -263,6 +268,7 @@ export const NovaColorPicker = defineComponent({
             trigger({
               ...triggerProps,
             })
+
           return (
             <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps}>
               {triggerNode}
@@ -327,6 +333,7 @@ export const NovaColorPicker = defineComponent({
 
       function createLabels() {
         const CurrLabels = labelsMap.get(state.mode)
+
         if (!CurrLabels) {
           return null
         }
@@ -353,6 +360,7 @@ export const NovaColorPicker = defineComponent({
         }
 
         const labelsNode = createLabels()
+
         return (
           <div class="nova-color-picker-form">
             <div
@@ -385,6 +393,7 @@ export const NovaColorPicker = defineComponent({
         }
 
         let slotPresetNode = null
+
         if (slotPreset) {
           slotPresetNode = () =>
             slotPreset({
@@ -467,10 +476,12 @@ export const NovaColorPicker = defineComponent({
         trigger: ({ dropdownInstance, triggerAutoFocusRef }: DropdownTriggerScoped) => {
           dropdownInstanceRef.value = dropdownInstance
           triggerAutoFocusRef.value = colorPickerTriggerAutoFocusRef.value
+
           return triggerNode
         },
         default: ({ panelAutoFocusRef }: DropdownPanelScoped) => {
           panelAutoFocusRef.value = colorPickerPanelAutoFocusRef.value
+
           return dropdownNode
         },
       }

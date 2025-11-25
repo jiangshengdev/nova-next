@@ -23,6 +23,7 @@ const PresetValues: FunctionalComponent<PresetValuesProps> = (props, context) =>
 
   function selectPreset(hex: string): void {
     const color = Color.parse(hex)
+
     emit('select', color)
   }
 
@@ -60,8 +61,10 @@ const PresetValues: FunctionalComponent<PresetValuesProps> = (props, context) =>
   )
 
   const children = slots.default
+
   if (children) {
     const slotNodes = children()
+
     presetNode = slotNodes[0] ?? presetNode
   }
 

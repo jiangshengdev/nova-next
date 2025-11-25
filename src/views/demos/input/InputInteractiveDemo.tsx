@@ -10,6 +10,7 @@ export default defineComponent({
 
     function handleInput(e: Event) {
       const value = (e.target as HTMLInputElement).value
+
       inputValue.value = value
       characterCount.value = value.length
       console.log('当前输入:', value)

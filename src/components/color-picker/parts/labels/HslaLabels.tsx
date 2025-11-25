@@ -12,6 +12,7 @@ import {
 import { type EnvironmentContext } from '@/uses/use-environment.ts'
 
 type hslChannel = 'hue' | 'saturation' | 'lightness'
+
 type ColorEmit = 'colorInput' | 'colorBlur'
 
 interface HslaLabelsProps {
@@ -58,6 +59,7 @@ export const HslaLabels = defineComponent({
 
       const color = Color.fromCssHsla(hue, saturation, lightness, alpha)
       const sameColor = Color.sameColor(props.color as Color, color)
+
       if (sameColor) {
         return
       }

@@ -12,6 +12,7 @@ import {
 import { type EnvironmentContext } from '@/uses/use-environment.ts'
 
 type rgbChannel = 'red' | 'green' | 'blue'
+
 type ColorEmit = 'colorInput' | 'colorBlur'
 
 interface RgbaLabelsProps {
@@ -58,6 +59,7 @@ export const RgbaLabels = defineComponent({
 
       const color = Color.fromCssRgba(red, green, blue, alpha)
       const sameColor = Color.sameColor(props.color as Color, color)
+
       if (sameColor) {
         return
       }

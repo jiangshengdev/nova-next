@@ -1,6 +1,7 @@
 import { type Placement } from '../types/props'
 
 type MainAxisPlacement = 'start' | 'center' | 'end'
+
 type CrossAxisPlacement = 'start' | 'end'
 
 interface getAxisPlaceParams {
@@ -130,6 +131,7 @@ export function place(
 
 function getMainAxisPlace(params: getAxisPlaceParams, placement: MainAxisPlacement) {
   const { oldStart, oldEnd, newLength, minLength, maxLength } = params
+
   if (newLength > maxLength - minLength) {
     return minLength
   }
@@ -151,6 +153,7 @@ function getMainAxisPlace(params: getAxisPlaceParams, placement: MainAxisPlaceme
   if (newStart + newLength > maxLength) {
     newStart = maxLength - newLength
   }
+
   if (newStart < minLength) {
     newStart = minLength
   }
@@ -160,6 +163,7 @@ function getMainAxisPlace(params: getAxisPlaceParams, placement: MainAxisPlaceme
 
 function getCrossAxisPlace(params: getAxisPlaceParams, placement: CrossAxisPlacement) {
   const { oldStart, oldEnd, newLength, minLength, maxLength } = params
+
   if (newLength > maxLength - minLength) {
     return minLength
   }
@@ -169,15 +173,19 @@ function getCrossAxisPlace(params: getAxisPlaceParams, placement: CrossAxisPlace
   switch (placement) {
     case 'start':
       newStart = oldStart - newLength
+
       if (newStart < minLength) {
         newStart = oldEnd
       }
+
       break
     case 'end':
       newStart = oldEnd
+
       if (newStart + newLength > maxLength) {
         newStart = oldStart - newLength
       }
+
       break
   }
 

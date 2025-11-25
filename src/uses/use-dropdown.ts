@@ -111,6 +111,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
     } else {
       const focusable = getFocusable(trigger)
       const firstFocusable = focusable?.[0]
+
       firstFocusable?.focus()
     }
   }
@@ -123,6 +124,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
     }
 
     const prevOpened = state.dropdown.opened
+
     state.dropdown.opened = false
 
     if (prevOpened) {
@@ -156,10 +158,13 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
     const pageTop = visualViewport.pageTop
 
     let widthProportion = 1
+
     if (panelRect.width) {
       widthProportion = triggerRect.width / panelRect.width
     }
+
     let heightProportion = 1
+
     if (panelRect.height) {
       heightProportion = triggerRect.height / panelRect.height
     }
@@ -213,12 +218,14 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
 
       nextTick(() => {
         const panel = panelRef.value as HTMLElement
+
         panel.addEventListener('keydown', triggerKeydown)
       })
     }
 
     document.addEventListener('mousedown', onVirtualMaskMousedown)
     const openedOld = state.dropdown.opened
+
     state.dropdown.opened = true
 
     if (!openedOld) {
@@ -240,6 +247,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
 
   function toggleDropdown(): void {
     const opened = state.dropdown.opened
+
     if (opened) {
       closeDropdown()
     } else {
@@ -271,6 +279,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
 
   onMounted(() => {
     const trigger = triggerRef.value as HTMLElement
+
     trigger.addEventListener('click', triggerClick)
     trigger.addEventListener('mousedown', triggerMousedown)
     trigger.addEventListener('touchstart ', triggerTouchstart)
@@ -281,6 +290,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
     closeDropdown()
 
     const trigger = triggerRef.value as HTMLElement
+
     trigger.removeEventListener('click', triggerClick)
     trigger.removeEventListener('mousedown', triggerMousedown)
     trigger.removeEventListener('touchstart ', triggerTouchstart)
@@ -324,6 +334,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
       getVisualViewport()
 
       const style = Object.assign({}, getExpandStyle(), getTransitionStyle())
+
       setStyles(el as HTMLElement, style)
     })
   }
@@ -340,6 +351,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
     } else {
       const focusable = getFocusable(el as HTMLElement)
       const firstFocusable = focusable?.[0]
+
       firstFocusable?.focus()
     }
   }
@@ -350,6 +362,7 @@ export function useDropdown(params: UseDropdownParams): UseDropdownReturn {
       getVisualViewport()
 
       const style = Object.assign({}, collapseStyleCache, getTransitionStyle())
+
       setStyles(el as HTMLElement, style)
     })
   }

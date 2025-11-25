@@ -71,6 +71,7 @@ export const HsvPanel = defineComponent({
         backgroundColor: currColor,
         transform: `translate(${x}px, ${y}px)`,
       }
+
       return (
         <div class="nova-color-picker-hsv" ref={hsvRef}>
           <div class="nova-color-picker-hsv-inner">

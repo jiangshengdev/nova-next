@@ -16,6 +16,7 @@ export default defineComponent({
 
     function toggleOption(option: string) {
       const index = checkedOptions.value.indexOf(option)
+
       if (index > -1) {
         checkedOptions.value = checkedOptions.value.filter((o) => o !== option)
       } else {

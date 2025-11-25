@@ -60,11 +60,13 @@ function hexSimplify(hex: string): string {
   if (hex[0] === hex[1] && hex[2] === hex[3] && hex[4] === hex[5]) {
     return `${hex[0]}${hex[2]}${hex[4]}`
   }
+
   return hex
 }
 
 function rgbToHue(max: number, min: number, red: number, green: number, blue: number): number {
   let hue = 0
+
   if (max === min) {
     hue = 0
   } else if (max === red && green >= blue) {
@@ -76,6 +78,7 @@ function rgbToHue(max: number, min: number, red: number, green: number, blue: nu
   } else if (max === blue) {
     hue = 60 * ((red - green) / (max - min)) + 240
   }
+
   return Math.round(hue)
 }
 
@@ -85,11 +88,13 @@ function HslToRgbChannelLimit(tC: number): number {
   } else if (tC > 1) {
     tC = tC - 1
   }
+
   return tC
 }
 
 function HslToRgbChannel(tC: number, q: number, p: number): number {
   let c
+
   if (tC < 1 / 6) {
     c = p + (q - p) * 6 * tC
   } else if (1 / 6 <= tC && tC < 1 / 2) {
@@ -99,12 +104,14 @@ function HslToRgbChannel(tC: number, q: number, p: number): number {
   } else {
     c = p
   }
+
   return c
 }
 
 function getRgbFromText(text: string): number[] {
   const hasPercent = text.indexOf('%') !== -1
   const percentSize = text.replace(/[^%]/g, '').length
+
   if (hasPercent && percentSize !== 3) {
     throw new Error(colorFormatError)
   }
@@ -145,14 +152,21 @@ function sameValue(a: number, b: number): boolean {
  */
 export class Color {
   static hexRule = /^#?((([\dA-Fa-f]{6})([\dA-Fa-f]{2})?)|([\dA-Fa-f]{3}))$/
+
   static rgbRule = /^rgb\((\d{1,3}%?,){2}\d{1,3}%?\)$/
+
   static rgbaRule = /^rgba\((\d{1,3}%?,){2}\d{1,3}%?,(\d+(\.\d{1,2})?)\)$/
+
   static hslRule = /^hsl\(\d{1,3}(,\d{1,3}%){2}\)$/
+
   static hslaRule = /^hsla\(\d{1,3}(,\d{1,3}%){2},(\d+(\.\d{1,2})?)\)$/
 
   readonly red: number
+
   readonly green: number
+
   readonly blue: number
+
   readonly alpha: number
 
   /**
@@ -294,6 +308,7 @@ export class Color {
 
   static fromHsla(hue = 0, saturation = 0, lightness = 0, alpha = 1): Color {
     let q
+
     if (lightness < 1 / 2) {
       q = lightness * (1 + saturation)
     } else {
@@ -357,8 +372,10 @@ export class Color {
     const cssBlue = parseInt(hexBlue, 16)
 
     let cssAlpha = 1
+
     if (hex.length === 8) {
       const hexAlpha = hex.substr(6, 2)
+
       cssAlpha = parseInt(hexAlpha, 16) / 255
     }
 
@@ -449,9 +466,11 @@ export class Color {
 
     if (hexA === 'ff') {
       const hex = `${hexR}${hexG}${hexB}`
+
       if (short) {
         return hexSimplify(hex)
       }
+
       return hex
     }
 
@@ -475,6 +494,7 @@ export class Color {
     const hue = rgbToHue(max, min, red, green, blue)
 
     let saturation
+
     if (max === 0) {
       saturation = 0
     } else {
@@ -500,6 +520,7 @@ export class Color {
     const lightness = (1 / 2) * (max + min)
 
     let saturation = 0
+
     if (lightness === 0 || max === min) {
       saturation = 0
     } else if (0 < lightness && lightness <= 1 / 2) {
@@ -507,6 +528,7 @@ export class Color {
     } else if (lightness > 1 / 2) {
       saturation = (max - min) / (2 - 2 * lightness)
     }
+
     saturation = numberLimit(saturation, 0, 1)
 
     const hue = rgbToHue(max, min, red, green, blue)

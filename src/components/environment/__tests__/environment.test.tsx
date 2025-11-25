@@ -30,6 +30,7 @@ describe('NovaEnvironment', () => {
     ))
 
     const probe = wrapper.get('[data-environment-theme]')
+
     expect(probe.attributes('data-environment-theme')).toBe(fallbackTheme)
     expect(probe.attributes('data-environment-language')).toBe(fallbackLanguage.name)
     expect(probe.text()).toBe(fallbackLanguage.colorPicker.aria.trigger)
@@ -43,6 +44,7 @@ describe('NovaEnvironment', () => {
     ))
 
     const probe = wrapper.get('[data-environment-theme]')
+
     expect(probe.attributes('data-environment-theme')).toBe('dark')
     expect(probe.attributes('data-environment-language')).toBe(zhCN.name)
     expect(probe.text()).toBe(zhCN.colorPicker.aria.trigger)
@@ -58,6 +60,7 @@ describe('NovaEnvironment', () => {
     ))
 
     const probe = wrapper.get('[data-environment-theme]')
+
     expect(probe.attributes('data-environment-theme')).toBe('dark')
     expect(probe.attributes('data-environment-language')).toBe(zhCN.name)
   })
@@ -72,6 +75,7 @@ describe('NovaEnvironment', () => {
     ))
 
     const probe = wrapper.get('[data-environment-theme]')
+
     expect(probe.attributes('data-environment-theme')).toBe('dark')
     expect(probe.attributes('data-environment-language')).toBe(enUS.name)
   })

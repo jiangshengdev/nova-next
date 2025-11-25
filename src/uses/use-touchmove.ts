@@ -54,6 +54,7 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     }
 
     const firstFinger = e.changedTouches[0]
+
     if (!firstFinger) {
       return
     }
@@ -64,6 +65,7 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     })
 
     const position = resolveTouchPosition(firstFinger)
+
     move?.call(null, position)
   }
 
@@ -75,6 +77,7 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     }
 
     const target: HTMLElement = ref.value as HTMLElement
+
     target.removeEventListener('touchmove', onTouchmove)
     target.removeEventListener('touchend', onTouchend)
     target.removeEventListener('touchcancel', onTouchend)
@@ -90,16 +93,19 @@ export function useTouchmove(params: MoveParams): TouchReturn {
     }
 
     const firstFinger = e.changedTouches[0]
+
     if (!firstFinger) {
       return
     }
 
     const target: HTMLElement = ref.value as HTMLElement
+
     rect = target.getBoundingClientRect()
     border.left = getPaddingLeft(target)
     border.top = getPaddingTop(target)
 
     const position = resolveTouchPosition(firstFinger)
+
     start?.call(null)
     move?.call(null, position)
 
@@ -110,11 +116,13 @@ export function useTouchmove(params: MoveParams): TouchReturn {
 
   onMounted(() => {
     const target: HTMLElement = ref.value as HTMLElement
+
     target.addEventListener('touchstart', onTouchstart)
   })
 
   onBeforeUnmount(() => {
     const target: HTMLElement = ref.value as HTMLElement
+
     target.removeEventListener('touchstart', onTouchstart)
     target.removeEventListener('touchmove', onTouchmove)
     target.removeEventListener('touchend', onTouchend)

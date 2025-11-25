@@ -28,13 +28,16 @@ export function isInElement(
   searchLimit = defaultSearchLimit,
 ): boolean {
   let currElement: HTMLElement | null = departure
+
   for (let i = 0; i < searchLimit; i++) {
     if (currElement === destination) {
       return true
     }
+
     if (!currElement) {
       return false
     }
+
     currElement = currElement.parentElement
   }
 

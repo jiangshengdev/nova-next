@@ -33,6 +33,7 @@ export function intNormalize(value: number, max: number): number {
   }
 
   intNumber = numberLimit(intNumber, 0, max)
+
   return intNumber
 }
 
@@ -45,6 +46,7 @@ export function alphaNormalize(value: number): number {
   }
 
   floatNumber = numberLimit(floatNumber, 0, 1)
+
   return floatNumber
 }
 

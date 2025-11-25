@@ -17,6 +17,7 @@ describe('button', () => {
         }
       },
     })
+
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -34,6 +35,7 @@ describe('button', () => {
         }
       },
     })
+
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -50,6 +52,7 @@ describe('button', () => {
         }
       },
     })
+
     expect(wrapper.html()).toMatchSnapshot()
   })
 })

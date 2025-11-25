@@ -38,6 +38,7 @@ export const ColorPickerTrigger = defineComponent({
 
     onMounted(() => {
       const node = triggerRef.value
+
       emit('assignRef', node)
     })
 
@@ -58,8 +59,10 @@ export const ColorPickerTrigger = defineComponent({
         </div>
       )
       const children = slots.default
+
       if (children) {
         const slotNodes = children()
+
         triggerNode = slotNodes[0] ?? triggerNode
       }
 

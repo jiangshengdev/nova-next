@@ -91,11 +91,13 @@ export const NovaDropdown = defineComponent({
 
     function trapHeaderFocus() {
       const focusable = getFocusable(panelRef.value)
+
       nextFocus(focusable?.[focusable.length - 1])
     }
 
     function trapTrailerFocus() {
       const focusable = getFocusable(panelRef.value)
+
       nextFocus(focusable?.[0])
     }
 
@@ -167,6 +169,7 @@ export const NovaDropdown = defineComponent({
       const slotTrigger = slots.trigger
 
       let slotTriggerNode: VNode[] | null = null
+
       if (slotTrigger) {
         slotTriggerNode = slotTrigger({
           dropdownInstance,

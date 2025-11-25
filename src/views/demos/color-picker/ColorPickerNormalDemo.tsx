@@ -31,6 +31,7 @@ export default defineComponent({
     const slots = {
       trigger: (scoped: ColorPickerTriggerScoped) => {
         const hex = scoped.color.toCssHexString()
+
         return (
           <div
             class="demo-color-picker-normal-trigger"
@@ -65,6 +66,7 @@ export default defineComponent({
 
             return <ul>{list}</ul>
           })
+
           return <div>{table}</div>
         })
 

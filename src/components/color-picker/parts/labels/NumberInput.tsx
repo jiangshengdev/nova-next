@@ -54,6 +54,7 @@ export const NumberInput = defineComponent({
       const originNumber = parseFloat(value)
 
       let step = 1
+
       if (ctrl) {
         step = 100
       } else if (shift) {
@@ -63,6 +64,7 @@ export const NumberInput = defineComponent({
       }
 
       let tunedNumber = originNumber
+
       if (direction === up) {
         tunedNumber = originNumber + step
       } else if (direction === down) {

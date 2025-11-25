@@ -38,11 +38,13 @@ export function useMousemove(params: MoveParams): MouseReturn {
     const pageOffset = axis === 'x' ? window.pageXOffset : window.pageYOffset
 
     const clientValue = event[clientProp as 'clientX' | 'clientY']
+
     if (typeof clientValue === 'number') {
       return clientValue
     }
 
     const pageValue = event[pageProp as 'pageX' | 'pageY']
+
     if (typeof pageValue === 'number') {
       return pageValue - pageOffset
     }
@@ -72,6 +74,7 @@ export function useMousemove(params: MoveParams): MouseReturn {
     })
 
     const position = resolvePosition(e)
+
     move?.call(null, position)
   }
 
@@ -90,11 +93,13 @@ export function useMousemove(params: MoveParams): MouseReturn {
     state.mouse.holding = true
 
     const target: HTMLElement = ref.value as HTMLElement
+
     rect = target.getBoundingClientRect()
     border.left = getPaddingLeft(target)
     border.top = getPaddingTop(target)
 
     const position = resolvePosition(e)
+
     start?.call(null)
     move?.call(null, position)
 
@@ -104,11 +109,13 @@ export function useMousemove(params: MoveParams): MouseReturn {
 
   onMounted(() => {
     const target: HTMLElement = ref.value as HTMLElement
+
     target.addEventListener('mousedown', onMousedown)
   })
 
   onBeforeUnmount(() => {
     const target: HTMLElement = ref.value as HTMLElement
+
     target.removeEventListener('mousedown', onMousedown)
     document.removeEventListener('mousemove', onMousemove)
     document.removeEventListener('mouseup', onMouseup)
