@@ -4,8 +4,8 @@ import {
   type InputHTMLAttributes,
   type PropType,
 } from 'vue'
+import { environmentProps, type EnvironmentProps } from '@/components/environment/NovaEnvironment.tsx'
 import { useEnvironment } from '@/uses/use-environment.ts'
-import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { type VueClass, type VueStyle } from '@/types/props.ts'
 
 interface NovaInputBaseProps extends EnvironmentProps {
@@ -95,8 +95,8 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
     ...nativeInputAttrs,
     value: inputValue,
     onInput: handleInput,
-    disabled: !!disabled,
-    readonly: !!readonly,
+    disabled: Boolean(disabled),
+    readonly: Boolean(readonly),
     'aria-disabled': disabled || undefined,
     'aria-readonly': readonly || undefined,
   }
