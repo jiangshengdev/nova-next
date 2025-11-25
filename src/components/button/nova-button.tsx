@@ -5,7 +5,7 @@ import {
   type PropType,
   type VNodeChild,
 } from 'vue'
-import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
+import { environmentProps, type EnvironmentProps } from '@/components/environment/NovaEnvironment.tsx'
 import { useEnvironment } from '@/uses/use-environment.ts'
 
 export interface NovaButtonBaseProps extends EnvironmentProps {
