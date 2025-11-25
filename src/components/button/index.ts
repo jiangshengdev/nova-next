@@ -1,4 +1,4 @@
-import { NovaButton } from './NovaButton'
+import { NovaButton } from './nova-button.tsx'
 
 export { NovaButton }
-export type { NovaButtonProps } from './NovaButton'
+export type { NovaButtonProps } from './nova-button.tsx'

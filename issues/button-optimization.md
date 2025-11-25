@@ -4,7 +4,7 @@
 
 【已完成】
 
-- 位置：`src/components/button/NovaButton.tsx`
+- 位置：`src/components/button/nova-button.tsx`
 - 描述：`renderIcon` / `renderChildren` 仅执行空判断，造成多余调用层级。
 - 优化：直接在 JSX 中使用 `icon && <span>`、`children` 表达式，已移除局部函数。
 
@@ -12,7 +12,7 @@
 
 【已完成】
 
-- 位置：`src/components/button/NovaButton.tsx`
+- 位置：`src/components/button/nova-button.tsx`
 - 描述：`buttonClasses` 之前混用字符串和对象，阅读时不易一眼看出条件逻辑。
 - 优化：改用数组 + `filter(Boolean)` 组合类名，保持逻辑一致且便于扩展。
 
@@ -20,7 +20,7 @@
 
 【已完成】
 
-- 位置：`src/components/button/NovaButton.tsx`
+- 位置：`src/components/button/nova-button.tsx`
 - 描述：`useEnvironment` 结果和 `context.attrs` / `context.slots` 直接多次引用，增加视觉噪音。
 - 优化：在组件顶部统一解构 `themeRef`、`slots`、`attrs` 并在后续复用。
 
@@ -28,7 +28,7 @@
 
 【已完成】
 
-- 位置：`src/components/button/NovaButton.tsx`
+- 位置：`src/components/button/nova-button.tsx`
 - 描述：渲染区多次出现 `props.primary`、`props.icon`，影响重点聚焦。
 - 优化：在逻辑区解构 `primary`、`iconProp`，并与插槽结果合并后复用。
 
@@ -36,7 +36,7 @@
 
 【已完成】
 
-- 位置：`src/components/button/NovaButton.tsx`
+- 位置：`src/components/button/nova-button.tsx`
 - 描述：数据准备与渲染逻辑紧挨在一起，后续维护不易定位。
 - 优化：通过“环境上下文 / 内容计算 / 渲染输出”注释划分段落，保持结构化布局。
 

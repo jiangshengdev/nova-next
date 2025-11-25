@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
-import { NovaButton } from '../NovaButton'
+import { NovaButton } from '../nova-button.tsx'
 
 const mountButton = (attrs?: Record<string, unknown>) => {
   return mount({

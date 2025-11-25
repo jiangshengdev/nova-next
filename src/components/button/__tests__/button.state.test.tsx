@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
-import { NovaButton } from '../NovaButton'
+import { NovaButton } from '../nova-button.tsx'
 
 describe('button state styles', () => {
   test('primary 属性会添加主按钮类名', () => {
