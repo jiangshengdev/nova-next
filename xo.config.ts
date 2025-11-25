@@ -16,10 +16,7 @@ const xoConfig: FlatXoConfig = [
           prefer: 'type-imports',
         },
       ],
-      '@typescript-eslint/parameter-properties': [
-        'error',
-        { allow: [], prefer: 'class-property' },
-      ],
+      '@typescript-eslint/parameter-properties': ['error', { allow: [], prefer: 'class-property' }],
       'import-x/no-duplicates': ['error', { 'prefer-inline': false }],
       'arrow-body-style': ['error', 'always'],
     },
