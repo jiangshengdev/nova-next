@@ -1,21 +1,21 @@
 {
-  "name": "nova-next",
-  "version": "0.0.0",
+  "name": "@jiangshengdev/nova-next",
+  "version": "3.0.0-alpha.1",
   "private": true,
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
   "license": "MIT",
-  "homepage": "https://github.com/author/library#readme",
+  "homepage": "https://github.com/jiangshengdev/nova-next#readme",
   "bugs": {
-    "url": "https://github.com/author/library/issues"
+    "url": "https://github.com/jiangshengdev/nova-next/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/author/library.git"
+    "url": "git+https://github.com/jiangshengdev/nova-next.git"
   },
-  "author": "Author Name <author.name@mail.com>",
+  "author": "Jiang Sheng <jiangshengdev@outlook.com>",
   "files": [
     "dist"
   ],
