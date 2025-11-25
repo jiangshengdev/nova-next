@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
-import { NovaInput } from '../NovaInput'
+import { NovaInput } from '../nova-input.tsx'
 import { NovaEnvironment } from '../../environment'
 
 describe('input environment integration', () => {

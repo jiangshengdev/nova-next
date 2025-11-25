@@ -1,4 +1,4 @@
-import { NovaInput } from './NovaInput'
+import { NovaInput } from './nova-input.tsx'
 
 export { NovaInput }
-export type { NovaInputProps } from './NovaInput'
+export type { NovaInputProps } from './nova-input.tsx'

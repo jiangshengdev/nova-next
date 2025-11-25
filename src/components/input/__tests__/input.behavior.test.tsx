@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { defineComponent, ref } from 'vue'
 import { describe, expect, test, vi } from 'vitest'
-import { NovaInput } from '../NovaInput'
+import { NovaInput } from '../nova-input.tsx'
 
 describe('input behavior', () => {
   test('v-model 会与输入值保持同步', async () => {

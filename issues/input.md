@@ -4,23 +4,23 @@
 
 - 【已解决】
 
-- 位置：`src/components/input/NovaInput.tsx`
+- 位置：`src/components/input/nova-input.tsx`
 - 描述：组件未实现 `modelValue` prop 及 `update:modelValue` 事件，`v-model` 编译产物被直接透传给原生 `<input>`，既无法反映外部受控值，也无法向父组件派发输入变更，导致双向绑定失效。
 - 可能的解决方案建议：
   1.  声明 `modelValue` 与 `update:modelValue`，内联输入事件中 emit 更新值。
   2.  将受控值绑定到 `<input value>`，并在 `input`/`change` 事件里同步 props。
-- 处理进度：`src/components/input/NovaInput.tsx` 已新增 `modelValue` prop、`update:modelValue` emit 及受控 value 绑定，`input.test.tsx` 同步补测 v-model 行为。
+- 处理进度：`src/components/input/nova-input.tsx` 已新增 `modelValue` prop、`update:modelValue` emit 及受控 value 绑定，`input.test.tsx` 同步补测 v-model 行为。
 
 ## 2. wrapperStyle 类型不一致（Minor）
 
 - 【已解决】
 
-- 位置：`src/components/input/NovaInput.tsx`
+- 位置：`src/components/input/nova-input.tsx`
 - 描述：类型声明允许 `string | CSSProperties`，运行时 `props` 却仅接受 `Object`，若传入字符串样式会被 Vue 视为非法类型并被忽略，与类型签名不符。
 - 可能的解决方案建议：
   1.  将 `wrapperStyle` 的 prop `type` 扩展为 `[String, Object]`，与类型声明保持一致。
   2.  或者在类型层面改为 `CSSProperties`，避免字符串被误认为支持。
-- 处理进度：`NovaInput.tsx` 已将 `wrapperStyle` 支持扩展为 `[String, Object]` 并添加 `wrapperStyle accepts string value` 单测覆盖。
+- 处理进度：`nova-input.tsx` 已将 `wrapperStyle` 支持扩展为 `[String, Object]` 并添加 `wrapperStyle accepts string value` 单测覆盖。
 
 ## 3. 组件类型未暴露（Minor）
 
@@ -29,17 +29,17 @@
 - 位置：`src/components/input/index.ts`
 - 描述：虽然在实现文件中声明了 `NovaInputProps`，但未对外导出，外部无法获取该类型用于封装或类型推断，API 不完整。
 - 可能的解决方案建议：
-  1.  在 `NovaInput.tsx` 中 `export type NovaInputProps` 并在 `src/components/input/index.ts`、`src/index.ts` 透传。
+  1.  在 `nova-input.tsx` 中 `export type NovaInputProps` 并在 `src/components/input/index.ts`、`src/index.ts` 透传。
   2.  若不对外暴露类型，可在 README/API 文档中明确限制，避免调用方误用。
-- 处理进度：已在 `NovaInput.tsx` 导出 `NovaInputProps`，并由 `src/components/input/index.ts` 与 `src/index.ts` 统一透出类型供外部消费。
+- 处理进度：已在 `nova-input.tsx` 导出 `NovaInputProps`，并由 `src/components/input/index.ts` 与 `src/index.ts` 统一透出类型供外部消费。
 
 ## 4. modelValue 类型与事件不一致（Major）
 
 - 【已解决】
 
-- 位置：`src/components/input/NovaInput.tsx`
+- 位置：`src/components/input/nova-input.tsx`
 - 描述：组件声明 `modelValue` 支持 `string | number`，但 `handleInput` 始终通过 `event.target.value` 以字符串形式派发 `update:modelValue`，同时 `'onUpdate:modelValue'` 的 prop 类型被限定为 `(value: string) => void`，导致传入数字时会被强制转成字符串且类型推断报错，API 与实现不符。
 - 可能的解决方案建议：
   1.  根据声明类型保留原始数值，可在解析/派发时检测并转换为 number。
   2.  若仅支持字符串，应将 `modelValue` 与 `'onUpdate:modelValue'` 的类型同步调整为 `string` 并在文档中说明。
-- 处理进度：`src/components/input/NovaInput.tsx` 根据受控值类型自动保持数字或字符串并同步 `'onUpdate:modelValue'` 类型，`src/components/input/__tests__/input.behavior.test.tsx` 新增「数字模型会保持 number 类型」用例验证。
+- 处理进度：`src/components/input/nova-input.tsx` 根据受控值类型自动保持数字或字符串并同步 `'onUpdate:modelValue'` 类型，`src/components/input/__tests__/input.behavior.test.tsx` 新增「数字模型会保持 number 类型」用例验证。

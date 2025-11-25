@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
-import { NovaInput } from '../NovaInput'
+import { NovaInput } from '../nova-input.tsx'
 
 describe('input state styles', () => {
   test('disabled 会添加类名与 aria 属性', () => {
