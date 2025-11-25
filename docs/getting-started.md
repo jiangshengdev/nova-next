@@ -66,6 +66,10 @@ const handleClick = () => {
 </template>
 ```
 
+## 示例项目
+
+[nova-next-preview](https://github.com/jiangshengdev/nova-next-preview) 提供了完整的示例项目结构，可直接克隆后对照文档进行实践，或访问 [在线预览](https://nova-next-preview.jiangshengdev.com/) 即刻体验效果。
+
 ## 下一步
 
 - 继续在页面中导入其他组件与样式文件，例如输入框或取色器。
