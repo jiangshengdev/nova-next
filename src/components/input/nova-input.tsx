@@ -4,7 +4,10 @@ import {
   type InputHTMLAttributes,
   type PropType,
 } from 'vue'
-import { environmentProps, type EnvironmentProps } from '@/components/environment/NovaEnvironment.tsx'
+import {
+  environmentProps,
+  type EnvironmentProps,
+} from '@/components/environment/NovaEnvironment.tsx'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { type VueClass, type VueStyle } from '@/types/props.ts'
 
