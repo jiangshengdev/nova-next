@@ -2,6 +2,7 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "include": [
     "vite.config.*",
+    "vite.styles.config.*",
     "vitest.config.*",
     "tsdown.config.*",
     "cypress.config.*",

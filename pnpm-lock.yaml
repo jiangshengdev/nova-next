@@ -36,6 +36,9 @@ importers:
       '@types/jsdom':
         specifier: ^27.0.0
         version: 27.0.0
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/node':
         specifier: ^22.18.11
         version: 22.19.1
@@ -75,12 +78,18 @@ importers:
       eslint-plugin-vue:
         specifier: ~10.5.0
         version: 10.5.1(@stylistic/eslint-plugin@5.6.1(eslint@9.39.1(jiti@2.6.1)))(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(vue-eslint-parser@10.2.0(eslint@9.39.1(jiti@2.6.1)))
+      globby:
+        specifier: ^16.0.0
+        version: 16.0.0
       jiti:
         specifier: ^2.6.1
         version: 2.6.1
       jsdom:
         specifier: ^27.0.1
         version: 27.2.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       npm-run-all2:
         specifier: ^8.0.4
         version: 8.0.4
@@ -996,6 +1005,12 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+
+  '@types/lodash@4.17.21':
+    resolution: {integrity: sha512-FOvQ0YPD5NOfPgMzJihoT+Za5pdkDJWcbpuj1DjaKZIr/gxodQjY/uWEFlTNqW2ugXHUiL8lRQgw63dzKHZdeQ==}
 
   '@types/node@22.19.1':
     resolution: {integrity: sha512-LCCV0HdSZZZb34qifBsyWlUmok6W7ouER+oQIGBScS8EsZsQbrtFTUrDX4hOl+CS6p7cnNC4td+qrSVGSCTUfQ==}
@@ -2205,6 +2220,10 @@ packages:
     resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
     engines: {node: '>=18'}
 
+  globby@16.0.0:
+    resolution: {integrity: sha512-ejy4TJFga99yW6Q0uhM3pFawKWZmtZzZD/v/GwI5+9bCV5Ew+D2pSND6W7fUes5UykqSsJkUfxFVdRh7Q1+P3Q==}
+    engines: {node: '>=20'}
+
   globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
@@ -2399,6 +2418,10 @@ packages:
   is-obj-prop@2.0.0:
     resolution: {integrity: sha512-2/VFrbzXSZVJIscazpxoB+pOQx2jBOAAL9Gui4cRKxflznUNBpsr8IDvBA4UGol3e40sltLNiY3qnZv/7qSUxA==}
     engines: {node: '>=18.0.0'}
+
+  is-path-inside@4.0.0:
+    resolution: {integrity: sha512-lJJV/5dYS+RcL8uQdBDW9c9uWFLLBNRyFhnAKXw5tVqLlKZ4RMGZKv+YQ/IA3OhD+RpbJa1LLFM1FQPGyIXvOA==}
+    engines: {node: '>=12'}
 
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
@@ -2648,6 +2671,9 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
+
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
@@ -3496,6 +3522,10 @@ packages:
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
+
+  unicorn-magic@0.4.0:
+    resolution: {integrity: sha512-wH590V9VNgYH9g3lH9wWjTrUoKsjLF6sGLjhR4sH1LWpLmCOH0Zf7PukhDA8BiS7KHe4oPNkcTHqYkj7SOGUOw==}
+    engines: {node: '>=20'}
 
   unplugin-utils@0.3.1:
     resolution: {integrity: sha512-5lWVjgi6vuHhJ526bI4nlCOmkCIF3nnfXkCMDeMJrtdvxTs6ZFCM8oNufGTsDbKv/tJ/xj8RpvXjRuPBZJuJog==}
@@ -4522,6 +4552,12 @@ snapshots:
       parse5: 7.3.0
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.17.21
+
+  '@types/lodash@4.17.21': {}
 
   '@types/node@22.19.1':
     dependencies:
@@ -5999,6 +6035,15 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.3.0
 
+  globby@16.0.0:
+    dependencies:
+      '@sindresorhus/merge-streams': 4.0.0
+      fast-glob: 3.3.3
+      ignore: 7.0.5
+      is-path-inside: 4.0.0
+      slash: 5.1.0
+      unicorn-magic: 0.4.0
+
   globrex@0.1.2: {}
 
   gopd@1.2.0: {}
@@ -6176,6 +6221,8 @@ snapshots:
     dependencies:
       lowercase-keys: 3.0.0
       obj-props: 2.0.0
+
+  is-path-inside@4.0.0: {}
 
   is-plain-obj@4.1.0: {}
 
@@ -6401,6 +6448,8 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+
+  lodash-es@4.17.21: {}
 
   lodash.merge@4.6.2: {}
 
@@ -7271,6 +7320,8 @@ snapshots:
   undici-types@6.21.0: {}
 
   unicorn-magic@0.3.0: {}
+
+  unicorn-magic@0.4.0: {}
 
   unplugin-utils@0.3.1:
     dependencies:

@@ -24,6 +24,8 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./style.css": "./dist/styles/all.css",
+    "./styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -35,6 +37,7 @@
     "play": "vite",
     "play:build": "run-p type-check \"play:build-only {@}\" --",
     "preview": "vite preview",
+    "styles:build": "vite build --config vite.styles.config.ts",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "play:build-only": "vite build",
@@ -45,7 +48,7 @@
     "format": "prettier --write e2e/ issues/ playground/ src/ tests/",
     "xo": "xo",
     "release": "bumpp && pnpm publish",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build && pnpm run styles:build"
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.9",
@@ -59,6 +62,7 @@
     "@stylistic/eslint-plugin": "^5.6.1",
     "@tsconfig/node22": "^22.0.2",
     "@types/jsdom": "^27.0.0",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.18.11",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitejs/plugin-vue-jsx": "^5.1.1",
@@ -72,8 +76,10 @@
     "eslint-plugin-oxlint": "~1.30.0",
     "eslint-plugin-playwright": "^2.2.2",
     "eslint-plugin-vue": "~10.5.0",
+    "globby": "^16.0.0",
     "jiti": "^2.6.1",
     "jsdom": "^27.0.1",
+    "lodash-es": "^4.17.21",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.30.0",
     "prettier": "3.6.2",
