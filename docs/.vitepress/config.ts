@@ -51,7 +51,10 @@ export default defineConfig({
       },
       {
         text: '组件',
-        items: [{ text: 'NovaButton 按钮', link: '/components/button/' }],
+        items: [
+          { text: 'NovaButton 按钮', link: '/components/button/' },
+          { text: 'NovaInput 输入框', link: '/components/input/' },
+        ],
       },
     ],
 
