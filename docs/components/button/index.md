@@ -2,8 +2,8 @@
 
 <script setup>
 import ButtonBasic from './demo/ButtonBasic.vue'
-import ButtonIconDemo from './demo/ButtonIconDemo.vue'
-import ButtonInteractiveDemo from './demo/ButtonInteractiveDemo.vue'
+import ButtonIcon from './demo/ButtonIcon.vue'
+import ButtonInteractive from './demo/ButtonInteractive.vue'
 </script>
 
 NovaButton 提供语义化按钮基础能力，并保持与原生 `<button>` 一致的交互语义，可直接通过 `import { NovaButton } from 'nova-next'` 使用；如需安装与样式指引，请访问 [快速开始](/getting-started)。
@@ -28,13 +28,13 @@ NovaButton 提供语义化按钮基础能力，并保持与原生 `<button>` 一
 
 ::: info 预览
 
-<ButtonIconDemo />
+<ButtonIcon />
 
 :::
 
 ::: details 源码
 
-<<< @/components/button/demo/ButtonIconDemo.vue
+<<< @/components/button/demo/ButtonIcon.vue
 
 :::
 
@@ -42,13 +42,13 @@ NovaButton 提供语义化按钮基础能力，并保持与原生 `<button>` 一
 
 ::: info 预览
 
-<ButtonInteractiveDemo />
+<ButtonInteractive />
 
 :::
 
 ::: details 源码
 
-<<< @/components/button/demo/ButtonInteractiveDemo.vue
+<<< @/components/button/demo/ButtonInteractive.vue
 
 :::
 
