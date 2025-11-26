@@ -55,6 +55,7 @@ export default defineConfig({
           { text: 'NovaButton 按钮', link: '/components/button/' },
           { text: 'NovaInput 输入框', link: '/components/input/' },
           { text: 'NovaEnvironment 环境容器', link: '/components/environment/' },
+          { text: 'NovaColorPicker 取色器', link: '/components/color-picker/' },
         ],
       },
     ],
