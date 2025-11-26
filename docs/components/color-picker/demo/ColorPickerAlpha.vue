@@ -85,11 +85,19 @@ watch([alphaEnabled, format], ([newAlphaEnabled], [oldAlphaEnabled]) => {
   cursor: pointer;
 }
 
+.demo-checkbox input[type='checkbox'] {
+  margin: 0;
+}
+
 .demo-radio {
   display: flex;
   align-items: center;
   gap: 4px;
   cursor: pointer;
+}
+
+.demo-radio input[type='radio'] {
+  margin: 0;
 }
 
 .demo-picker {
