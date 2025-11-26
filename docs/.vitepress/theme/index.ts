@@ -5,15 +5,27 @@ import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import { NovaEnvironment } from '@jiangshengdev/nova-next'
 
+const safeDetectTheme = () => {
+  if (typeof document === 'undefined') {
+    return 'light'
+  }
+
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+}
+
 const DocsLayoutWrapper = defineComponent({
   name: 'DocsLayoutWrapper',
   setup(_, { slots }) {
-    const theme = ref(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+    const theme = ref<'light' | 'dark'>(safeDetectTheme())
     let observer: MutationObserver | null = null
 
     onMounted(() => {
+      if (typeof document === 'undefined' || typeof MutationObserver === 'undefined') {
+        return
+      }
+
       observer = new MutationObserver(() => {
-        theme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        theme.value = safeDetectTheme()
       })
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
     })
