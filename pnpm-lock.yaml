@@ -17,7 +17,7 @@ importers:
     devDependencies:
       '@jiangshengdev/nova-next':
         specifier: alpha
-        version: 3.0.0-alpha.2(typescript@5.9.3)
+        version: 3.0.0-alpha.3(typescript@5.9.3)
       '@playwright/test':
         specifier: ^1.56.1
         version: 1.56.1
@@ -565,11 +565,8 @@ packages:
   '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.10':
     resolution: {integrity: sha512-kbUs5WT/sZ+TvjIVzVn6y4un/PcJyJS5QnOdtnoKuglmPYVhyz4cHw0b2TFVpop1cTEiktEzAXsD7ZE2yC8jSQ==}
 
-  '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.9':
-    resolution: {integrity: sha512-gAi0UjdohAZMzJqsy2SCW6CtK1XThlZYE6rzb0xnUPtxgChukcWX1W5ZpazyYmxwHWY643+C22VIgT9o8JD/pA==}
-
-  '@jiangshengdev/nova-next@3.0.0-alpha.2':
-    resolution: {integrity: sha512-qIvJmT5yrGEG23d9iXsfQAy1gXGQnuCJ+6wlBGgKKZKXMQhnO4b+d0kUvYd9ujCuLJfiUvB0iNJfYGQCGAES4Q==}
+  '@jiangshengdev/nova-next@3.0.0-alpha.3':
+    resolution: {integrity: sha512-P+ExFn3Pnyr1oCSpo514ZIXfWYihfZlQR9vBKmMYAwk8WQPvSkufcRflvQ79YQhB1MQX6T+9Lvfe6NkAIPr03Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
   '@jridgewell/gen-mapping@0.3.13':
@@ -4496,15 +4493,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.9(typescript@5.9.3)':
+  '@jiangshengdev/nova-next@3.0.0-alpha.3(typescript@5.9.3)':
     dependencies:
-      vue: 3.5.24(typescript@5.9.3)
-    transitivePeerDependencies:
-      - typescript
-
-  '@jiangshengdev/nova-next@3.0.0-alpha.2(typescript@5.9.3)':
-    dependencies:
-      '@jiangshengdev/material-design-icons-vue-next': 1.0.0-alpha.9(typescript@5.9.3)
+      '@jiangshengdev/material-design-icons-vue-next': 1.0.0-alpha.10(typescript@5.9.3)
       vue: 3.5.24(typescript@5.9.3)
     transitivePeerDependencies:
       - typescript
