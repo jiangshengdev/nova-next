@@ -73,11 +73,9 @@ const submit = () => {
 .demo-title {
   margin: 0 0 8px;
   font-size: 14px;
-  color: #333;
 }
 
 .demo-tip {
   font-size: 13px;
-  color: #666;
 }
 </style>

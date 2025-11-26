@@ -34,6 +34,5 @@ const controlledValue = ref('受控输入')
 .demo-tip {
   margin: 0;
   font-size: 13px;
-  color: #666;
 }
 </style>

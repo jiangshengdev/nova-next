@@ -48,6 +48,5 @@ import { NovaInput } from '@jiangshengdev/nova-next'
 .demo-title {
   margin: 0 0 8px;
   font-size: 14px;
-  color: #333;
 }
 </style>
