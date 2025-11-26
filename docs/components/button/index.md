@@ -54,13 +54,13 @@ NovaButton 提供语义化按钮基础能力，并保持与原生 `<button>` 一
 
 ## 属性
 
-| 名称       | 说明                                                         | 类型                              | 默认值      |
-| ---------- | ------------------------------------------------------------ | --------------------------------- | ----------- |
-| `type`     | 按钮语义类型，完全透传原生 `button`。                        | `'button' \| 'submit' \| 'reset'` | `button`    |
-| `primary`  | 是否启用主题主按钮外观。                                     | `boolean`                         | `false`     |
-| `icon`     | 设置图标节点，若仅含图标会自动添加 `nova-button-icon-only`。 | `VNodeChild`                      | `undefined` |
-| `disabled` | 禁用状态，阻止交互并同步样式。                               | `boolean`                         | `false`     |
-| `theme`    | 覆盖环境主题，内部同时写入 `data-nova-theme`。               | `string`                          | `null`      |
+| 名称       | 说明                                                         | 类型                              | 默认值     |
+| ---------- | ------------------------------------------------------------ | --------------------------------- | ---------- |
+| `type`     | 按钮语义类型，完全透传原生 `button`。                        | `'button' \| 'submit' \| 'reset'` | `'button'` |
+| `primary`  | 是否启用主题主按钮外观。                                     | `boolean`                         | `false`    |
+| `icon`     | 设置图标节点，若仅含图标会自动添加 `nova-button-icon-only`。 | `VNodeChild`                      | `null`     |
+| `disabled` | 禁用状态，阻止交互并同步样式。                               | `boolean`                         | `false`    |
+| `theme`    | 覆盖环境主题，内部同时写入 `data-nova-theme`。               | `string`                          | `null`     |
 
 > 其他属性与事件均继承 `ButtonHTMLAttributes`，可自由传入。
 
