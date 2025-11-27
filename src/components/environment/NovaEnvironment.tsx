@@ -1,4 +1,4 @@
-import { defineComponent, type PropType, provide } from 'vue'
+import { defineComponent, type PropType, type SlotsType, type VNodeChild, provide } from 'vue'
 import { languageKey, themeKey } from '@/utils/symbols.ts'
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { type Language } from '@/types/language.ts'
@@ -9,12 +9,24 @@ import { type Language } from '@/types/language.ts'
 export interface EnvironmentProps {
   /**
    * 覆盖环境主题，内部同时写入 data-nova-theme
+   * @default null
    */
   theme?: string
   /**
    * 覆盖环境语言配置
+   * @default null
    */
   language?: Language
+}
+
+/**
+ * NovaEnvironment 插槽类型
+ */
+export interface NovaEnvironmentSlots {
+  /**
+   * 子组件内容
+   */
+  default?: () => VNodeChild
 }
 
 export const environmentProps = {
@@ -28,9 +40,13 @@ export const environmentProps = {
   },
 }
 
+/**
+ * 环境配置组件，为子组件提供主题和语言上下文
+ */
 export const NovaEnvironment = defineComponent({
   name: 'NovaEnvironment',
   props: environmentProps,
+  slots: Object as SlotsType<NovaEnvironmentSlots>,
   setup(props, { slots }) {
     const { themeRef, languageRef } = useEnvironment(props)
 
