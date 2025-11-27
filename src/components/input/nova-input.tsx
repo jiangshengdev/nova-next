@@ -11,12 +11,40 @@ import {
 import { useEnvironment } from '@/uses/use-environment.ts'
 import { type VueClass, type VueStyle } from '@/types/props.ts'
 
+/**
+ * NovaInput 基础属性接口
+ * @extends EnvironmentProps
+ */
 interface NovaInputBaseProps extends EnvironmentProps {
+  /**
+   * 作用于原生 input 的类名
+   * @default null
+   */
   class?: VueClass
+  /**
+   * 自定义最外层容器类名
+   * @default null
+   */
   wrapperClass?: VueClass
+  /**
+   * 自定义容器内联样式
+   * @default null
+   */
   wrapperStyle?: VueStyle
+  /**
+   * 禁用输入框
+   * @default false
+   */
   disabled?: boolean
+  /**
+   * 只读模式
+   * @default false
+   */
   readonly?: boolean
+  /**
+   * 受控输入值
+   * @default null
+   */
   modelValue?: string
   'onUpdate:modelValue'?: (value: string) => void
 }
@@ -49,8 +77,14 @@ const novaInputPropDefs: ComponentPropsOptions<NovaInputProps> = {
   },
 }
 
+/**
+ * NovaInput 完整属性类型
+ */
 type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
 
+/**
+ * 语义化文本输入组件，保持与原生 input 相同的属性与行为
+ */
 const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) => {
   // 环境上下文
   const { themeRef } = useEnvironment(props)

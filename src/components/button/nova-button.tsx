@@ -11,8 +11,20 @@ import {
 } from '@/components/environment/NovaEnvironment.tsx'
 import { useEnvironment } from '@/uses/use-environment.ts'
 
+/**
+ * NovaButton 基础属性接口
+ * @extends EnvironmentProps
+ */
 export interface NovaButtonBaseProps extends EnvironmentProps {
+  /**
+   * 是否启用主题主按钮外观
+   * @default false
+   */
   primary?: boolean
+  /**
+   * 图标节点，若仅含图标会自动添加 nova-button-icon-only 样式类
+   * @default null
+   */
   icon?: VNodeChild
 }
 
@@ -28,8 +40,14 @@ const novaButtonPropDefs: ComponentPropsOptions<NovaButtonProps> = {
   },
 }
 
+/**
+ * NovaButton 完整属性类型
+ */
 export type NovaButtonProps = NovaButtonBaseProps & ButtonHTMLAttributes
 
+/**
+ * 语义化按钮组件，保持与原生 button 一致的交互语义
+ */
 const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
   // 环境上下文
   const { themeRef } = useEnvironment(props)
