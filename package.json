@@ -55,7 +55,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@jiangshengdev/material-design-icons-vue-next": "1.0.0-alpha.11",
+    "@jiangshengdev/material-design-icons-vue-next": "2.0.0-alpha.1",
     "vue": "^3.5.22"
   },
   "devDependencies": {

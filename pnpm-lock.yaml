@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@jiangshengdev/material-design-icons-vue-next':
-        specifier: 1.0.0-alpha.11
-        version: 1.0.0-alpha.11(typescript@5.9.3)
+        specifier: 2.0.0-alpha.1
+        version: 2.0.0-alpha.1(typescript@5.9.3)
       vue:
         specifier: ^3.5.22
         version: 3.5.24(typescript@5.9.3)
@@ -564,6 +564,10 @@ packages:
 
   '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.11':
     resolution: {integrity: sha512-3bZcrZHlPOWp931wpAXVDabUb+4284K1oIuBVAxo6kGv8gITTjMScSJbfxqCdXrB4ghE4al4nYWOx24l1T0vMw==}
+
+  '@jiangshengdev/material-design-icons-vue-next@2.0.0-alpha.1':
+    resolution: {integrity: sha512-yPj/FNHu1WV8s1Kyt2rx1SX4ju3Wj7jqwRDoPXQhdDER66hss4PAR1K0PkIEN7VrVPKxEF4po1TA0Tqcs6R0Ug==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@jiangshengdev/nova-next@3.0.0-alpha.4':
     resolution: {integrity: sha512-6CdjZWLZc/iiPWg/J4GeVckkrl29Hwt5kZtMV+CoeqQrvOmpHk2F1kMzDX4SZF+LdtVnueqMFIL7W+vz16MduQ==}
@@ -4490,6 +4494,14 @@ snapshots:
   '@jiangshengdev/material-design-icons-vue-next@1.0.0-alpha.11(typescript@5.9.3)':
     dependencies:
       vue: 3.5.24(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@jiangshengdev/material-design-icons-vue-next@2.0.0-alpha.1(typescript@5.9.3)':
+    dependencies:
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))
+      vue: 3.5.24(typescript@5.9.3)
+      vue-router: 4.6.3(vue@3.5.24(typescript@5.9.3))
     transitivePeerDependencies:
       - typescript
 
