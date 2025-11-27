@@ -1,4 +1,14 @@
-import { computed, defineComponent, onMounted, type PropType, reactive, ref, watch } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  type PropType,
+  reactive,
+  ref,
+  type SlotsType,
+  type VNodeChild,
+  watch,
+} from 'vue'
 import { type MovePosition } from '@/uses/use-move.ts'
 import { Color, type ColorFormat } from './color'
 import { ColorPickerTrigger } from './parts/Trigger'
@@ -22,6 +32,7 @@ import {
 } from '../dropdown/NovaDropdown'
 import { environmentProps, type EnvironmentProps } from '../environment/NovaEnvironment'
 import { numberLimit } from '@/utils/utils.ts'
+import { type VueClass } from '@/types/props.ts'
 
 // region Mode
 const modeRgba = Symbol('rgba')
@@ -53,22 +64,42 @@ const defaultValue = '#ff0000'
 const colorPickerProps = {
   ...environmentProps,
   ...dropdownProps,
+  /**
+   * 受控值，配合 v-model 使用，优先级高于 value
+   * @default null
+   */
   modelValue: {
     type: String,
     default: null,
   },
+  /**
+   * 非受控初始值，未传入 modelValue 时生效
+   * @default '#ff0000'
+   */
   value: {
     type: String,
     default: defaultValue,
   },
+  /**
+   * 是否展示 Alpha 滑条与输入，关闭时会自动丢弃透明度
+   * @default false
+   */
   alpha: {
     type: Boolean,
     default: false,
   },
+  /**
+   * 决定 v-model 输出格式
+   * @default 'hex'
+   */
   format: {
     type: String as PropType<ColorFormat>,
     default: 'hex',
   },
+  /**
+   * 预设色列表，传入十六进制或 CSS 颜色字符串即可渲染拾色块
+   * @default null
+   */
   preset: {
     type: Array as PropType<string[]>,
     default: null,
@@ -81,14 +112,39 @@ export interface ColorPickerPresetScoped {
   setColorAndPosition: (color: Color) => void
 }
 
-export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
+export interface ColorPickerTriggerScoped {
+  disabled: boolean
   color: Color
+}
+
+/**
+ * NovaColorPicker 插槽类型
+ */
+export interface NovaColorPickerSlots {
+  /**
+   * 自定义触发器内容，保持焦点自动管理
+   */
+  trigger?: (scoped: ColorPickerTriggerScoped) => VNodeChild
+  /**
+   * 自定义预设区域，可根据 preset 数组与 setColorAndPosition 方法自行渲染色卡
+   */
+  preset?: (scoped: ColorPickerPresetScoped) => VNodeChild
 }
 
 export const NovaColorPicker = defineComponent({
   name: 'NovaColorPicker',
   props: colorPickerProps,
-  emits: ['update', 'update:modelValue'],
+  emits: {
+    /**
+     * 颜色更新时触发
+     */
+    update: (color: string) => typeof color === 'string',
+    /**
+     * 颜色值变化时触发（用于 v-model）
+     */
+    'update:modelValue': (color: string) => typeof color === 'string',
+  },
+  slots: Object as SlotsType<NovaColorPickerSlots>,
   setup(props, context) {
     const emit = context.emit
 
@@ -507,7 +563,7 @@ export const NovaColorPicker = defineComponent({
           ref={dropdownRef}
           class={classList.value}
           disabled={props.disabled}
-          panelClass={panelClassList.value}
+          panelClass={panelClassList.value as VueClass}
           panelStyle={props.panelStyle}
           panelProps={props.panelProps}
           teleportToBody={props.teleportToBody}

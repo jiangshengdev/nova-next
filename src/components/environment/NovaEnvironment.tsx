@@ -30,10 +30,18 @@ export interface NovaEnvironmentSlots {
 }
 
 export const environmentProps = {
+  /**
+   * 覆盖环境主题，内部同时写入 data-nova-theme
+   * @default null
+   */
   theme: {
     type: String,
     default: null,
   },
+  /**
+   * 覆盖环境语言配置
+   * @default null
+   */
   language: {
     type: Object as PropType<Language>,
     default: null,

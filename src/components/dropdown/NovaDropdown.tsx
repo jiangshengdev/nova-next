@@ -1,6 +1,7 @@
 import {
   computed,
   defineComponent,
+  type PropType,
   ref,
   type Ref,
   Teleport,
@@ -42,32 +43,60 @@ export interface DropdownPanelScoped {
 
 export const dropdownProps = {
   ...environmentProps,
+  /**
+   * 禁用状态，会阻止触发与键盘交互
+   * @default false
+   */
   disabled: {
     type: Boolean,
     default: false,
   },
+  /**
+   * 作用于下拉面板的额外类名，可自定义尺寸与圆角
+   * @default null
+   */
   panelClass: {
-    type: [String, Array, Object],
-    default: null,
+    type: [String, Array, Object] as PropType<VueClass>,
+    default: null as VueClass,
   },
+  /**
+   * 作用于下拉面板的内联样式
+   * @default null
+   */
   panelStyle: {
-    type: Object,
+    type: Object as PropType<VueStyle>,
     default: null,
   },
+  /**
+   * 添加到下拉面板根节点的原生属性，如 data-*
+   * @default null
+   */
   panelProps: {
-    type: Object,
+    type: Object as PropType<VueProps>,
     default: null,
   },
+  /**
+   * 是否将面板 Teleport 到 document.body，便于脱离溢出容器
+   * @default true
+   */
   teleportToBody: {
     type: Boolean,
     default: true,
   },
+  /**
+   * 环境上下文，内部使用
+   * @default null
+   */
   environment: {
-    type: Object,
+    type: Object as PropType<EnvironmentContext>,
     default: null,
   },
+  /**
+   * 下拉面板定位，支持 bottomLeft 等多个预设位置
+   * @default 'bottomLeft'
+   */
   placement: {
-    type: String,
+    type: String as PropType<Placement>,
     default: 'bottomLeft',
   },
 }

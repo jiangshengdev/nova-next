@@ -38,7 +38,15 @@ const webTypes = {
         }
 
         // 布尔类型属性列表（可无值使用）
-        const booleanProps = ['disabled', 'readonly', 'required', 'autofocus', 'primary']
+        const booleanProps = [
+          'disabled',
+          'readonly',
+          'required',
+          'autofocus',
+          'primary',
+          'alpha',
+          'teleportToBody',
+        ]
 
         if (component.props.length > 0) {
           result.props = component.props.map((p) => {
