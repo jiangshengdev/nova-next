@@ -15,8 +15,9 @@ const componentMeta = JSON.parse(
 interface ComponentMeta {
   name: string
   path: string
+  description: string
   props: { name: string; type: string; default?: string; description: string; required: boolean }[]
-  events: { name: string; description: string }[]
+  events: { name: string; description: string; type?: string; schema?: string[] }[]
   slots: { name: string; description: string }[]
 }
 
@@ -32,6 +33,7 @@ const webTypes = {
       'vue-components': componentMeta.map((component: ComponentMeta) => {
         const result: Record<string, unknown> = {
           name: component.name,
+          description: component.description || undefined,
           source: { module: pkg.name, symbol: component.name },
         }
 
@@ -77,15 +79,34 @@ const webTypes = {
             }
           }
 
-          // 其他事件
-          const otherEvents = component.events.filter((e) => e.name !== 'update:modelValue')
-
-          if (otherEvents.length > 0) {
-            result.events = otherEvents.map((e) => ({
+          // 所有事件（包括 update:modelValue）
+          result.events = component.events.map((e) => {
+            const event: Record<string, unknown> = {
               name: e.name,
               description: e.description,
-            }))
-          }
+            }
+
+            // 从 type 中解析参数名，如 "[value: string]" -> ["value"]
+            const argNames: string[] = []
+
+            if (e.type) {
+              const matches = e.type.matchAll(/(\w+):\s*\w+/g)
+
+              for (const match of matches) {
+                argNames.push(match[1])
+              }
+            }
+
+            // 解析事件参数
+            if (e.schema && e.schema.length > 0) {
+              event.arguments = e.schema.map((type, index) => ({
+                name: argNames[index] || `arg${index}`,
+                type,
+              }))
+            }
+
+            return event
+          })
         }
 
         if (component.slots.length > 0) {

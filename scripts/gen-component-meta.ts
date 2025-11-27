@@ -49,10 +49,16 @@ const customPropsMap: Record<string, string[]> = {
   ],
 }
 
-// 手动补充事件（函数式组件 emits 无法被静态分析）
-const customEventsMap: Record<string, { name: string; description: string }[]> = {
-  NovaButton: [],
-  NovaInput: [{ name: 'update:modelValue', description: '输入值更新事件' }],
+// 手动补充事件描述
+const customEventsDescMap: Record<string, Record<string, string>> = {
+  NovaButton: {},
+  NovaInput: { 'update:modelValue': '输入值变化时触发' },
+}
+
+// 组件描述（vue-component-meta 对 TSX 函数式组件不提取组件级 JSDoc）
+const componentDescMap: Record<string, string> = {
+  NovaButton: '语义化按钮组件，保持与原生 button 一致的交互语义',
+  NovaInput: '语义化文本输入组件，保持与原生 input 相同的属性与行为',
 }
 
 const result = components.map(({ name, path: componentPath }) => {
@@ -63,22 +69,28 @@ const result = components.map(({ name, path: componentPath }) => {
   return {
     name,
     path: componentPath,
+    description: componentDescMap[name] || '',
     props: meta.props
       .filter((p) => !p.global && customProps.includes(p.name))
-      .map((p) => ({
-        name: p.name,
-        type: p.type,
-        default: p.default,
-        description: p.description,
-        required: p.required,
-      })),
-    events:
-      meta.events.length > 0
-        ? meta.events.map((e) => ({
-            name: e.name,
-            description: e.description,
-          }))
-        : customEventsMap[name] || [],
+      .map((p) => {
+        // 从 tags 中提取 @default 值
+        const defaultTag = p.tags?.find((t) => t.name === 'default')
+        const defaultValue = defaultTag?.text ?? p.default
+
+        return {
+          name: p.name,
+          type: p.type,
+          default: defaultValue,
+          description: p.description,
+          required: p.required,
+        }
+      }),
+    events: meta.events.map((e) => ({
+      name: e.name,
+      description: e.description || customEventsDescMap[name]?.[e.name] || '',
+      type: e.type,
+      schema: e.schema,
+    })),
     slots: meta.slots.map((s) => ({
       name: s.name,
       description: s.description,
