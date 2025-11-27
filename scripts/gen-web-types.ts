@@ -18,7 +18,7 @@ interface ComponentMeta {
   description: string
   props: { name: string; type: string; default?: string; description: string; required: boolean }[]
   events: { name: string; description: string; type?: string; schema?: string[] }[]
-  slots: { name: string; description: string }[]
+  slots: { name: string; type?: string; description: string }[]
 }
 
 // 转换为 web-types 格式
@@ -118,10 +118,23 @@ const webTypes = {
         }
 
         if (component.slots.length > 0) {
-          result.slots = component.slots.map((s) => ({
-            name: s.name,
-            description: s.description,
-          }))
+          result.slots = component.slots.map((s) => {
+            const slot: Record<string, unknown> = {
+              name: s.name,
+              description: s.description,
+            }
+
+            if (s.type) {
+              slot['vue-properties'] = [
+                {
+                  name: 'scoped',
+                  type: s.type,
+                },
+              ]
+            }
+
+            return slot
+          })
         }
 
         return result

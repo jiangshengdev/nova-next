@@ -86,11 +86,12 @@ const presetColors = [
       <NovaColorPicker :teleport-to-body="false" value="#52c41a" />
     </section>
 
-    <!-- Props: panelClass / panelStyle -->
+    <!-- Props: panelClass / panelStyle / panelProps -->
     <section>
-      <h4>panelClass / panelStyle 属性</h4>
+      <h4>panelClass / panelStyle / panelProps 属性</h4>
       <NovaColorPicker panel-class="custom-panel" value="#1890ff" />
       <NovaColorPicker :panel-style="{ borderRadius: '12px' }" value="#52c41a" />
+      <NovaColorPicker :panel-props="{ 'data-testid': 'color-picker-panel' }" value="#ff4d4f" />
     </section>
 
     <!-- Props: theme -->
@@ -116,10 +117,7 @@ const presetColors = [
     <!-- Events: update:modelValue (JSX 直接使用) -->
     <section>
       <h4>modelValue + onUpdate:modelValue（JSX 风格）</h4>
-      <NovaColorPicker
-        :model-value="jsxColorValue"
-        @update:model-value="handleUpdateModelValue"
-      />
+      <NovaColorPicker :model-value="jsxColorValue" @update:model-value="handleUpdateModelValue" />
       <span class="value-display">值: {{ jsxColorValue }}</span>
     </section>
 

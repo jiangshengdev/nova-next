@@ -121,6 +121,7 @@ const result = components.map(({ name, path: componentPath }) => {
     })),
     slots: meta.slots.map((s) => ({
       name: s.name,
+      type: s.type,
       description: s.description,
     })),
   }
