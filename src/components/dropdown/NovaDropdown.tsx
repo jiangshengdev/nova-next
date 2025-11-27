@@ -33,7 +33,6 @@ export interface DropdownInstance {
 
 export interface DropdownTriggerScoped {
   disabled: boolean
-  dropdownInstance: DropdownInstance
   triggerAutoFocusRef: Ref<HTMLElement | null>
 }
 
@@ -77,7 +76,7 @@ export const NovaDropdown = defineComponent({
   name: 'NovaDropdown',
   props: dropdownProps,
   emits: ['openChange'],
-  setup(props, { emit, slots }) {
+  setup(props, { emit, slots, expose }) {
     let trapped = false
 
     const environment = props.environment ?? useEnvironment(props)
@@ -149,10 +148,10 @@ export const NovaDropdown = defineComponent({
       },
     })
 
-    // TODO Find another way to communicate parent and child components
-    const dropdownInstance: DropdownInstance = {
+    // 使用 expose 暴露方法给父组件，父组件通过 ref 调用
+    expose({
       close,
-    }
+    })
 
     watch(
       () => props.disabled,
@@ -172,7 +171,7 @@ export const NovaDropdown = defineComponent({
 
       if (slotTrigger) {
         slotTriggerNode = slotTrigger({
-          dropdownInstance,
+          disabled: props.disabled,
           triggerAutoFocusRef,
         })
       }

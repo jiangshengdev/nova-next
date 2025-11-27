@@ -93,7 +93,7 @@ export const NovaColorPicker = defineComponent({
     const emit = context.emit
 
     const environment = useEnvironment(props)
-    const dropdownInstanceRef = ref<DropdownInstance | null>(null)
+    const dropdownRef = ref<DropdownInstance | null>(null)
     const colorPickerTriggerAutoFocusRef = ref<HTMLElement | null>(null)
     const colorPickerPanelAutoFocusRef = ref<HTMLElement | null>(null)
 
@@ -452,7 +452,7 @@ export const NovaColorPicker = defineComponent({
         const presetNode = createPreset()
 
         function closeDropdown() {
-          dropdownInstanceRef.value?.close()
+          dropdownRef.value?.close()
         }
 
         const closeNode = (
@@ -490,8 +490,7 @@ export const NovaColorPicker = defineComponent({
       const dropdownNode = createDropdown()
 
       const slots = {
-        trigger: ({ dropdownInstance, triggerAutoFocusRef }: DropdownTriggerScoped) => {
-          dropdownInstanceRef.value = dropdownInstance
+        trigger: ({ triggerAutoFocusRef }: DropdownTriggerScoped) => {
           triggerAutoFocusRef.value = colorPickerTriggerAutoFocusRef.value
 
           return triggerNode
@@ -505,6 +504,7 @@ export const NovaColorPicker = defineComponent({
 
       return (
         <NovaDropdown
+          ref={dropdownRef}
           class={classList.value}
           disabled={props.disabled}
           panelClass={panelClassList.value}
