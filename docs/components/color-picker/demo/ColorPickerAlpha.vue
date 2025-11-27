@@ -60,12 +60,14 @@ watch([alphaEnabled, format], ([newAlphaEnabled], [oldAlphaEnabled]) => {
 <style scoped>
 .demo-alpha {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 12px;
 }
 
 .demo-controls {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
@@ -74,6 +76,7 @@ watch([alphaEnabled, format], ([newAlphaEnabled], [oldAlphaEnabled]) => {
 
 .demo-control {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
@@ -91,6 +94,7 @@ watch([alphaEnabled, format], ([newAlphaEnabled], [oldAlphaEnabled]) => {
 
 .demo-radio {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
   cursor: pointer;
@@ -102,6 +106,7 @@ watch([alphaEnabled, format], ([newAlphaEnabled], [oldAlphaEnabled]) => {
 
 .demo-picker {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }

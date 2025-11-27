@@ -128,3 +128,15 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+.vp-doc td {
+  min-width: 100px;
+}
+
+.vp-doc td:nth-child(2) {
+  min-width: 200px;
+}
+
+.nova-dropdown-panel {
+  z-index: 21;
+}

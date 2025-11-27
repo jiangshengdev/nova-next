@@ -36,6 +36,7 @@ import { NovaEnvironment, NovaButton } from '@jiangshengdev/nova-next'
 
 .demo-surface {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;

@@ -24,6 +24,7 @@ const highlight = ref('#722ed1')
 <style scoped>
 .demo-trigger {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 

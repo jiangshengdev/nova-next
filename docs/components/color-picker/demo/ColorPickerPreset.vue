@@ -30,12 +30,14 @@ const themeColors = ['#1677ff', '#36cfc9', '#faad14', '#f5222d']
 <style scoped>
 .demo-preset {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 48px;
+  gap: 12px 48px;
 }
 
 .demo-group {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   gap: 8px;

@@ -35,6 +35,7 @@ import { NovaInput } from '@jiangshengdev/nova-next'
 <style scoped>
 .demo-column {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 16px;
 }

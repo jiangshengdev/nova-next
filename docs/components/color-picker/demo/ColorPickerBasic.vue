@@ -32,11 +32,13 @@ const dangerColor = ref('#ff4d4f')
 <style scoped>
 .demo-column {
   display: flex;
-  gap: 48px;
+  flex-wrap: wrap;
+  gap: 12px 48px;
 }
 
 .demo-group {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   gap: 8px;
