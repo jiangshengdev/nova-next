@@ -59,7 +59,7 @@
     "vue": "^3.5.22"
   },
   "devDependencies": {
-    "@jiangshengdev/nova-next": "alpha",
+    "@jiangshengdev/nova-next": "3.0.0-alpha.4",
     "@playwright/test": "^1.56.1",
     "@prettier/plugin-oxc": "^0.0.4",
     "@stylistic/eslint-plugin": "^5.6.1",
