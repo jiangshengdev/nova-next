@@ -22,6 +22,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "web-types": "./dist/web-types.json",
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./dist/styles/all.css",
@@ -46,13 +47,16 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
-    "format": "prettier --write docs/ e2e/ issues/ playground/ src/ tests/",
+    "format": "prettier --write docs/ e2e/ issues/ playground/ scripts/ src/ tests/",
     "xo": "xo",
     "release": "bumpp && pnpm publish",
-    "prepublishOnly": "pnpm run build && pnpm run styles:build",
+    "prepublishOnly": "pnpm run build && pnpm run styles:build && pnpm run gen:web-types",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "gen:meta": "tsx scripts/gen-component-meta.ts",
+    "gen:web-types": "run-s gen:meta gen:web-types-only",
+    "gen:web-types-only": "tsx scripts/gen-web-types.ts"
   },
   "dependencies": {
     "@jiangshengdev/material-design-icons-vue-next": "2.0.0-alpha.1",
@@ -88,11 +92,13 @@
     "pinia": "^3.0.3",
     "prettier": "3.6.2",
     "tsdown": "^0.16.6",
+    "tsx": "^4.20.6",
     "typescript": "~5.9.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitepress": "2.0.0-alpha.15",
     "vitest": "^3.2.4",
+    "vue-component-meta": "^3.1.5",
     "vue-router": "^4.6.3",
     "vue-tsc": "^3.1.1",
     "xo": "^1.2.3"

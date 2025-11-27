@@ -1,0 +1,106 @@
+import { readFileSync, writeFileSync } from 'node:fs'
+import * as url from 'node:url'
+import path from 'node:path'
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
+
+// 读取 package.json
+const pkg = JSON.parse(readFileSync(path.join(__dirname, '../package.json'), 'utf-8'))
+
+// 读取 component-meta.json
+const componentMeta = JSON.parse(
+  readFileSync(path.join(__dirname, '../temp/component-meta.json'), 'utf-8'),
+)
+
+interface ComponentMeta {
+  name: string
+  path: string
+  props: { name: string; type: string; default?: string; description: string; required: boolean }[]
+  events: { name: string; description: string }[]
+  slots: { name: string; description: string }[]
+}
+
+// 转换为 web-types 格式
+const webTypes = {
+  $schema: 'https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json',
+  framework: 'vue',
+  name: pkg.name,
+  version: pkg.version,
+  'description-markup': 'markdown',
+  contributions: {
+    html: {
+      'vue-components': componentMeta.map((component: ComponentMeta) => {
+        const result: Record<string, unknown> = {
+          name: component.name,
+          source: { module: pkg.name, symbol: component.name },
+        }
+
+        // 布尔类型属性列表（可无值使用）
+        const booleanProps = ['disabled', 'readonly', 'required', 'autofocus', 'primary']
+
+        if (component.props.length > 0) {
+          result.props = component.props.map((p) => {
+            const prop: Record<string, unknown> = {
+              name: p.name,
+              description: p.description,
+            }
+
+            if (p.type) {
+              prop.type = p.type
+            }
+
+            if (p.default !== undefined) {
+              prop.default = p.default
+            }
+
+            if (p.required) {
+              prop.required = p.required
+            }
+
+            // 布尔属性可无值使用
+            if (booleanProps.includes(p.name)) {
+              prop.value = { kind: 'no-value' }
+            }
+
+            return prop
+          })
+        }
+
+        if (component.events.length > 0) {
+          // 处理 v-model 事件
+          const modelEvent = component.events.find((e) => e.name === 'update:modelValue')
+
+          if (modelEvent) {
+            result['vue-model'] = {
+              prop: 'modelValue',
+              event: 'update:modelValue',
+            }
+          }
+
+          // 其他事件
+          const otherEvents = component.events.filter((e) => e.name !== 'update:modelValue')
+
+          if (otherEvents.length > 0) {
+            result.events = otherEvents.map((e) => ({
+              name: e.name,
+              description: e.description,
+            }))
+          }
+        }
+
+        if (component.slots.length > 0) {
+          result.slots = component.slots.map((s) => ({
+            name: s.name,
+            description: s.description,
+          }))
+        }
+
+        return result
+      }),
+    },
+  },
+}
+
+writeFileSync(path.join(__dirname, '../dist/web-types.json'), JSON.stringify(webTypes, null, 2))
+
+console.log('dist/web-types.json generated')

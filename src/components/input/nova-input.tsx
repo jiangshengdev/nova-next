@@ -3,6 +3,7 @@ import {
   type FunctionalComponent,
   type InputHTMLAttributes,
   type PropType,
+  type SlotsType,
 } from 'vue'
 import {
   environmentProps,
@@ -83,9 +84,23 @@ const novaInputPropDefs: ComponentPropsOptions<NovaInputProps> = {
 type NovaInputProps = NovaInputBaseProps & InputHTMLAttributes
 
 /**
+ * NovaInput 插槽类型
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface NovaInputSlots {}
+
+/**
+ * NovaInput 事件类型
+ */
+type NovaInputEmits = ['update:modelValue']
+
+/**
  * 语义化文本输入组件，保持与原生 input 相同的属性与行为
  */
-const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) => {
+const NovaInput: FunctionalComponent<NovaInputProps, NovaInputEmits, NovaInputSlots> = (
+  props,
+  { attrs, emit },
+) => {
   // 环境上下文
   const { themeRef } = useEnvironment(props)
   const { class: inputClass, wrapperClass, wrapperStyle, disabled, readonly, modelValue } = props
@@ -148,6 +163,7 @@ const NovaInput: FunctionalComponent<NovaInputProps> = (props, { attrs, emit }) 
 
 NovaInput.props = novaInputPropDefs
 NovaInput.emits = ['update:modelValue']
+NovaInput.slots = Object as SlotsType<NovaInputSlots>
 NovaInput.inheritAttrs = false
 NovaInput.displayName = 'NovaInput'
 

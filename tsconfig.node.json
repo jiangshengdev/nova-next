@@ -9,7 +9,8 @@
     "nightwatch.conf.*",
     "playwright.config.*",
     "eslint.config.*",
-    "xo.config.*"
+    "xo.config.*",
+    "scripts/**/*"
   ],
   "compilerOptions": {
     "noEmit": true,

@@ -3,6 +3,7 @@ import {
   type ComponentPropsOptions,
   type FunctionalComponent,
   type PropType,
+  type SlotsType,
   type VNodeChild,
 } from 'vue'
 import {
@@ -46,9 +47,26 @@ const novaButtonPropDefs: ComponentPropsOptions<NovaButtonProps> = {
 export type NovaButtonProps = NovaButtonBaseProps & ButtonHTMLAttributes
 
 /**
+ * NovaButton 插槽类型
+ */
+export interface NovaButtonSlots {
+  /**
+   * 按钮文本或自定义内容
+   */
+  default?: () => VNodeChild
+  /**
+   * 自定义图标区域，优先级高于 icon 属性
+   */
+  icon?: () => VNodeChild
+}
+
+/**
  * 语义化按钮组件，保持与原生 button 一致的交互语义
  */
-const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
+const NovaButton: FunctionalComponent<NovaButtonProps, Record<string, never>, NovaButtonSlots> = (
+  props,
+  context,
+) => {
   // 环境上下文
   const { themeRef } = useEnvironment(props)
   const { slots, attrs } = context
@@ -76,6 +94,7 @@ const NovaButton: FunctionalComponent<NovaButtonProps> = (props, context) => {
 }
 
 NovaButton.props = novaButtonPropDefs
+NovaButton.slots = Object as SlotsType<NovaButtonSlots>
 NovaButton.inheritAttrs = false
 NovaButton.displayName = 'NovaButton'
 
