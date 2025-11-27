@@ -112,8 +112,7 @@ export interface ColorPickerPresetScoped {
   setColorAndPosition: (color: Color) => void
 }
 
-export interface ColorPickerTriggerScoped {
-  disabled: boolean
+export interface ColorPickerTriggerScoped extends DropdownTriggerScoped {
   color: Color
 }
 
@@ -322,7 +321,13 @@ export const NovaColorPicker = defineComponent({
       const language = environment.languageRef.value.colorPicker
 
       function createTrigger() {
-        const triggerProps = {
+        const triggerScoped: ColorPickerTriggerScoped = {
+          disabled: !!props.disabled,
+          color: state.color,
+          triggerAutoFocusRef: colorPickerTriggerAutoFocusRef,
+        }
+
+        const triggerComponentProps = {
           disabled: !!props.disabled,
           color: state.color,
           environment,
@@ -339,17 +344,17 @@ export const NovaColorPicker = defineComponent({
         if (trigger) {
           const triggerNode = () =>
             trigger({
-              ...triggerProps,
+              ...triggerScoped,
             })
 
           return (
-            <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps}>
+            <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerComponentProps}>
               {triggerNode}
             </ColorPickerTrigger>
           )
         }
 
-        return <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerProps} />
+        return <ColorPickerTrigger onAssignRef={onAssignRef} {...triggerComponentProps} />
       }
 
       function createHsvPanel() {
