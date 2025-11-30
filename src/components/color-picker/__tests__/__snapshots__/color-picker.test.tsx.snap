@@ -16,7 +16,7 @@ exports[`color-picker > alpha 1`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -100,7 +100,7 @@ exports[`color-picker > alpha 2`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -184,7 +184,7 @@ exports[`color-picker > alpha 3`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -260,7 +260,7 @@ exports[`color-picker > change value 1`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -336,7 +336,7 @@ exports[`color-picker > change value 2`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -412,7 +412,7 @@ exports[`color-picker > class 1`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -503,7 +503,7 @@ exports[`color-picker > disabled 2`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -579,7 +579,7 @@ exports[`color-picker > preset 1`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -687,7 +687,7 @@ exports[`color-picker > render 2`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
@@ -779,7 +779,7 @@ exports[`color-picker > teleport to body 2`] = `
       <div class="nova-color-picker-panel-inner">
         <div class="nova-trap" tabindex="0"></div>
         <div class="nova-color-picker-close-wrap">
-          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
+          <div class="nova-color-picker-close" tabindex="0" role="button" aria-label="Close"><span class="md-icon mdi-close"><svg height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></span></div>
         </div>
         <div class="nova-color-picker-hsv">
           <div class="nova-color-picker-hsv-inner">
