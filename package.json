@@ -59,7 +59,7 @@
     "gen:web-types-only": "tsx scripts/gen-web-types.ts"
   },
   "dependencies": {
-    "@jiangshengdev/material-design-icons-vue-next": "2.0.0-alpha.1",
+    "@jiangshengdev/material-design-icons-vue-next": "2.0.0-alpha.3",
     "vue": "^3.5.22"
   },
   "devDependencies": {
