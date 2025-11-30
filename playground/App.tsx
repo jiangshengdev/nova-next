@@ -1,7 +1,7 @@
 import { defineComponent, reactive, watch } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { NovaButton, NovaEnvironment } from '../src'
-import { enUS, zhCN } from '../src/environments/languages'
+import { enUS, zhCN } from '@/environments/languages'
 
 const storageThemeKey = 'nova-theme'
 
