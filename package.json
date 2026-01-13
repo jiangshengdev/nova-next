@@ -48,7 +48,6 @@
     "lint:eslint": "eslint . --fix --cache",
     "lint": "run-s lint:*",
     "format": "prettier --write docs/ e2e/ issues/ playground/ scripts/ src/ tests/",
-    "xo": "xo",
     "release": "bumpp && pnpm publish",
     "prepublishOnly": "pnpm run build && pnpm run styles:build && pnpm run gen:web-types",
     "docs:dev": "vitepress dev docs",
@@ -100,7 +99,6 @@
     "vitest": "^3.2.4",
     "vue-component-meta": "^3.1.5",
     "vue-router": "^4.6.3",
-    "vue-tsc": "^3.1.1",
-    "xo": "^1.2.3"
+    "vue-tsc": "^3.1.1"
   }
 }
