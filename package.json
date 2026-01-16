@@ -102,5 +102,10 @@
     "vue-router": "^4.6.3",
     "vue-tsc": "^3.1.1",
     "xo": "^1.2.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@eslint/plugin-kit": "^0.4.1"
+    }
   }
 }
