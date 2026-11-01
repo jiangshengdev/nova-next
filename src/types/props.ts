@@ -1,4 +1,4 @@
-import { type StyleValue } from 'vue'
+import { type HTMLAttributes, type StyleValue } from 'vue'
 
 export interface VueProps {
   [key: string]: unknown
@@ -6,7 +6,7 @@ export interface VueProps {
 
 export type VueStyle = StyleValue
 
-export type VueClass = unknown
+export type VueClass = HTMLAttributes['class']
 
 export type Placement =
   | 'topLeft'
